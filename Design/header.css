@@ -20,7 +20,6 @@ header
 {
     display: flex;
     justify-content: space-around;
-    
     background-color: #0f413a;
     border-radius: 0px 0px 20px 20px;
     padding: 10px 0;
@@ -55,7 +54,7 @@ header
 }
 .icons a svg
 {
-    background-color: #1b6d62;
+    /* background-color: #1b6d62; */
     padding: 5px;
     border-radius: 50%;
 }
