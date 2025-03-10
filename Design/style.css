@@ -16,31 +16,47 @@
 }
 header
 {
-    background-color: #f0f0f0;
     display: flex;
+    justify-content: center;
+    
+    background-color: #f0f0f0;
     border-radius: 0px 20px 20px 0px;
+    border: 1px blue solid;
 }
 .header-container 
 {
     border: 1px red solid;
     display: flex;
-    justify-content: space-between;
     align-items: center;
     margin: 0 auto;
     padding: 0 20px;
+}
+.icons
+{
+    display: flex;
+    align-items: center;
+    border: green 2px solid;
+}
+.icons a
+{
+    margin-right: 10px;
+}
+.header-text h6
+{
+    color: gray;
+    font-weight: 100;
 }
 nav ul 
 {
     list-style: none;
     display: flex;
 }
-  
-nav ul li 
+  nav ul li 
 {
     margin-left: 20px;
 }
-  
-nav ul li a {
+nav ul li a 
+{
     text-decoration: none;
     color: #333; 
 }
