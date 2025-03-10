@@ -5,11 +5,26 @@
     padding: 0;
     margin: 0;
 }
+header
+{
+    height: 600px; /*Change header in header.css, this is only place where height is changed*/
+}
+.lower-header
+{
+    border-radius: 0px 0px 20px 20px;
+    color: white;
+    font-weight: bold;
 
-header {
-    padding: 10px 0 500px 0;
-    background-image: url(./IMGs/lowest.jpeg);
-    background-size: cover;
-    background-position: center 40%; /* Moves image lower */
-    background-repeat: no-repeat; /* Avoids repetition */
+    height: 450px;
+    width: 100%;
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 30px;
+}
+.lower-header p
+{
+    width: 350px;
 }
