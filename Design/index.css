@@ -5,7 +5,11 @@
     padding: 0;
     margin: 0;
 }
-header
-{
-    border-radius: 0;
+
+header {
+    padding: 10px 0 500px 0;
+    background-image: url(./IMGs/lowest.jpeg);
+    background-size: cover;
+    background-position: center 40%; /* Moves image lower */
+    background-repeat: no-repeat; /* Avoids repetition */
 }
