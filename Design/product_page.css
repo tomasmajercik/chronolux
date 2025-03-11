@@ -4,19 +4,30 @@
     margin: 0;
     padding: 0;
 }
+
 header
 {
     height: 600px; /*Change header in header.css, this is only place where height is changed*/
+    z-index: 1;
 }
+
 .product-catalog {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
-    gap: 20px; /* Add spacing */
-    width: 90%;
+    width: 80%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+    margin-top: -50px;
+    padding: 20px 20px 20px 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    background-color: white;
+    border-radius: 20px;
+}
+
+.product-grid{
+    display: grid;
     text-align: center;
+    grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+    gap: 20px; /* Add spacing */
 }
 
 .product-container {
@@ -25,8 +36,8 @@ header
     width: 330px;
     height: 464px;
     margin: 0 auto; /* Centers items inside grid cells */
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     transition: transform 0.5s ease, box-shadow 0.5s ease;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .product-container:hover {
@@ -100,4 +111,22 @@ header
 .star {
     font-size: 14px;
     margin-right: 5px;
+}
+
+.product-menu{
+    padding: 5px 40px;
+    margin: 0 0 15px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.product-menu button{
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);;
+    margin-right: 15px;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    border: 1px solid #d1d1d1;
 }
