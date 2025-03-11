@@ -35,7 +35,7 @@ footer
     align-items: center;
     justify-content: center;
 
-    padding: 30px 0;
+    padding: 40px 0;
 }
 .footer-container
 {
@@ -44,7 +44,7 @@ footer
     border-radius: 20px;
     padding: 30px;
     width: 520px;
-    height: 250px;
+    height: 300px;
 
     display: flex;
     justify-content: space-between;
@@ -76,9 +76,22 @@ footer
 .footer-container ul li
 {
     list-style: none;
-    line-height: 20px;
+    line-height: 25px;
 }
 .footer-container ul
 {
     margin-top: 20px;
+}
+.social-nws a
+{
+    text-decoration: none;
+    margin-right: 5px;
+}
+.social-nws svg
+{
+    background-color: #ccc;
+    border-radius: 50%;
+    padding: 10px;
+    width: 40px;
+    height: 40px;
 }
