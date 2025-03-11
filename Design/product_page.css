@@ -1,10 +1,3 @@
-*
-{
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    margin: 0;
-    padding: 0;
-}
-
 header
 {
     height: 600px; /*Change header in header.css, this is only place where height is changed*/
@@ -32,7 +25,7 @@ header
 
 .product-container {
     border-radius: 20px;
-    padding: 20px;
+    padding: 0px;
     width: 330px;
     height: 464px;
     margin: 0 auto; /* Centers items inside grid cells */
@@ -47,13 +40,18 @@ header
     cursor: pointer;
 }
 
+
 .product-image {
     width: 330px;
     height: 330px;
     border-radius: 20px;
+    padding: 20px; /* Padding on the container, not the img */
 }
-.img-product{
-    border-radius: 20px;
+
+.img-product {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px; /* Ensures rounded corners */
 }
 
 .category-title{
@@ -68,6 +66,7 @@ header
     width: 100%;
     padding: 12px;
     margin-top: 15px;
+    z-index: 2;
     background-color: #3b6048;
     color: white;
     border: none;
@@ -87,6 +86,7 @@ header
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    padding: 0 20px;
     gap: 5px;
 }
 
@@ -129,4 +129,54 @@ header
     border-radius: 20px;
     cursor: pointer;
     border: 1px solid #d1d1d1;
+}
+
+.paging {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    position: relative;
+    justify-content: center;
+}
+
+
+.prev, .next {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    border: 1px solid #d1d1d1;
+    gap: 8px;
+}
+
+.prev {
+    left: 20px;
+}
+
+.next {
+    right: 20px;
+}
+
+.page-numbering button{
+    background-color: white;
+    padding: 10px 15px;
+    border: 1px solid #d1d1d1;
+    border-radius: 10px;
+    cursor: pointer;
+} 
+
+.page-numbering button:hover, .prev:hover, .next:hover {
+    background-color: #f1f1f1;
+}
+
+
+.clickable-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
 }
