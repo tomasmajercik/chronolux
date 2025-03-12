@@ -4,10 +4,12 @@
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
 }
 header
 {
-    height: 600px; /*Change header in header.css, this is only place where height is changed*/
+    height: 100vh; /*Change header in header.css, this is the only place where height is changed*/
+    border-radius: 0%;
 }
 .lower-header
 {
@@ -31,4 +33,315 @@ header
 main
 {
     text-align: center;
+}
+
+/* Watch category section */
+.watch-category
+{
+    /* border: 1px solid green; */
+    max-width: 1200px;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+.category-heading
+{
+    /* border: 1px solid blue; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.category-heading button
+{
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);;
+    margin-right: 15px;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    border: 1px solid #d1d1d1;
+}
+.category-container
+{
+    margin-top: 20px;
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: space-between;
+}
+.category-card
+{
+    width: 300px;
+    height: 400px;
+    border-radius: 20px;
+    background-color: #ccc;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    text-align: left;
+    color: #eee;
+}
+.category-card .category-description
+{
+    margin-bottom: 20px;
+    width: 80%;
+    height: 120px;
+    margin: 0 auto;
+}
+.header-hidden-button
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.category-card .category-description h1
+{
+    margin-bottom: 10px;
+    /* display: inline-block; */
+    /* border: 1px solid red; */
+}
+.category-card .category-description p
+{
+    font-size: 12px;
+    width: 250px;
+}
+/* Ak sa ten hover efect bude kazit asi hlavne pri responsive tak to treba dat prec button z html */
+.category-card .category-description button {
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    border: 1px solid #d1d1d1;
+    
+    /* Initially hidden */
+    opacity: 0;
+    transform: translateY(10px); /* Slightly lower */
+    transition: opacity 0.6s ease-in-out 0.4s, transform 0.6s ease-in-out 0.4s;  
+}
+
+/* Correct selector for hover */
+.category-card:hover .category-description button 
+{
+    opacity: 1;
+    transform: translateY(0); /* Moves up smoothly */
+}
+
+
+.category-card.cc1
+{
+    background-image: url(./IMGs/categories/entyLU.jpg);
+    background-size: cover;
+    background-position: center 40%; /* Moves image lower */
+    background-repeat: no-repeat;
+    transition: 1s;
+}
+.category-card.cc2
+{
+    transition: 1s;
+    background-image: url(./IMGs/categories/basicLU.jpg);
+    background-size: cover;
+    background-position: center 40%; /* Moves image lower */
+    background-repeat: no-repeat;
+}
+.category-card.cc3
+{
+    transition: 1s;
+    background-image: url(./IMGs/categories/ultraLU.jpg);
+    background-size: cover;
+    background-position: center 40%; /* Moves image lower */
+    background-repeat: no-repeat;
+}
+.category-card.cc1:hover, .category-card.cc2:hover, .category-card.cc3:hover
+{
+    flex-grow: .5;
+    transition: 1s;
+}
+
+/* Reviews section */
+.web-reviews
+{
+    margin-top: 30px;
+    background-color: #ddd;
+    padding: 30px 0;
+}
+.reviews-container
+{
+    max-width: 1200px;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+.review-card
+{
+    padding: 30px;
+    width: 350px;
+    height: 250px;
+    border-radius: 20px;
+    background-color: #eee;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    text-align: left;
+    color: black;
+}
+.person-info svg
+{
+    width: 40px;
+    height: 40px;
+    background-color: #ccc;
+    border-radius: 50%;
+    padding: 5px;
+}
+.stars-holder svg
+{
+    background-color: transparent;
+    margin-top: 20px;
+    width: 20px;
+    height: 20px;
+}
+
+.person-info
+{
+    display: flex;
+    align-items: center;
+}
+.person-info h4
+{
+    margin-left: 10px;
+}
+
+/* recommended page */
+.product-container {
+    border-radius: 20px;
+    padding: 0px;
+    width: 330px;
+    height: 464px;
+    margin: 0 auto; /* Centers items inside grid cells */
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+.product-container img
+{ 
+    width: 98%;
+    height: 95%;
+    object-fit: cover; /* Crops the image while keeping aspect ratio */
+    border-radius: 10px; /* Optional: Adds rounded corners */
+}
+
+.product-container:hover {
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    cursor: pointer;
+}
+.product-image {
+    width: 330px;
+    height: 330px;
+    border-radius: 20px;
+    padding: 20px; /* Padding on the container, not the img */
+}
+
+.img-product {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px; /* Ensures rounded corners */
+}
+.category-title{
+    font-size: 10rem;
+    font-weight: bold;
+    margin-top: 60px;
+    color: #eee;
+    text-align: center;
+}
+.add-to-cart {
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    z-index: 2;
+    background-color: #3b6048;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.product-info h2 {
+    font-size: 1.5rem;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    text-align: left;
+}
+.product-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 20px;
+    gap: 5px;
+}
+.price {
+    font-weight: bold;
+    font-size: 1.3rem;
+    text-align: right;
+    align-self: flex-end;
+    margin-top: -40px;
+    margin-right: 20px;
+}
+.reviews {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    font-size: 12px;
+    color: gray;
+    margin-bottom: 10px;
+}
+.star {
+    font-size: 14px;
+    margin-right: 5px;
+}
+.product-menu{
+    padding: 5px 40px;
+    margin: 0 0 15px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.product-menu button{
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);;
+    margin-right: 15px;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    border: 1px solid #d1d1d1;
+}
+.paging {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    position: relative;
+    justify-content: center;
+}
+.prev, .next {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    border: 1px solid #d1d1d1;
+    gap: 8px;
+}
+.recommended
+{
+    text-align: left;
+    max-width: 1200px;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 40px;
+}
+.recommended-container
+{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
 }
