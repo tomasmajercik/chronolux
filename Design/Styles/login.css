@@ -1,0 +1,84 @@
+header{
+    padding: 20px 0;
+    border-radius: 0;
+}
+
+.sign-in-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%; /* Adjust width as needed */
+    height: 80vh;
+    max-width: 1200px; /* Optional, to limit size */
+    margin: 40px auto;
+    border-radius: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.sign-in-container h1{
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.left, .right{
+    flex: 1;
+    padding: 120px 100px;
+    height: 100%;
+}
+
+.left{
+    background: linear-gradient(135deg, #ffffff, #f0f0f0);
+    border-radius: 20px 0 0 20px;
+    
+}
+
+.right{
+    background: linear-gradient(135deg, #061f19, #0b4a35, #15854d);
+    border-radius: 0 20px 20px 0;
+    color:white;
+}
+
+.input-fields{
+    display: flex;
+    flex-direction: column;
+}
+
+.input-fields label{
+    font-size: 12px;
+    color: gray;
+    margin-bottom: 5px;
+}
+
+.input-fields input{
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    border: 1px solid #d1d1d1;
+}
+
+.left button, .right button{
+    padding: 15px 60px;
+    border-radius: 20px;
+    font-size: large;
+    margin-top: 30px;
+    cursor: pointer;
+    background-color: #1b6d62;
+    color: white;
+    text-align: center;
+    border: none;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    /* Centering the button */
+    display: block;
+    margin: 30px auto 0;
+}
+
+
+
+
+.input-fields a{
+    font-weight: normal;
+    font-size: small;
+    text-align: center;
+    margin-top: 10px;
+}
