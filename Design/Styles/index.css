@@ -11,25 +11,21 @@ header
     height: 100vh; /*Change header in header.css, this is the only place where height is changed*/
     border-radius: 0%;
 }
+
 .lower-header
 {
-    border-radius: 0px 0px 20px 20px;
     color: white;
     font-weight: bold;
-
-    height: 450px;
-    width: 100%;
-    margin: 0 auto;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    font-size: 30px;
 }
 .lower-header p
 {
-    width: 350px;
+    width: 400px;
+    font-size: 35px;
+    margin-top: 25vh;
+    margin-left: auto;
+    margin-right: 150px;
 }
+
 main
 {
     text-align: center;
@@ -127,28 +123,25 @@ main
 
 .category-card.cc1
 {
-    background-image: url(./IMGs/categories/entyLU.jpg);
-    background-size: cover;
-    background-position: center 40%; /* Moves image lower */
-    background-repeat: no-repeat;
-    transition: 1s;
+    background-image: url(../IMGs/categories/entyLU.jpg);
 }
 .category-card.cc2
 {
-    transition: 1s;
-    background-image: url(./IMGs/categories/basicLU.jpg);
-    background-size: cover;
-    background-position: center 40%; /* Moves image lower */
-    background-repeat: no-repeat;
+    background-image: url(../IMGs/categories/basicLU.jpg);
 }
 .category-card.cc3
 {
-    transition: 1s;
-    background-image: url(./IMGs/categories/ultraLU.jpg);
+    background-image: url(../IMGs/categories/ultraLU.jpg);
+}
+
+.category-card.cc1, .category-card.cc2, .category-card.cc3
+{
     background-size: cover;
     background-position: center 40%; /* Moves image lower */
     background-repeat: no-repeat;
+    transition: 1s;
 }
+
 .category-card.cc1:hover, .category-card.cc2:hover, .category-card.cc3:hover
 {
     flex-grow: .5;
