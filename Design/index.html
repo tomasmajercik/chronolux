@@ -15,7 +15,7 @@
 <body>
     <header>
         <div class="upper-header">
-            <div class="header-container">
+            <div class="header-container-desktop">
                 <div class="header-text">
                     <h1>ChronoLux</h1>
                     <h6><i>Time is never wasted with us</i></h6>
@@ -61,6 +61,33 @@
                     </svg>
                 </a>
             </div>
+        </div>
+        <div class="header-container-mobile">
+            <div class="header-text">
+                <h1>ChronoLux</h1>
+                <h6><i>Time is never wasted with us</i></h6>
+            </div>
+
+            <div class="hamburger" onclick="toggleMenu()">
+                <svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" width="40" height="31" viewBox="0 0 40 31" fill="none">
+                    <path d="M2 29H37.4375M2 15.5H37.4375M2 2H37.4375" stroke="white" stroke-width="4"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            
+                <svg class="close-icon" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <path d="M5 5L35 35M35 5L5 35" stroke="white" stroke-width="4" stroke-linecap="round" />
+                </svg>
+            </div>
+
+            <nav class="mobile-menu">
+                <a href="index.html">Home</a>
+                <a href="product_page.html#product-catalog">Products</a>
+                <a href="contact.html">Contact</a>
+                <a href="cart.html">Shopping Cart</a>
+                <a href="search.html">Search</a>
+                <a href="wish-list.html">Wish List</a>
+                <a href="login.html">Profile</a>
+            </nav>
         </div>
         <div class="lower-header">
             <p>
@@ -436,7 +463,7 @@
     </footer>
 
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
-    <script src="script.js"></script>
+    <script src="Scripts/header.js"></script>
 </body>
 
 </html>
