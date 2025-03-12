@@ -8,7 +8,8 @@
 }
 header
 {
-    height: 600px; /*Change header in header.css, this is the only place where height is changed*/
+    height: 100vh; /*Change header in header.css, this is the only place where height is changed*/
+    border-radius: 0%;
 }
 .lower-header
 {
@@ -95,7 +96,7 @@ main
 {
     margin-bottom: 10px;
     /* display: inline-block; */
-    border: 1px solid red;
+    /* border: 1px solid red; */
 }
 .category-card .category-description p
 {
