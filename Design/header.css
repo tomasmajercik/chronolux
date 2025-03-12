@@ -52,17 +52,16 @@ header
 {
     display: flex;
     align-items: center;
+    padding: 5px;
     /* border: green 2px solid; */
 }
 .icons a
 {
-
-    margin-right: 10px;
+    margin-right: 15px;
 }
 .icons a svg
 {
     /* background-color: #1b6d62; */
-    padding: 5px;
     border-radius: 50%;
 }
 nav
