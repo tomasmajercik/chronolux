@@ -181,3 +181,13 @@ header
     height: 100%;
     z-index: 1;
 }
+
+
+
+/* MEDIA QUERY - Show hamburger menu after 670px */
+@media (max-width: 670px) {
+    .category-title{
+        font-size: 5rem;
+    }
+   
+}

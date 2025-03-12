@@ -340,3 +340,25 @@ main
     justify-content: space-around;
     margin-top: 20px;
 }
+
+
+
+/********************* Responsive Design *********************/
+/* Header fajn po 670  len zarovnat text na stred od 750*/
+/* Hamburger od 670 v Headeri */
+
+/* Category section po 1060 pohode potom treba dat pod seba*/
+
+
+/* MEDIA QUERY - Show hamburger menu after 670px */
+@media (max-width: 670px) {
+
+    .lower-header {
+        text-align: center; /* Ensure text stays centered */
+    }
+
+    .lower-header p {
+        margin: 0 auto; /* Center text within the container */
+        margin-top: 30vh;
+    }
+}
