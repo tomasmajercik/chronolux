@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="Styles/header.css">
-    <link rel="stylesheet" href="Styles/product_detail.css">
+    <link rel="stylesheet" href="Styles/cart.css">
     <link rel="stylesheet" href="Styles/footer.css">
     <title>WTECH-Watch</title>
     <link rel="icon" href="IMGs/icon.png">
@@ -69,45 +69,43 @@
     </header>
 
     <main>
-        <section class="product-section">
-            <nav class="categorization">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="product_page.html">Product Category</a></li>
-                    <li><a href="product_detail.html">Product Name</a></li>
-                </ul>
-            </nav>
-            <div class="product">
-                <div class="product-img">
-                    <img src="IMGs/watch-tissot.jpg" alt="Product Image" width="440px" height="440px">
-                </div>
-                <div class="product-info">
-                    <h2>Product Name</h2>
-                    <div class="product-sizes">
-                        <h5>Sizes</h5>
-                        <button>42mm</button>
-                        <button>43mm</button>
-                        <button>45mm</button>
+        <section class="cart-section">
+            <div class="title">
+                <h1>My Cart</h1>
+            </div>
+            <div class="container">
+                <div class="cart-container">
+                    <div class="cart-headings">
+                        <div class="product">Product</div>
+                        <div class="size">Size</div>
+                        <div class="amount">Amount</div>
+                        <div class="price">Price</div>
                     </div>
-                    <div class="product-description">
-                        <h5>Description</h5>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore, molestiae, aspernatur quis
-                            temporibus dignissimos perferendis, itaque repellendus vero iure autem dolorum odit facilis
-                            exercitationem ipsam dolor quod repellat magnam corrupti!</p>
-                    </div>
-                    <div class="product-price">
-                        <h5>Price</h5>
-                        <h2>579.99€</h2>
-                    </div>
-                    <div class="product-quantity">
-                        <button onclick="changeQuantity(-1)">-</button>
-                        <span id="quantity">1</span>
-                        <button onclick="changeQuantity(1)">+</button>
-                    </div>
-                    <div class="product-buttons">
-                        <button>Add to Cart</button>
+                    <div class="cart-product-container">
+                        <img src="IMGs/watch-tissot.jpg" alt="watch-tissot">
+                        <div class="left-align">
+                            <h2>Product name</h2>
+                            <div class="actions">
+                                <div class="remove-item">Remove Item</div>
+                                <div class="add-to-favorite">Add to favorite</div>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div class="size">M</div>
+                            <div class="product-quantity">
+                                <button>-</button>
+                                <span>1</span>
+                                <button>+</button>
+                            </div>
+                            <div class="price">1000€</div>
+                        </div>
                     </div>
                 </div>
+                <div class="cart-summary">
+                    <h1>Summary</h1>
+                    <div class="summary-info"><h3></h3></div>
+                </div>
+            </div>
         </section>
     </main>
 
