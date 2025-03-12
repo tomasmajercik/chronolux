@@ -39,6 +39,7 @@ main
     width: 90%;
     margin: 0 auto;
     margin-top: 30px;
+    padding: 0 0 50px 0;
 }
 .category-heading
 {
@@ -49,17 +50,21 @@ main
 }
 .category-heading button
 {
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);;
+    box-shadow: 0px 6px 24px rgba(0, 0, 0, 0.15);
     margin-right: 15px;
-    padding: 10px 20px;
-    border-radius: 20px;
+    padding: 12px 24px;
+    border-radius: 24px;
+    background: linear-gradient(135deg, #106e42, #047d79);
+    border: none;
     cursor: pointer;
-    border: 1px solid #d1d1d1;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
 }
 .category-container
 {
     margin-top: 20px;
-    /* border: 1px solid red; */
     display: flex;
     justify-content: space-between;
 }
@@ -101,11 +106,13 @@ main
 }
 /* Ak sa ten hover efect bude kazit asi hlavne pri responsive tak to treba dat prec button z html */
 .category-card .category-description button {
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 6px 24px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(135deg, #106e42, #047d79);
+    border: none;
     padding: 10px 20px;
-    border-radius: 20px;
+    border-radius: 24px;
     cursor: pointer;
-    border: 1px solid #d1d1d1;
+    color: white;
     
     /* Initially hidden */
     opacity: 0;
@@ -148,19 +155,18 @@ main
     transition: 1s;
 }
 
-/* Reviews section */
+/********************** Reviews section *********************/
 .web-reviews
 {
     margin-top: 30px;
-    background-color: #ddd;
+    background-color: #1E2A28;
     padding: 30px 0;
 }
 .reviews-container
 {
     max-width: 1200px;
     width: 90%;
-    margin: 0 auto;
-    margin-top: 20px;
+    margin: 20px auto;
     display: flex;
     justify-content: space-between;
 }
@@ -168,27 +174,37 @@ main
 {
     padding: 30px;
     width: 350px;
-    height: 250px;
+    height: 300px;
     border-radius: 20px;
-    background-color: #eee;
-    display: flex;
-    flex-direction: column;
-    justify-content: end;
+    background-color: #2D3E3F;
     text-align: left;
-    color: black;
+    color: #eee;
+    position: relative;
 }
+
+.rew-words{
+    margin-top: 10px;
+}
+
+.review-content {
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 20px;
+}
+
 .person-info svg
 {
     width: 40px;
     height: 40px;
-    background-color: #ccc;
+    background-color: #eee;
     border-radius: 50%;
     padding: 5px;
 }
+
 .stars-holder svg
 {
     background-color: transparent;
-    margin-top: 20px;
+    margin: 20px 0 10px 0;
     width: 20px;
     height: 20px;
 }
@@ -201,9 +217,10 @@ main
 .person-info h4
 {
     margin-left: 10px;
+    font-weight: bolder;
 }
 
-/* recommended page */
+/*********************** Recommended page ***********************/
 .product-container {
     border-radius: 20px;
     padding: 0px;
@@ -331,6 +348,7 @@ main
     width: 90%;
     margin: 0 auto;
     margin-top: 40px;
+    padding: 0 0 50px 0;
 }
 .recommended-container
 {
