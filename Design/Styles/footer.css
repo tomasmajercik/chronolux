@@ -9,7 +9,6 @@ footer
     font-size: 12px;
     font-weight: normal;
     background-color: #1E2D2F;
-    font-size: 12px;
     font-weight: normal;
     color: #E0E0E0;
 }
@@ -29,12 +28,10 @@ footer
 
 .map
 {
-    /* border: 1px red solid; */
     margin-right: 40px; /*Has pair margin-left on line 40*/
 }
 .upper-footer
 {
-    /* border: 1px red solid; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -98,4 +95,53 @@ footer
     padding: 10px;
     width: 40px;
     height: 40px;
+}
+
+
+@media (max-width: 415px) {
+    .map iframe {
+        width: 100%;
+        max-width: 800px;
+        height: 300px;
+    }
+    .footer-container {
+        font-size: 80%;
+        
+    }
+    .info-column h2{
+        font-size: 25px;
+    }
+    .social-nws svg{
+        width: 30px;
+        height: 30px;
+        padding: 5px;
+    }
+    .web-name{
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 1050px) {
+    .upper-footer {
+        flex-direction: column; /* Stacks items vertically */
+        align-items: center; /* Centers them */
+        width: 100%;
+        /* text-align: center; */
+    }
+
+    .footer-container {
+        width: 100%;
+        margin: 0;
+    }
+
+    .map {
+        margin: 20px auto;
+        text-align: center;
+    }
+
+    .map iframe {
+        max-width: 800px;
+        height: 300px;
+    }
+    
 }

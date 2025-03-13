@@ -16,14 +16,35 @@ header
 {
     color: white;
     font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .lower-header p
 {
     width: 400px;
     font-size: 35px;
-    margin-top: 25vh;
+    margin-top: 30vh;
     margin-left: auto;
     margin-right: 150px;
+}
+
+.lower-header button{
+    margin-top: 20vh;
+    box-shadow: 0px 6px 24px rgba(0, 0, 0, 0.15);
+    padding: 12px 48px;
+    border-radius: 24px;
+    background: linear-gradient(135deg, #0A192F, #008080);
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.lower-header button:hover{
+    background: #171B22;
 }
 
 main
@@ -39,6 +60,7 @@ main
     width: 90%;
     margin: 0 auto;
     margin-top: 30px;
+    padding: 0 0 50px 0;
 }
 .category-heading
 {
@@ -49,17 +71,21 @@ main
 }
 .category-heading button
 {
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);;
+    box-shadow: 0px 6px 24px rgba(0, 0, 0, 0.15);
     margin-right: 15px;
-    padding: 10px 20px;
-    border-radius: 20px;
+    padding: 12px 24px;
+    border-radius: 24px;
+    background: linear-gradient(135deg, #106e42, #047d79);
+    border: none;
     cursor: pointer;
-    border: 1px solid #d1d1d1;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
 }
 .category-container
 {
     margin-top: 20px;
-    /* border: 1px solid red; */
     display: flex;
     justify-content: space-between;
 }
@@ -101,11 +127,13 @@ main
 }
 /* Ak sa ten hover efect bude kazit asi hlavne pri responsive tak to treba dat prec button z html */
 .category-card .category-description button {
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 6px 24px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(135deg, #106e42, #047d79);
+    border: none;
     padding: 10px 20px;
-    border-radius: 20px;
+    border-radius: 24px;
     cursor: pointer;
-    border: 1px solid #d1d1d1;
+    color: white;
     
     /* Initially hidden */
     opacity: 0;
@@ -148,47 +176,62 @@ main
     transition: 1s;
 }
 
-/* Reviews section */
+.category-card:not(:hover) {
+    transition: none;
+}
+
+/********************** Reviews section *********************/
 .web-reviews
 {
     margin-top: 30px;
-    background-color: #ddd;
+    background-color: #1E2A28;
     padding: 30px 0;
 }
 .reviews-container
 {
     max-width: 1200px;
     width: 90%;
-    margin: 0 auto;
-    margin-top: 20px;
+    margin: 20px auto;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 .review-card
 {
     padding: 30px;
     width: 350px;
-    height: 250px;
+    height: 300px;
     border-radius: 20px;
-    background-color: #eee;
-    display: flex;
-    flex-direction: column;
-    justify-content: end;
+    background-color: #2D3E3F;
     text-align: left;
-    color: black;
+    color: #eee;
+    position: relative;
 }
+
+.rew-words{
+    margin-top: 10px;
+}
+
+.review-content {
+    position: static;
+    bottom: 0;
+    margin-bottom: 20px;
+}
+
 .person-info svg
 {
     width: 40px;
     height: 40px;
-    background-color: #ccc;
+    background-color: #eee;
     border-radius: 50%;
     padding: 5px;
 }
+
 .stars-holder svg
 {
     background-color: transparent;
-    margin-top: 20px;
+    margin: 20px 0 10px 0;
     width: 20px;
     height: 20px;
 }
@@ -201,9 +244,10 @@ main
 .person-info h4
 {
     margin-left: 10px;
+    font-weight: bolder;
 }
 
-/* recommended page */
+/*********************** Recommended page ***********************/
 .product-container {
     border-radius: 20px;
     padding: 0px;
@@ -212,6 +256,7 @@ main
     margin: 0 auto; /* Centers items inside grid cells */
     transition: transform 0.5s ease, box-shadow 0.5s ease;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    position: relative;
 }
 .product-container img
 { 
@@ -227,6 +272,7 @@ main
     transition: transform 0.5s ease, box-shadow 0.5s ease;
     cursor: pointer;
 }
+
 .product-image {
     width: 330px;
     height: 330px;
@@ -239,6 +285,7 @@ main
     height: 100%;
     border-radius: 20px; /* Ensures rounded corners */
 }
+
 .category-title{
     font-size: 10rem;
     font-weight: bold;
@@ -246,6 +293,7 @@ main
     color: #eee;
     text-align: center;
 }
+
 .add-to-cart {
     width: 100%;
     padding: 12px;
@@ -259,12 +307,13 @@ main
     font-weight: bold;
     cursor: pointer;
 }
+
 .product-info h2 {
     font-size: 1.5rem;
     margin-top: 10px;
-    margin-bottom: 5px;
     text-align: left;
 }
+
 .product-info {
     display: flex;
     flex-direction: column;
@@ -272,14 +321,16 @@ main
     padding: 0 20px;
     gap: 5px;
 }
+
 .price {
     font-weight: bold;
     font-size: 1.3rem;
     text-align: right;
     align-self: flex-end;
-    margin-top: -40px;
+    margin-top: -32px;
     margin-right: 20px;
 }
+
 .reviews {
     display: flex;
     align-items: center;
@@ -288,41 +339,18 @@ main
     color: gray;
     margin-bottom: 10px;
 }
+
 .star {
     font-size: 14px;
     margin-right: 5px;
 }
-.product-menu{
-    padding: 5px 40px;
-    margin: 0 0 15px 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.product-menu button{
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);;
-    margin-right: 15px;
-    padding: 10px 20px;
-    border-radius: 20px;
-    cursor: pointer;
-    border: 1px solid #d1d1d1;
-}
-.paging {
-    display: flex;
-    align-items: center;
-    margin-top: 20px;
-    position: relative;
-    justify-content: center;
-}
-.prev, .next {
+.clickable-overlay {
     position: absolute;
-    display: flex;
-    align-items: center;
-    padding: 10px 20px;
-    border-radius: 20px;
-    cursor: pointer;
-    border: 1px solid #d1d1d1;
-    gap: 8px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
 }
 .recommended
 {
@@ -331,10 +359,88 @@ main
     width: 90%;
     margin: 0 auto;
     margin-top: 40px;
+    padding: 0 0 50px 0;
 }
 .recommended-container
 {
     display: flex;
     justify-content: space-around;
     margin-top: 20px;
+}
+
+
+
+/********************* Responsive Design *********************/
+/* Header fajn po 670  len zarovnat text na stred od 750*/
+/* Hamburger od 670 v Headeri */
+
+/* Category section po 1060 pohode potom treba dat pod seba*/
+
+
+/* MEDIA QUERY - Show hamburger menu after 670px */
+@media (max-width: 1200px) {
+    .reviews-container {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px; 
+    }
+
+    .review-card {
+        width: 45%; 
+        height: auto;
+        padding: 20px;
+        min-height: 250px;
+    }
+}
+
+@media (max-width: 1060px) {
+    .category-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    .category-card {
+        width: 90%; 
+        flex-grow: 1;
+        transition: none; 
+    }
+}
+
+@media (max-width: 1150px) {
+    .recommended-container {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px; /* Adds spacing between items */
+    }
+    .product-container:hover {
+        transform: none ;
+    }
+}
+
+@media (max-width: 768px) {
+    .review-card {
+        width: 90%; 
+    }
+}
+
+@media (max-width: 670px) {
+
+    .lower-header {
+        text-align: center; 
+    }
+
+    .lower-header p {
+        margin: 0 auto; /* Center text within the container */
+        margin-top: 30vh;
+    }
+}
+
+@media (max-width: 415px) {
+    body{
+        margin: 0;
+    }
+    .lower-header p {
+        font-size: 30px;
+        width: 100%;
+    }
 }

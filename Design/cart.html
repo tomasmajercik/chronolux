@@ -15,10 +15,7 @@
 <body>
     <header>
         <div class="upper-header">
-            <div class="header-container">
-                <div class="logo">
-                    <img src="logo.png" alt="Logo">
-                </div>
+            <div class="header-container-desktop">
                 <div class="header-text">
                     <h1>ChronoLux</h1>
                     <h6><i>Time is never wasted with us</i></h6>
@@ -26,7 +23,7 @@
                 <nav>
                     <ul>
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="product_page.html">Products</a></li>
+                        <li><a href="product_page.html#product-catalog">Products</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </nav>
@@ -53,7 +50,7 @@
                             fill="white" />
                     </svg>
                 </a>
-                <a href="#">
+                <a href="login.html">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 34 34" fill="none">
                         <path
                             d="M5.66675 25.5C5.66675 23.9971 6.26377 22.5558 7.32648 21.4931C8.38918 20.4304 9.83052 19.8333 11.3334 19.8333H22.6667C24.1696 19.8333 25.611 20.4304 26.6737 21.4931C27.7364 22.5558 28.3334 23.9971 28.3334 25.5C28.3334 26.2514 28.0349 26.9721 27.5035 27.5035C26.9722 28.0348 26.2515 28.3333 25.5001 28.3333H8.50008C7.74863 28.3333 7.02797 28.0348 6.49661 27.5035C5.96526 26.9721 5.66675 26.2514 5.66675 25.5Z"
@@ -65,7 +62,33 @@
                 </a>
             </div>
         </div>
+        <div class="header-container-mobile">
+            <div class="header-text">
+                <h1>ChronoLux</h1>
+                <h6><i>Time is never wasted with us</i></h6>
+            </div>
 
+            <div class="hamburger" onclick="toggleMenu()">
+                <svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" width="40" height="31" viewBox="0 0 40 31" fill="none">
+                    <path d="M2 29H37.4375M2 15.5H37.4375M2 2H37.4375" stroke="white" stroke-width="4"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            
+                <svg class="close-icon" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <path d="M5 5L35 35M35 5L5 35" stroke="white" stroke-width="4" stroke-linecap="round" />
+                </svg>
+            </div>
+
+            <nav class="mobile-menu">
+                <a href="index.html">Home</a>
+                <a href="product_page.html#product-catalog">Products</a>
+                <a href="contact.html">Contact</a>
+                <a href="contact.html">Shopping Cart</a>
+                <a href="contact.html">Search</a>
+                <a href="contact.html">Wish List</a>
+                <a href="contact.html">Profile</a>
+            </nav>
+        </div>
     </header>
 
     <main>
@@ -287,6 +310,7 @@
 
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
     <script src="script.js"></script>
+    <script src="Scripts/header.js"></script>
 </body>
 
 </html>
