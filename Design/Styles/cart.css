@@ -2,6 +2,8 @@
 {
     margin-left: 10%;
     padding: 20px 0;
+    font-size: 30px;
+    margin-top: 10px;
 }
 .cart-wrapper
 {
@@ -33,6 +35,10 @@
 }
 
 /* Items in cart section */
+.cart-section
+{
+    height: 80vh;
+}
 .cart-item
 {
     background-color: #ccc;
