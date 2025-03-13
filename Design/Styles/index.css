@@ -16,6 +16,10 @@ header
 {
     color: white;
     font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .lower-header p
 {
@@ -24,6 +28,23 @@ header
     margin-top: 30vh;
     margin-left: auto;
     margin-right: 150px;
+}
+
+.lower-header button{
+    margin-top: 20vh;
+    box-shadow: 0px 6px 24px rgba(0, 0, 0, 0.15);
+    padding: 12px 48px;
+    border-radius: 24px;
+    background: linear-gradient(135deg, #0A192F, #008080);
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.lower-header button:hover{
+    background: #171B22;
 }
 
 main
@@ -155,6 +176,10 @@ main
     transition: 1s;
 }
 
+.category-card:not(:hover) {
+    transition: none;
+}
+
 /********************** Reviews section *********************/
 .web-reviews
 {
@@ -169,6 +194,8 @@ main
     margin: 20px auto;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 .review-card
 {
@@ -187,7 +214,7 @@ main
 }
 
 .review-content {
-    position: absolute;
+    position: static;
     bottom: 0;
     margin-bottom: 20px;
 }
@@ -351,14 +378,69 @@ main
 
 
 /* MEDIA QUERY - Show hamburger menu after 670px */
+@media (max-width: 1200px) {
+    .reviews-container {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px; 
+    }
+
+    .review-card {
+        width: 45%; 
+        height: auto;
+        padding: 20px;
+        min-height: 250px;
+    }
+}
+
+@media (max-width: 1060px) {
+    .category-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    .category-card {
+        width: 90%; 
+        flex-grow: 1;
+        transition: none; 
+    }
+}
+
+@media (max-width: 1150px) {
+    .recommended-container {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px; /* Adds spacing between items */
+    }
+    .product-container:hover {
+        transform: none ;
+    }
+}
+
+@media (max-width: 768px) {
+    .review-card {
+        width: 90%; 
+    }
+}
+
 @media (max-width: 670px) {
 
     .lower-header {
-        text-align: center; /* Ensure text stays centered */
+        text-align: center; 
     }
 
     .lower-header p {
         margin: 0 auto; /* Center text within the container */
         margin-top: 30vh;
+    }
+}
+
+@media (max-width: 415px) {
+    body{
+        margin: 0;
+    }
+    .lower-header p {
+        font-size: 30px;
+        width: 100%;
     }
 }
