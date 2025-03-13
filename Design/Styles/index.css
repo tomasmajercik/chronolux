@@ -378,7 +378,6 @@ main
 
 
 /* MEDIA QUERY - Show hamburger menu after 670px */
-
 @media (max-width: 1200px) {
     .reviews-container {
         flex-wrap: wrap;
