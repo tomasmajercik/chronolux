@@ -38,7 +38,7 @@
 /* Items in cart section */
 .cart-section
 {
-    height: 80vh;
+    min-height: 80vh;
 }
 .cart-item
 {
@@ -321,6 +321,7 @@ label
     margin-top: 40px;
     display: flex;
     justify-content: space-evenly;
+    margin-bottom: 20px;
 }
 .delivery-inputs
 {
