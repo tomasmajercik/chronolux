@@ -298,6 +298,16 @@ label
     display: flex;
     justify-content: space-evenly;
 }
+.form-wrapper button
+{
+    border: none;
+    border-radius: 20px; /* Soft rounded edges */
+    color: #333;
+    font-size: 14px;
+    cursor: pointer;
+    
+    width: 200px;
+}
 .input-holder
 {
     display: flex;
@@ -309,6 +319,8 @@ label
 {
     padding-left: 20px;
     margin-top: 40px;
+    display: flex;
+    justify-content: space-evenly;
 }
 .delivery-inputs
 {
@@ -317,4 +329,32 @@ label
 .delivery-inputs input[type="radio"]
 {
     margin-bottom: 10px;
+}
+
+
+@media only screen and (max-width: 685px) 
+{
+    .form-wrapper button
+    {
+        width: 150px;
+    }
+    .form-wrapper button svg
+    {
+        width: 50px;
+        height: 50px;
+    }
+
+}
+@media only screen and (max-width: 542px) 
+{
+    .form-wrapper
+    {
+        flex-direction: column;
+        align-items: center;
+    }
+    .form-wrapper button 
+    {
+        width: 70%;
+        margin-bottom: 10px;
+    }
 }
