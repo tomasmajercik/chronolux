@@ -176,9 +176,6 @@ main
     transition: 1s;
 }
 
-.category-card:not(:hover) {
-    transition: none;
-}
 
 /********************** Reviews section *********************/
 .web-reviews
@@ -402,8 +399,12 @@ main
     .category-card {
         width: 90%; 
         flex-grow: 1;
-        transition: none; 
     }
+
+    .category-card:not(:hover) {
+        transition: none;
+    }
+    
 }
 
 @media (max-width: 1150px) {

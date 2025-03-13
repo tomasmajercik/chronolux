@@ -1,0 +1,174 @@
+/* Layout */
+.main-content {
+    display: flex;
+    height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background: #f5f5f5;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+.sidebar ul li {
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: black;
+    flex-grow: 1;
+}
+
+.sidebar ul li a.logout {
+    color: red;
+}
+
+/* Profile Section */
+.profile-container {
+    flex-grow: 1;
+    display: flex;
+    padding: 40px;
+    background: white;
+}
+
+.profile-content {
+    display: flex;
+    gap: 50px;
+    width: 100%;
+}
+
+.profile-info {
+    padding: 20px;
+} 
+
+.profile-info h5{
+    color: gray;
+}
+
+.profile-info img.profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile-info-title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 25px 0 10px 0;
+    border-top: 1px solid gray;
+    padding: 20px 0 5px 0;
+}
+
+.profile-info-title a {
+    font-size: 13px;
+    color: blue;
+}
+
+.profile-info-title .contact-info {
+    display: flex;
+    gap: 10px;
+}
+
+.center{
+    text-align: center;
+}
+
+.profile-name {
+    margin-top: 10px;
+}
+
+/* Account Summary */
+.account-summary {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.account-summary h2 {
+    margin-bottom: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: left;
+}
+
+/* Summary Boxes */
+.summary {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.summary .box {
+    padding: 15px 20px;
+    background: #d1d1d1;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: normal;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 150px;
+}
+
+.summary .box strong {
+    font-size: 18px;
+}
+
+/* Last Orders */
+.account-summary h3 {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.last-orders-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.orders {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.order-container h5{
+    font-size: 12px;
+    font-weight: normal;
+    color: gray;
+    margin-bottom: 5px;
+    margin-left: 10px;
+}
+
+
+.order-box{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: red;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.images img{
+    border-radius: 10px;
+}
