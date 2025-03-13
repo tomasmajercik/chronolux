@@ -94,77 +94,85 @@
     </header>
 
     <main>
-        <div class="main-content">
-            <!-- Sidebar -->
-            <div class="sidebar">
-                <ul>
-                    <li><a href="#">My Profile</a></li>
-                    <li><a href="#">Orders</a></li>
-                    <li><a href="#">Returned & Canceled</a></li>
-                    <li><a href="#">My Reviews</a></li>
-                    <li><a href="#">My Wishlist</a></li>
-                    <li><a href="#">Settings</a></li>
-                    <li><a href="#" class="logout">Log out</a></li>
-                </ul>
+        <div class="sidebar-button" onclick="closeSidebar()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="23" height="17" viewBox="0 0 23 17" fill="none">
+                <path d="M1.875 15.375H12.875M1.875 8.5H21.125M1.875 1.625H12.875" stroke="black" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </div>
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="close" onclick="closeSidebar()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <path
+                        d="M2 17.75L0.25 16L7.25 9L0.25 2L2 0.25L9 7.25L16 0.25L17.75 2L10.75 9L17.75 16L16 17.75L9 10.75L2 17.75Z"
+                        fill="black" />
+                </svg>
             </div>
-            <div class="profile-container">
+            <ul>
+                <li><a href="#"><u>My Profile</u></a></li>
+                <li><a href="#">Orders</a></li>
+                <li><a href="#">Returned & Canceled</a></li>
+                <li><a href="#">My Reviews</a></li>
+                <li><a href="#">My Wishlist</a></li>
+                <li><a href="#">Settings</a></li>
+                <li><a href="#" class="logout">Log out</a></li>
+            </ul>
+        </div>
+        <!-- Profile Content -->
+        <div class="profile-content">
+            <div class="profile-info">
+                <div class="center">
+                    <img src="IMGs/lower.jpeg" alt="Profile Picture" class="profile-pic">
+                    <h3 class="profile-name">František Hraško</h3>
+                </div>
+                <div class="profile-info-title">
+                    <h5>Shipping Adress</h5>
+                    <a href="#">edit</a>
+                </div>
+                <p>Super city, super country <br>Perfect Street, 37/11<br>977 87</p>
+                <div class="profile-info-title">
+                    <h5>Contact</h5>
+                    <a href="#">edit</a>
+                </div>
+                <div class="contact-info">
+                    <h6>Phone</h6>
+                    <p>+421 123 456 789</p>
+                    <h6>Email</h6>
+                    <p>myemail@mail.com</p>
+                </div>
 
-                <!-- Profile Content -->
-                <div class="profile-content">
-                    <div class="profile-info">
-                        <div class="center">
-                            <img src="IMGs/lower.jpeg" alt="Profile Picture" class="profile-pic">
-                            <h3 class="profile-name">František Hraško</h3>
-                        </div>
-                        <div class="profile-info-title">
-                            <h5>Shipping Adress</h5>
-                            <a href="#">edit</a>
-                        </div>
-                        <p>Super city, super country <br>Perfect Street, 37/11<br>977 87</p>
-                        <div class="profile-info-title">
-                            <h5>Contact</h5>
-                            <a href="#">edit</a>
-                        </div>
-                        <div class="contact-info">
-                            <h6>Phone</h6>
-                            <p>+421 123 456 789</p>
-                            <h6>Email</h6>
-                            <p>myemail@mail.com</p>
-                        </div>
+            </div>
 
-                    </div>
+            <div class="account-summary">
+                <h2>Hello, František!</h2>
+                <div class="summary">
+                    <div class="box">Member for <strong>8 months</strong></div>
+                    <div class="box">Ordered <strong>3 times</strong></div>
+                    <!-- <div class="box">Last order <strong>2 days ago</strong></div> -->
+                </div>
 
-                    <div class="account-summary">
-                        <h2>Hello, František!</h2>
-                        <div class="summary">
-                            <div class="box">Member for <strong>8 months</strong></div>
-                            <div class="box">Ordered <strong>3 times</strong></div>
-                            <div class="box">Last order <strong>2 days ago</strong></div>
-                        </div>
+                <div class="last-orders-title">
+                    <h3>Last Orders</h3>
+                    <a href="#">View all</a>
+                </div>
 
-                        <div class="last-orders-title">
-                            <h3>Last Orders</h3>
-                            <a href="#">View all</a>
-                        </div>
-
-                        <div class="orders">
-                            <div class="order-container">
-                                <h5>21th December 2025</h5>
-                                <div class="order-box">
-                                    <div class="images">
-                                        <img src="IMGs/lower-bright.jpeg" alt="" , width="70px" , height="70px">
-                                        <img src="IMGs/lower-bright.jpeg" alt="" , width="70px" , height="70px">
-                                        <img src="IMGs/lower-bright.jpeg" alt="" , width="70px" , height="70px">
-                                    </div>
-                                    <div class="status">Packing</div>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="31" viewBox="0 0 16 31"
-                                        fill="none">
-                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                            d="M13.5427 16.4183L6.00008 23.7253L4.11475 21.8989L10.7147 15.5051L4.11475 9.11139L6.00008 7.28497L13.5427 14.5919C13.7927 14.8342 13.9331 15.1626 13.9331 15.5051C13.9331 15.8476 13.7927 16.1761 13.5427 16.4183Z"
-                                            fill="#6A6A6A" />
-                                    </svg>
-                                </div>
+                <div class="orders">
+                    <div class="order-container">
+                        <h5>21th December 2025</h5>
+                        <div class="order-box">
+                            <div class="images">
+                                <img src="IMGs/lower-bright.jpeg" alt="" , width="70px" , height="70px">
+                                <img src="IMGs/lower-bright.jpeg" alt="" , width="70px" , height="70px">
+                                <img src="IMGs/lower-bright.jpeg" alt="" , width="70px" , height="70px">
                             </div>
+                            <div class="status">Packing</div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="31" viewBox="0 0 16 31"
+                                fill="none">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M13.5427 16.4183L6.00008 23.7253L4.11475 21.8989L10.7147 15.5051L4.11475 9.11139L6.00008 7.28497L13.5427 14.5919C13.7927 14.8342 13.9331 15.1626 13.9331 15.5051C13.9331 15.8476 13.7927 16.1761 13.5427 16.4183Z"
+                                    fill="#6A6A6A" />
+                            </svg>
                         </div>
                     </div>
                 </div>
@@ -269,6 +277,7 @@
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
     <script src="script.js"></script>
     <script src="Scripts/header.js"></script>
+    <script src="Scripts/profile.js"></script>
 </body>
 
 </html>
