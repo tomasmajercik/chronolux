@@ -95,8 +95,8 @@
 
     <main>
         <section id="sign-in-section">
-            <div class="sign-in-container">
-                <div class="left">
+            <div class="container" id="container">
+                <div class="form-container sign-in-container">
                     <h1>Sign in to ChronoLux</h1>
                     <div class="input-fields">
                         <label for="username">Username</label>
@@ -106,16 +106,43 @@
                         <input type="password" class="input" placeholder="Password">
 
                         <a href="#">Forgot your password?</a>
+                        <button>Sign In</button>
                     </div>
-                    <button>Sign In</button>
                 </div>
-                <div class="right">
-                    <h1>Welcome, back!</h1>
-                    <p>
-                        Discover the future of timekeeping with ChronoLux. Our premium selection of timepieces blends
-                        elegance with cutting-edge technology to keep you ahead of every moment.
-                    </p>
-                    <button>Create an account</button>
+                <div class="form-container sign-up-container">
+                    <h1>Sign up to ChronoLux</h1>
+                    <div class="input-fields">
+                        <label for="username">Username</label>
+                        <input type="text" class="input" placeholder="Username">
+
+                        <label for="password">Password</label>
+                        <input type="password" class="input" placeholder="••••••••">
+
+                        <label for="password">Confirm Password</label>
+                        <input type="password" class="input" placeholder="••••••••">
+                        <button>Sign Up</button>
+                    </div>
+                </div>
+                <div class="overlay-container">
+                    <div class="overlay">
+                        <div class="overlay-panel overlay-left">
+                            <h1>Join, Chronolux!</h1>
+                            <p>
+                                Create your account and unlock exclusive offers, early access to new arrivals, and a
+                                personalized watch experience.
+                            </p>
+                            <button id="signInBtn">Sign in</button>
+                        </div>
+                        <div class="overlay-panel overlay-right">
+                            <h1>Welcome, back!</h1>
+                            <p>
+                                Log in to explore our latest collection of luxury timepieces and track your orders with
+                                ease.
+                                Timeless style is just a click away.
+                            </p>
+                            <button id="createAccountBtn">Create an account</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
