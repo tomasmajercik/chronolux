@@ -1,4 +1,4 @@
-/* Layout */
+/************************* Layout *************************/
 main {
     display: flex;
     min-height: 100vh;
@@ -8,7 +8,7 @@ footer{
     margin: 0;
 }
 
-/* Sidebar */
+/************************* Sidebar *************************/
 .sidebar {
     max-width: 250px;
     width: 20%;
@@ -52,7 +52,7 @@ footer{
 }
 
 .sidebar.active{
-    transform: translateX(-100%);
+    transform: translateX(0);
 }
 
 
@@ -65,7 +65,7 @@ footer{
     margin-top: 20px;
     margin-left: 20px;
 }
-/* Profile Section */
+/************************* Profile Section *************************/
 .profile-container {
     /* display: flex; */
     padding: 40px;
@@ -136,11 +136,15 @@ footer{
     display: flex;
     gap: 15px;
     margin-bottom: 20px;
+    flex-wrap: wrap;
 }
 
 .summary .box {
     padding: 15px 20px;
-    background: #d1d1d1;
+    background: linear-gradient(135deg, #14532d, #064e3b);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    color: white;
+    position: relative;
     border-radius: 10px;
     font-size: 16px;
     font-weight: normal;
@@ -150,6 +154,21 @@ footer{
     align-items: center;
     justify-content: center;
     min-width: 150px;
+}
+
+.summary .box::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        rgba(255, 255, 255, 0.3),
+        rgba(255, 255, 255, 0.1)
+    );
+    mix-blend-mode: screen; /* Makes it glossy */
+    pointer-events: none;
 }
 
 .summary .box strong {
@@ -169,6 +188,23 @@ footer{
     margin: 10px 0;
 }
 
+.status{
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 12px;
+    color: #4a3f1c;
+}
+
+.status.packing{
+    background-color: #f4c430; /* Soft golden amber */
+}
+
+.status.delivered{
+    background-color: #2ecc71; /* Emerald green (same as summary box) */
+    color: #eee;
+}
+
 .orders {
     display: flex;
     flex-direction: column;
@@ -184,32 +220,48 @@ footer{
 }
 
 
-.order-box{
+.order-box {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: red;
+    background: white;
     padding: 20px;
     border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow for lift */
+    border: 1px solid #e0e0e0; /* Light border for definition */
+    transition: box-shadow 0.4s ease; /* Smooth hover effect */
+    cursor: pointer;
+}
+
+.order-box:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.images{
+    min-width: 300px;
 }
 
 .images img{
     border-radius: 10px;
+    margin-right: 10px;
 }
 
-/* MEDIA */
+/************************* MEDIA *************************/
 @media (max-width: 900px) {
     .sidebar {
         position: absolute;
         left: 0;
         width: 100vw;
         max-width: 100%;
-        height: 100%;
+        height: 100vh;
         background: #f5f5f5;
         z-index: 20; /* Ensures it's above other elements */
         box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
         transition: transform 0.3s ease-in-out;
-        display: block;
+        transform: translateX(-100%);
+    }
+
+    .sidebar.active{
         transform: translateX(0);
     }
 

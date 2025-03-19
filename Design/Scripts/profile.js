@@ -1,4 +1,4 @@
-function closeSidebar() {
+function openSidebar() {
     document.querySelector(".sidebar").classList.toggle("active");
     
     if (sidebar.classList.contains("active")) {
