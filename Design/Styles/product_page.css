@@ -5,7 +5,7 @@ header
 }
 
 .product-catalog {
-    width: 80%;
+    width: 90%;
     max-width: 1200px;
     margin: 0 auto;
     margin-top: -50px;
@@ -124,8 +124,8 @@ header
 
 
 .product-menu button{
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);;
-    margin-right: 15px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    margin-right: 5px;
     padding: 10px 20px;
     border-radius: 20px;
     cursor: pointer;
@@ -138,6 +138,7 @@ header
     margin-top: 20px;
     position: relative;
     justify-content: center;
+    padding: 20px;
 }
 
 
@@ -184,10 +185,54 @@ header
 
 
 
-/* MEDIA QUERY - Show hamburger menu after 670px */
+/************ MEDIA QUERY  ***********/
+@media (max-width: 1200px) {
+    .product-catalog{
+        width: 100%;
+    }
+}
+
+@media (max-width: 1065px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .category-title{
+        margin-top: 100px;
+        font-size: 7rem;
+    }
+    .product-catalog{
+        width: 100%;
+    }
+}
+
+@media (max-width: 710px) {
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+    .page-numbering{
+        display: none;
+    }
+
+}
+
 @media (max-width: 670px) {
     .category-title{
         font-size: 5rem;
     }
-   
+}
+
+@media (max-width: 500px) {
+    .product-menu h4{
+        font-size: 0.75rem;
+    }
+    .product-menu button{
+        padding: 5px 10px;
+    }
+
+    .product-menu{
+        padding: 5px 20px;
+    }
 }
