@@ -24,7 +24,7 @@
                     <ul>
                         <li><a href="index.html">Home</a></li>
                         <li><a href="product_page.html#product-catalog">Products</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="#footer">Contact</a></li>
                     </ul>
                 </nav>
             </div>
@@ -36,7 +36,7 @@
                             fill="white" />
                     </svg>
                 </a>
-                <a href="#">
+                <a href="profile.html">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 35 35" fill="none">
                         <path
                             d="M17.6459 27.0521L17.5001 27.1979L17.3397 27.0521C10.4126 20.7667 5.83341 16.6104 5.83341 12.3958C5.83341 9.47917 8.02092 7.29167 10.9376 7.29167C13.1834 7.29167 15.3709 8.75 16.1438 10.7333H18.8563C19.6292 8.75 21.8167 7.29167 24.0626 7.29167C26.9792 7.29167 29.1667 9.47917 29.1667 12.3958C29.1667 16.6104 24.5876 20.7667 17.6459 27.0521ZM24.0626 4.375C21.5251 4.375 19.0897 5.55625 17.5001 7.40833C15.9105 5.55625 13.4751 4.375 10.9376 4.375C6.44591 4.375 2.91675 7.88958 2.91675 12.3958C2.91675 17.8938 7.87508 22.4 15.3855 29.2104L17.5001 31.1354L19.6147 29.2104C27.1251 22.4 32.0834 17.8938 32.0834 12.3958C32.0834 7.88958 28.5542 4.375 24.0626 4.375Z"
@@ -82,11 +82,11 @@
             <nav class="mobile-menu">
                 <a href="index.html">Home</a>
                 <a href="product_page.html#product-catalog">Products</a>
-                <a href="contact.html">Contact</a>
-                <a href="contact.html">Shopping Cart</a>
-                <a href="contact.html">Search</a>
-                <a href="contact.html">Wish List</a>
-                <a href="contact.html">Profile</a>
+                <a href="#footer" onclick="toggleMenu()">Contact</a>
+                <a href="cart.html">Shopping Cart</a>
+                <a href="#">Search</a>
+                <a href="profile.html">Wish List</a>
+                <a href="login.html#">Profile</a>
             </nav>
         </div>
     </header>
@@ -125,13 +125,13 @@
                                               </clipPath>
                                             </defs>
                                           </svg>
-                                        Remove Item
+                                          <span class="button-info">Remove Item</span>
                                     </button>
                                     <button>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
                                             <path d="M7.18651 11.6115L7.12818 11.6699L7.06402 11.6115C4.29334 9.09751 2.46177 7.4351 2.46177 5.74936C2.46177 4.58276 3.33672 3.7078 4.50333 3.7078C5.40161 3.7078 6.27656 4.2911 6.58571 5.08439H7.67066C7.97981 4.2911 8.85476 3.7078 9.75304 3.7078C10.9196 3.7078 11.7946 4.58276 11.7946 5.74936C11.7946 7.4351 9.96303 9.09751 7.18651 11.6115ZM9.75304 2.5412C8.7381 2.5412 7.76398 3.01367 7.12818 3.75447C6.49239 3.01367 5.51827 2.5412 4.50333 2.5412C2.70676 2.5412 1.29517 3.94696 1.29517 5.74936C1.29517 7.94841 3.27839 9.75081 6.2824 12.4748L7.12818 13.2448L7.97397 12.4748C10.978 9.75081 12.9612 7.94841 12.9612 5.74936C12.9612 3.94696 11.5496 2.5412 9.75304 2.5412Z" fill="black"/>
                                           </svg>
-                                        Move to Fav
+                                        <span class="button-info">Move to Fav</span>
                                     </button>
                                 </span>
                             </div>
@@ -164,13 +164,13 @@
                                               </clipPath>
                                             </defs>
                                           </svg>
-                                        Remove Item
+                                          <span class="button-info">Remove Item</span>
                                     </button>
                                     <button>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
                                             <path d="M7.18651 11.6115L7.12818 11.6699L7.06402 11.6115C4.29334 9.09751 2.46177 7.4351 2.46177 5.74936C2.46177 4.58276 3.33672 3.7078 4.50333 3.7078C5.40161 3.7078 6.27656 4.2911 6.58571 5.08439H7.67066C7.97981 4.2911 8.85476 3.7078 9.75304 3.7078C10.9196 3.7078 11.7946 4.58276 11.7946 5.74936C11.7946 7.4351 9.96303 9.09751 7.18651 11.6115ZM9.75304 2.5412C8.7381 2.5412 7.76398 3.01367 7.12818 3.75447C6.49239 3.01367 5.51827 2.5412 4.50333 2.5412C2.70676 2.5412 1.29517 3.94696 1.29517 5.74936C1.29517 7.94841 3.27839 9.75081 6.2824 12.4748L7.12818 13.2448L7.97397 12.4748C10.978 9.75081 12.9612 7.94841 12.9612 5.74936C12.9612 3.94696 11.5496 2.5412 9.75304 2.5412Z" fill="black"/>
                                           </svg>
-                                        Move to Fav
+                                          <span class="button-info">Move to Fav</span>
                                     </button>
                                 </span>
                             </div>
@@ -216,7 +216,7 @@
         </section>
     </main>
 
-    <footer>
+    <footer id="footer">
         <div class="upper-footer">
             <div class="map">
                 <iframe
