@@ -126,7 +126,8 @@
 .cart-summary-container
 {
     margin-left: 10px;
-    background-color: #aaa;
+    background-color: #fbfafa;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     width: 25%;
     margin-top: 30px; /* .cart-header height + .cart-itemheight = 20 + 10 = 30px*/
 
@@ -182,21 +183,19 @@
     width: 100%;
     height: 40px;
     border: none;
-    background-color: #222;
+    background-color: #3b6048;
     color: #eee;
     font-size: 15px;
     font-weight: bold;
     border-radius: 0 0 20px 20px;
+    cursor: pointer;
 }
 
-/* 
-
-.checkoutBTN
+.checkoutBTN:hover
 {
-    background-color: red;
-} 
+    background-color: #273e2f;
+}
 
-*/
 /* Responsive stuff */
 @media only screen and (max-width: 1187px) 
 {
