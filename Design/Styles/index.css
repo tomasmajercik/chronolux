@@ -16,10 +16,7 @@ header
 {
     color: white;
     font-weight: bold;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    display: grid;
 }
 .lower-header p
 {
@@ -31,8 +28,9 @@ header
 }
 
 .lower-header button{
-    margin-top: 20vh;
+    margin: 20vh auto 0 auto;
     box-shadow: 0px 6px 24px rgba(0, 0, 0, 0.15);
+    width: 200px;
     padding: 12px 48px;
     border-radius: 24px;
     background: linear-gradient(135deg, #0A192F, #008080);
@@ -184,23 +182,25 @@ main
     background-color: #1E2A28;
     padding: 30px 0;
 }
-.reviews-container
-{
+
+.reviews-container {
     max-width: 1200px;
     width: 90%;
     margin: 20px auto;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 20px;
 }
+
 .review-card
 {
     padding: 30px;
     width: 350px;
-    height: 300px;
+    height: 280px;
     border-radius: 20px;
     background-color: #2D3E3F;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
     text-align: left;
     color: #eee;
     position: relative;
@@ -211,11 +211,8 @@ main
 }
 
 .review-content {
-    position: static;
-    bottom: 0;
-    margin-bottom: 20px;
+    align-self: end;
 }
-
 .person-info svg
 {
     width: 40px;
@@ -274,7 +271,7 @@ main
     width: 330px;
     height: 330px;
     border-radius: 20px;
-    padding: 20px; /* Padding on the container, not the img */
+    padding: 20px 20px 0 20px; /* Padding on the container, not the img */
 }
 
 .img-product {
@@ -312,11 +309,10 @@ main
 }
 
 .product-info {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    display: grid;
+    grid-template-columns: 1fr;
     padding: 0 20px;
-    gap: 5px;
+    gap: 2px;
 }
 
 .price {
@@ -360,9 +356,14 @@ main
 }
 .recommended-container
 {
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     margin-top: 20px;
+}
+
+.product-container:last-child
+{
+    display: none;
 }
 
 
@@ -377,25 +378,46 @@ main
 /* MEDIA QUERY - Show hamburger menu after 670px */
 @media (max-width: 1200px) {
     .reviews-container {
-        flex-wrap: wrap;
-        justify-content: center;
+        grid-template-columns: 1fr 1fr;
         gap: 20px; 
+        place-items: center; /* or remove it entirely, default is stretch */
     }
 
     .review-card {
-        width: 45%; 
-        height: auto;
         padding: 20px;
         min-height: 250px;
+        width: 100%; /* take full grid cell width */
+        box-sizing: border-box;
+    }
+
+    .review-card:last-child {
+        grid-column: span 2; /* span full width */
+    }
+}
+
+@media (max-width: 1150px) {
+    .recommended-container {
+        grid-template-columns: 1fr 1fr;
+        place-items: center;
+        gap: 20px; /* Adds spacing between items */
+    }
+    .product-container:hover {
+        transform: none ;
+    }
+    .product-container:last-child
+    {
+        display: block;
     }
 }
 
 @media (max-width: 1060px) {
     .category-container {
-        flex-direction: column;
-        align-items: center;
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-items: center;
         gap: 20px;
     }
+
     .category-card {
         width: 90%; 
         flex-grow: 1;
@@ -407,16 +429,6 @@ main
     
 }
 
-@media (max-width: 1150px) {
-    .recommended-container {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 20px; /* Adds spacing between items */
-    }
-    .product-container:hover {
-        transform: none ;
-    }
-}
 
 @media (max-width: 768px) {
     .review-card {
@@ -424,7 +436,20 @@ main
     }
 }
 
+@media (max-width: 730px) {
+    .recommended-container {
+        grid-template-columns: 1fr;
+    }
+}
+
 @media (max-width: 670px) {
+    .reviews-container {
+        grid-template-columns: 1fr;
+    }
+
+    .review-card:last-child {
+        grid-column: auto;
+    }
 
     .lower-header {
         text-align: center; 
@@ -436,12 +461,23 @@ main
     }
 }
 
+@media (max-width: 450px) {
+    .category-heading{
+        font-size: 90%;
+    }
+
+    .category-heading button{
+        font-size: 12px;
+        padding: 10px 20px;
+    }
+}
+
 @media (max-width: 415px) {
     body{
         margin: 0;
     }
     .lower-header p {
-        font-size: 30px;
-        width: 100%;
+        font-size: 25px;
+        width: 80%;
     }
 }

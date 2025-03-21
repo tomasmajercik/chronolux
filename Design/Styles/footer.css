@@ -32,10 +32,10 @@ footer
 }
 .upper-footer
 {
-    display: flex;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
     justify-content: center;
-
     padding: 40px 0;
 }
 .footer-container
@@ -43,11 +43,9 @@ footer
     margin-left: 30px;
     background-color: #1E2D2F;
     border-radius: 20px;
-    padding: 30px;
-    width: 520px;
-    height: 300px;
-
+    padding: 30px 0;
     display: flex;
+    gap: 20px;
     justify-content: space-between;
 }
 .about
@@ -68,6 +66,7 @@ footer
 {
     display: flex;
     flex-direction: column;
+    gap: 20px;
     justify-content: space-between;
 }
 .info-column h2
@@ -98,7 +97,7 @@ footer
 }
 
 
-@media (max-width: 415px) {
+@media (max-width: 435px) {
     .map iframe {
         width: 100%;
         max-width: 800px;
@@ -106,8 +105,10 @@ footer
     }
     .footer-container {
         font-size: 80%;
-        
+        padding-top: 10px;
+        gap: 10px;
     }
+
     .info-column h2{
         font-size: 25px;
     }
@@ -119,29 +120,41 @@ footer
     .web-name{
         font-size: 20px;
     }
-}
 
-@media (max-width: 1050px) {
-    .upper-footer {
-        flex-direction: column; /* Stacks items vertically */
-        align-items: center; /* Centers them */
+    .footer-container{
         width: 100%;
-        /* text-align: center; */
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        place-items: center;
+    }
+    .info-column{
+        grid-column: span 2;
+        place-items: center;
+        gap: 10px;
+        grid-row: 3;
+        padding: 20px 0;
     }
 
-    .footer-container {
-        width: 100%;
+    .about, .support{
+        align-self: start;
+    }
+
+    .upper-footer{
+        padding-bottom: 0;
+    }
+}
+
+@media (max-width: 900px) {
+    .upper-footer{
+        grid-template-columns: 1fr;
+    }
+
+    .map{
+        margin-right: 0;
+    }
+
+    .footer-container{
         margin: 0;
     }
-
-    .map {
-        margin: 20px auto;
-        text-align: center;
-    }
-
-    .map iframe {
-        max-width: 800px;
-        height: 300px;
-    }
-    
 }
+
