@@ -98,7 +98,7 @@
             <div class="container" id="container">
                 <div class="form-container sign-in-container">
                     <h1>Sign in to ChronoLux</h1>
-                    <div class="input-fields">
+                    <form class="input-fields">
                         <label for="username">Username</label>
                         <input type="text" class="input" placeholder="Username">
 
@@ -107,11 +107,12 @@
 
                         <a href="#">Forgot your password?</a>
                         <button>Sign In</button>
-                    </div>
+                        <span onclick="toggleLink()" class="sign-up-btn">Don't have an account yet?</span>
+                    </form>
                 </div>
                 <div class="form-container sign-up-container">
                     <h1>Sign up to ChronoLux</h1>
-                    <div class="input-fields">
+                    <form class="input-fields">
                         <label for="username">Username</label>
                         <input type="text" class="input" placeholder="Username">
 
@@ -121,7 +122,8 @@
                         <label for="password">Confirm Password</label>
                         <input type="password" class="input" placeholder="••••••••">
                         <button>Sign Up</button>
-                    </div>
+                        <span onclick="toggleLink()" class="sign-up-btn">Already have an acount?</span>
+                    </form>
                 </div>
                 <div class="overlay-container">
                     <div class="overlay">
@@ -131,7 +133,7 @@
                                 Create your account and unlock exclusive offers, early access to new arrivals, and a
                                 personalized watch experience.
                             </p>
-                            <button id="signInBtn">Sign in</button>
+                            <button id="signInBtn" class="switch">Sign in</button>
                         </div>
                         <div class="overlay-panel overlay-right">
                             <h1>Welcome, back!</h1>
@@ -140,7 +142,7 @@
                                 ease.
                                 Timeless style is just a click away.
                             </p>
-                            <button id="createAccountBtn">Create an account</button>
+                            <button id="createAccountBtn" class="switch">Create an account</button>
                         </div>
                     </div>
                 </div>

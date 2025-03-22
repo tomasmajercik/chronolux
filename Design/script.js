@@ -1,13 +1,37 @@
+// Code built with help of Chat GPT to ensure proper functionality of animations on desktop and mobile
 const container = document.getElementById('container');
 const createBtn = document.getElementById('createAccountBtn');
 const signInBtn = document.getElementById('signInBtn');
 
+let isSignUpActive = container?.classList.contains('slide-active') || false;
+
 if (container && createBtn && signInBtn) {
   createBtn.addEventListener('click', () => {
     container.classList.add('slide-active');
+    isSignUpActive = true;
   });
 
   signInBtn.addEventListener('click', () => {
     container.classList.remove('slide-active');
+    isSignUpActive = false;
   });
+
+  window.addEventListener('resize', () => {
+    if (isSignUpActive) {
+      container.classList.add('slide-active');
+    } else {
+      container.classList.remove('slide-active');
+    }
+  });
+
+  if (isSignUpActive) {
+    container.classList.add('slide-active');
+  } else {
+    container.classList.remove('slide-active');
+  }
+}
+
+function toggleLink() {
+  container.classList.toggle('slide-active');
+  isSignUpActive = container.classList.contains('slide-active');
 }
