@@ -203,31 +203,37 @@ main {
         gap: 7px;
         row-gap: 15px;
     }
-    .order-box{
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: 5px;
-    }
+
     .images img{
         /* width: 50%; */
         min-width: none;
         margin: 0;
     }
 
-    .images{
-        grid-column: span 3;
-    }
-
-    .order-box .status{
-        justify-self: start;
-    }
 }
-
 
 
 
 @media (max-width: 720px) {
     .summary {
         grid-template-columns: 1fr 1fr;
+    }
+
+    .images{
+        grid-column: span 3;
+    }
+    
+    .order-box{
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 5px;
+    }
+
+    .order-box .status{
+        justify-self: start;
+    }
+
+    .order-box .price{
+        justify-self: center;
     }
 }
 
