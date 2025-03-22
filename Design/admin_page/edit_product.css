@@ -1,0 +1,309 @@
+/************************* Layout *************************/
+main {
+    display: flex;
+    min-height: 100vh;
+}
+
+footer{
+    margin: 0;
+}
+
+/************************* Sidebar *************************/
+.sidebar {
+    max-width: 250px;
+    width: 20%;
+    background: #f5f5f5;
+    padding: 20px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    min-height: 100vh;
+    min-width: 200px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.sidebar ul li {
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: black;
+    flex-grow: 1;
+    margin-left: 10px;
+}
+
+.sidebar ul li a.logout {
+    color: red;
+}
+
+
+.close{
+    position: absolute;
+    right: 20px;
+    display: none;
+    cursor: pointer;
+}
+
+.sidebar.active{
+    transform: translateX(0);
+}
+
+
+.sidebar-button{
+    display: none;
+    position: absolute; /* Makes it stay on top */
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+/************************* Profile Section *************************/
+.profile-container {
+    /* display: flex; */
+    padding: 40px;
+    background: white;
+}
+
+.profile-content {
+    /* display: flex; */
+    width: 100%;
+}
+
+.profile-info {
+    padding: 20px;
+} 
+
+.profile-info h5{
+    color: gray;
+}
+
+.profile-info img.profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile-info-title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 25px 0 10px 0;
+    border-top: 1px solid gray;
+    padding: 20px 0 5px 0;
+}
+
+.profile-info-title a {
+    font-size: 13px;
+    color: blue;
+}
+
+.profile-info-title .contact-info {
+    display: flex;
+    gap: 10px;
+}
+
+.center{
+    text-align: center;
+    border-bottom: 1px solid #444;
+    padding-bottom: 10px;
+}
+
+.profile-name {
+    margin-top: 10px;
+}
+
+
+/* main content */
+.main-content h2
+{
+    justify-self: start;
+    margin-bottom: 30px;
+}
+.main-content .advice-msg
+{
+    max-width: 1300px;
+    font-size: 12px;
+    color: orangered;
+    margin-bottom: 20px;
+    display: none;
+}
+.main-content
+{
+    padding-top: 20px;
+    /* max-width: 900px; */
+    /* max-width: 95%;
+    margin: 0 auto;
+    margin-top: 20px;
+    overflow-x: scroll;
+    overflow-y: scroll; */
+}
+.table-container
+{
+    max-width: 1000px;
+    max-height: 100px;
+    margin: 0 auto;
+    overflow-x: scroll;
+    overflow-y: scroll;
+}
+
+/************************* Table *************************/
+table 
+{
+    width: 1000px;
+    border-collapse: collapse;
+}
+th, td 
+{
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+}
+th 
+{
+    background-color: #bbb;
+}
+tbody tr:nth-child(even) 
+{
+    background-color: #ededed;
+}
+td:nth-child(7) /* 7. stĺpec = Description */
+{ 
+    max-width: 150px;
+    white-space: nowrap;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+}
+td svg
+{
+    width: 20px;
+    height: 20px;
+}
+/************************* MEDIA sidebar *************************/
+@media (max-width: 900px) {
+    .sidebar {
+        position: absolute;
+        left: 0;
+        width: 100vw;
+        max-width: 100%;
+        height: 100vh;
+        background: #f5f5f5;
+        z-index: 20; /* Ensures it's above other elements */
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease-in-out;
+        transform: translateX(-100%);
+    }
+
+    .sidebar.active{
+        transform: translateX(0);
+    }
+
+    .sidebar.active.sidebar-button{
+        display: none;
+    }
+
+    .sidebar-button{
+        display: block;
+    }
+
+    .sidebar ul{
+        padding-top: 40px;
+    }
+
+
+    .close{
+        display: block;
+    }
+    
+}
+@media only screen and (max-width: 1084px) 
+{
+    .sidebar ul li a
+    {
+        font-size: 12px;
+        margin-left: 5px;
+    }
+}
+/************************* MEDIA main content *************************/
+@media only screen and (max-width: 1230px)
+{
+    .table-container
+    {
+        width: 800px;
+    }
+}
+@media only screen and (max-width: 1050px)
+{
+    .table-container
+    {
+        width: 700px;
+    }
+}
+@media only screen and (max-width: 930px)
+{
+    .table-container
+    {
+        width: 600px;
+    }
+}
+@media only screen and (max-width: 630px)
+{
+    .table-container
+    {
+        width: 400px;
+    }
+}
+@media only screen and (max-width: 430px)
+{
+    .table-container
+    {
+        width: 200px;
+    }
+}
+@media only screen and (max-width: 690px) 
+{
+    .product-text-info
+    {
+        grid-template-columns: 1fr 1fr;
+        
+    }
+    .row1
+    {
+        grid-column: span 2;
+    }
+    
+    .product-sizes-container
+    {
+        width: 100%;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+    .main-content .advice-msg
+    {
+        display: block;
+    }
+}
+@media only screen and (max-width: 400px)
+{
+    .product-sizes-container
+    {
+        width: 100%;
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    .product-text-info input
+    {
+        padding: 15px;
+    }
+}
