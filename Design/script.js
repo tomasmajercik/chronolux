@@ -1,3 +1,30 @@
+// Header MENU
+
+function toggleMenu() {
+  document.querySelector(".mobile-menu").classList.toggle("active");
+  document.querySelector(".menu-icon").classList.toggle("active");
+  document.querySelector(".close-icon").classList.toggle("active");
+  document.querySelector("body").classList.toggle("no-scroll");
+}
+
+
+// PAYMENT
+function toggleCardInfo() {
+  document.querySelector(".card-info").classList.toggle("active");
+}
+
+// SIDEBAR
+function openSidebar() {
+  document.querySelector(".sidebar").classList.toggle("active");
+  
+  if (sidebar.classList.contains("active")) {
+      console.log("Sidebar is now HIDDEN");
+  } else {
+      console.log("Sidebar is now VISIBLE");
+  }
+}
+
+//LOGIN
 // Code built with help of Chat GPT to ensure proper functionality of animations on desktop and mobile
 const container = document.getElementById('container');
 const createBtn = document.getElementById('createAccountBtn');
@@ -35,3 +62,5 @@ function toggleLink() {
   container.classList.toggle('slide-active');
   isSignUpActive = container.classList.contains('slide-active');
 }
+
+// end of code built with help of Chat GPT

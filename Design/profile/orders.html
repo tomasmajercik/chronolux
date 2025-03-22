@@ -3,10 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="Styles/header.css">
-    <link rel="stylesheet" href="Styles/footer.css">
-    <link rel="stylesheet" href="Styles/profile.css">
-    <link rel="stylesheet" href="Styles/sidebar.css">
+    <link rel="stylesheet" href="../Styles/header.css">
+    <link rel="stylesheet" href="../Styles/footer.css">
+    <link rel="stylesheet" href="../Styles/sidebar.css">
+    <link rel="stylesheet" href="Styles/orders.css">
     <title>WTECH-Watch</title>
     <link rel="icon" href="IMGs/icon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,9 +23,9 @@
                 </div>
                 <nav>
                     <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="product_page.html#product-catalog">Products</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../product_page.html#product-catalog">Products</a></li>
+                        <li><a href="#footer">Contact</a></li>
                     </ul>
                 </nav>
             </div>
@@ -83,13 +83,13 @@
             </div>
 
             <nav class="mobile-menu">
-                <a href="index.html">Home</a>
-                <a href="product_page.html#product-catalog">Products</a>
-                <a href="contact.html">Contact</a>
-                <a href="contact.html">Shopping Cart</a>
-                <a href="contact.html">Search</a>
-                <a href="contact.html">Wish List</a>
-                <a href="contact.html">Profile</a>
+                <a href="../index.html">Home</a>
+                <a href="../product_page.html#product-catalog">Products</a>
+                <a href="#footer">Contact</a>
+                <a href="../cart.html">Shopping Cart</a>
+                <a href="#">Search</a>
+                <a href="profile.html">Wish List</a>
+                <a href="../login.html">Profile</a>
             </nav>
         </div>
     </header>
@@ -120,7 +120,7 @@
                             d="M15 12.5C17.0711 12.5 18.75 10.8211 18.75 8.75C18.75 6.67893 17.0711 5 15 5C12.9289 5 11.25 6.67893 11.25 8.75C11.25 10.8211 12.9289 12.5 15 12.5Z"
                             stroke="black" stroke-width="2.83333" />
                     </svg>
-                    <a href="profile.html"><u>My Profile</u></a>
+                    <a href="profile.html">My Profile</a>
                 </li>
                 <li>
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
@@ -130,7 +130,7 @@
                         <path d="M11.25 11.25H18.75M11.25 16.25H18.75M11.25 21.25H16.25" stroke="black" stroke-width="2"
                             stroke-linecap="round" />
                     </svg>
-                    <a href="orders.html">Orders</a>
+                    <a href="orders.html"><u>Orders</u></a>
                 </li>
                 <li>
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
@@ -153,100 +153,137 @@
                 </li>
             </ul>
         </div>
-        <!-- Profile Content -->
-        <div class="profile-content">
-            <div class="profile-info">
-                <div class="center">
-                    <img src="IMGs/lower.jpeg" alt="Profile Picture" class="profile-pic">
-                    <h3 class="profile-name">František Hraško</h3>
-                </div>
-                <div class="profile-info-title">
-                    <h5>Shipping Adress</h5>
-                    <a href="#">edit</a>
-                </div>
-                <p>Super city, super country <br>Perfect Street, 37/11<br>977 87</p>
-                <div class="profile-info-title">
-                    <h5>Contact</h5>
-                    <a href="#">edit</a>
-                </div>
-                <div class="contact-info">
-                    <h6>Phone</h6>
-                    <p>+421 123 456 789</p>
-                    <h6>Email</h6>
-                    <p>myemail@mail.com</p>
-                </div>
-
-            </div>
-
-            <div class="account-summary">
-                <h2>Hello, František!</h2>
-                <div class="summary">
-                    <div class="box">Member for <strong>8 months</strong></div>
-                    <div class="box">Ordered <strong>3 times</strong></div>
-                    <div class="box">Last order <strong>2 days ago</strong></div>
-                    <div class="box">Something <strong>28 days ago</strong></div>
-                </div>
-
-                <div class="last-orders-title">
-                    <h3>Last Orders</h3>
-                    <a href="orders.html">View all</a>
-                </div>
-
-                <div class="orders">
-                    <div class="order-container">
-                        <h5>21th December 2024</h5>
-                        <div class="order-box">
-                            <div class="images">
-                                <img src="IMGs/tissot-3-sm.jpg" alt="" , width="80px" , height="80px">
-                                <img src="IMGs/tissot-prx-sm.jpg" alt="" , width="80px" , height="80px">
-                                <img src="IMGs/rolex-2-sm.jpg" alt="" , width="80px" , height="80px">
-                            </div>
-                            <div class="status packing">Packing</div>
-                            <div class="price"><strong>1 899.72€</strong></div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="31" viewBox="0 0 16 31"
-                                fill="none">
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M13.5427 16.4183L6.00008 23.7253L4.11475 21.8989L10.7147 15.5051L4.11475 9.11139L6.00008 7.28497L13.5427 14.5919C13.7927 14.8342 13.9331 15.1626 13.9331 15.5051C13.9331 15.8476 13.7927 16.1761 13.5427 16.4183Z"
-                                    fill="#6A6A6A" />
-                            </svg>
-                        </div>
+        <!-- Orders -->
+        <div class="orders">
+            <h1>Orders</h1>
+            <div class="order-container">
+                <div class="top">
+                    <div class="left">
+                        <span class="order-date">
+                            <h3>Order Placed</h3>
+                            <span class="text">12.12.2021</span>
+                        </span>
+                        <span class="total">
+                            <h3>Total</h3>
+                            <span class="text">1 200.00€</span>
+                        </span>
+                        <span class="ship-to">
+                            <h3>Ship to</h3>
+                            <span class="text">Ilkovičova 2, Bratislava 841 04</span>
+                        </span>
                     </div>
-                    <div class="order-container">
-                        <h5>12th July 2024</h5>
-                        <div class="order-box">
-                            <div class="images">
-                                <img src="IMGs/tissot-sm.jpg" alt="" , width="80px" , height="80px">
-                            </div>
-                            <div class="status delivered">Delivered</div>
-                            <div class="price"><strong>1 899.72€</strong></div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="31" viewBox="0 0 16 31"
-                                fill="none">
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M13.5427 16.4183L6.00008 23.7253L4.11475 21.8989L10.7147 15.5051L4.11475 9.11139L6.00008 7.28497L13.5427 14.5919C13.7927 14.8342 13.9331 15.1626 13.9331 15.5051C13.9331 15.8476 13.7927 16.1761 13.5427 16.4183Z"
-                                    fill="#6A6A6A" />
-                            </svg>
+                    <span class="order-number">
+                        <div>
+                            <h3>Order Number</h3>
+                            <span class="text">48283489243978</span>
                         </div>
+                        <button class="manage mobile">Manage</button>
+                    </span>
+                </div>
+                <div class="order-info">
+                    <div class="img-container">
+                        <img src="IMGs/tissot-3-sm.jpg" alt="">
+                        <img src="IMGs/breitling-sm.jpg" alt="">
+                        <img src="IMGs/rolex-sm.jpg" alt="">
+                        <img src="IMGs/rolex-sm.jpg" alt="">
+                        <img src="IMGs/rolex-sm.jpg" alt="">
+                        <img src="IMGs/rolex-sm.jpg" alt="">
+                        <img src="IMGs/rolex-sm.jpg" alt="">
+                        <img src="IMGs/rolex-sm.jpg" alt="">
+                        <img src="IMGs/rolex-sm.jpg" alt="">
                     </div>
-                    <div class="order-container">
-                        <h5>22th November 2024</h5>
-                        <div class="order-box">
-                            <div class="images">
-                                <img src="IMGs/tudor-sm.jpg" alt="" , width="80px" , height="80px">
-                                <img src="IMGs/rolex-sm.jpg" alt="" , width="80px" , height="80px">
-                            </div>
-                            <div class="status delivered">Delivered</div>
-                            <div class="price"><strong>1 899.72€</strong></div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="31" viewBox="0 0 16 31"
-                                fill="none">
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M13.5427 16.4183L6.00008 23.7253L4.11475 21.8989L10.7147 15.5051L4.11475 9.11139L6.00008 7.28497L13.5427 14.5919C13.7927 14.8342 13.9331 15.1626 13.9331 15.5051C13.9331 15.8476 13.7927 16.1761 13.5427 16.4183Z"
-                                    fill="#6A6A6A" />
-                            </svg>
-                        </div>
-                    </div>
+                    <button class="manage">Manage</button>
+                </div>
+                <div class="bottom">
+                    <span class="order-estimation">
+                        <h3>Estimated Delivery</h3>
+                        <span class="text">15.12.2021</span>
+                    </span>
                 </div>
             </div>
+            <div class="order-container">
+                <div class="top">
+                    <div class="left">
+                        <span class="order-date">
+                            <h3>Order Placed</h3>
+                            <span class="text">12.12.2021</span>
+                        </span>
+                        <span class="total">
+                            <h3>Total</h3>
+                            <span class="text">1 200.00€</span>
+                        </span>
+                        <span class="ship-to">
+                            <h3>Ship to</h3>
+                            <span class="text">Ilkovičova 2, Bratislava 841 04</span>
+                        </span>
+                    </div>
+                    <span class="order-number">
+                        <div>
+                            <h3>Order Number</h3>
+                            <span class="text">48283489243978</span>
+                        </div>
+                        <button class="manage mobile">Manage</button>
+                    </span>
+                </div>
+                <div class="order-info">
+                    <div class="img-container">
+                        <img src="IMGs/tissot-3-sm.jpg" alt="">
+                        <img src="IMGs/breitling-sm.jpg" alt="">
+                        <img src="IMGs/rolex-sm.jpg" alt="">
+                    </div>
+                    <button class="manage">Manage</button>
+                </div>
+                <div class="bottom">
+                    <span class="order-estimation">
+                        <h3>Estimated Delivery</h3>
+                        <span class="text">15.12.2021</span>
+                    </span>
+                </div>
+            </div>
+            <div class="order-container">
+                <div class="top">
+                    <div class="left">
+                        <span class="order-date">
+                            <h3>Order Placed</h3>
+                            <span class="text">12.12.2021</span>
+                        </span>
+                        <span class="total">
+                            <h3>Total</h3>
+                            <span class="text">1 200.00€</span>
+                        </span>
+                        <span class="ship-to">
+                            <h3>Ship to</h3>
+                            <span class="text">Ilkovičova 2, Bratislava 841 04</span>
+                        </span>
+                    </div>
+                    <span class="order-number">
+                        <div>
+                            <h3>Order Number</h3>
+                            <span class="text">48283489243978</span>
+                        </div>
+                        <button class="manage mobile">Manage</button>
+                    </span>
+                </div>
+                <div class="order-info">
+                    <div class="img-container">
+                        <img src="IMGs/tissot-3-sm.jpg" alt="">
+                        <img src="IMGs/breitling-sm.jpg" alt="">
+                        <img src="IMGs/rolex-sm.jpg" alt="">
+                    </div>
+                    <button class="manage">Manage</button>
+                </div>
+                <div class="bottom">
+                    <span class="order-estimation">
+                        <h3>Estimated Delivery</h3>
+                        <span class="text">15.12.2021</span>
+                    </span>
+                </div>
+            </div>
+
         </div>
+        </div>
+        </div>
+
     </main>
 
     <footer id="footer">
@@ -343,10 +380,7 @@
         </div>
     </footer>
 
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
     <script src="script.js"></script>
-    <script src="Scripts/header.js"></script>
-    <script src="Scripts/profile.js"></script>
 </body>
 
 </html>
