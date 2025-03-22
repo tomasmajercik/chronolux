@@ -104,6 +104,10 @@ main {
     .orders h1{
         margin: 18px 0 10px 75px;
     }    
+
+    main{
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 670px) {
