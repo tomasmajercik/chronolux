@@ -224,6 +224,7 @@ main {
 
 
 
+
 @media (max-width: 720px) {
     .summary {
         grid-template-columns: 1fr 1fr;
@@ -235,5 +236,9 @@ main {
     .summary{
         margin: 0;
         margin-bottom: 20px;
+    }
+
+    main{
+        grid-template-columns: 1fr;
     }
 }
