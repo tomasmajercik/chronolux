@@ -1,11 +1,12 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="Styles/header.css">
-    <link rel="stylesheet" href="Styles/footer.css">
-    <link rel="stylesheet" href="Styles/admin_page.css">
+    <link rel="stylesheet" href="../Styles/header.css">
+    <link rel="stylesheet" href="../Styles/footer.css">
+    <link rel="stylesheet" href="add_product.css">
     <title>WTECH-Watch</title>
     <link rel="icon" href="IMGs/icon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,9 +23,9 @@
                 </div>
                 <nav>
                     <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="product_page.html#product-catalog">Products</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../product_page.html#product-catalog">Products</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
                     </ul>
                 </nav>
             </div>
@@ -43,14 +44,14 @@
                             fill="white" />
                     </svg>
                 </a>
-                <a href="cart.html">
+                <a href="../cart.html">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 34 34" fill="none">
                         <path
                             d="M26.9167 9.91667H22.6667V8.5C22.6667 6.99711 22.0697 5.55577 21.007 4.49306C19.9443 3.43036 18.503 2.83334 17.0001 2.83334C15.4972 2.83334 14.0558 3.43036 12.9931 4.49306C11.9304 5.55577 11.3334 6.99711 11.3334 8.5V9.91667H7.08341C6.70769 9.91667 6.34736 10.0659 6.08168 10.3316C5.816 10.5973 5.66675 10.9576 5.66675 11.3333V26.9167C5.66675 28.0438 6.11451 29.1248 6.91154 29.9219C7.70857 30.7189 8.78958 31.1667 9.91675 31.1667H24.0834C25.2106 31.1667 26.2916 30.7189 27.0886 29.9219C27.8856 29.1248 28.3334 28.0438 28.3334 26.9167V11.3333C28.3334 10.9576 28.1842 10.5973 27.9185 10.3316C27.6528 10.0659 27.2925 9.91667 26.9167 9.91667ZM14.1667 8.5C14.1667 7.74856 14.4653 7.02789 14.9966 6.49653C15.528 5.96518 16.2486 5.66667 17.0001 5.66667C17.7515 5.66667 18.4722 5.96518 19.0035 6.49653C19.5349 7.02789 19.8334 7.74856 19.8334 8.5V9.91667H14.1667V8.5ZM25.5001 26.9167C25.5001 27.2924 25.3508 27.6527 25.0851 27.9184C24.8195 28.1841 24.4591 28.3333 24.0834 28.3333H9.91675C9.54102 28.3333 9.18069 28.1841 8.91501 27.9184C8.64934 27.6527 8.50008 27.2924 8.50008 26.9167V12.75H11.3334V14.1667C11.3334 14.5424 11.4827 14.9027 11.7483 15.1684C12.014 15.4341 12.3744 15.5833 12.7501 15.5833C13.1258 15.5833 13.4861 15.4341 13.7518 15.1684C14.0175 14.9027 14.1667 14.5424 14.1667 14.1667V12.75H19.8334V14.1667C19.8334 14.5424 19.9827 14.9027 20.2483 15.1684C20.514 15.4341 20.8744 15.5833 21.2501 15.5833C21.6258 15.5833 21.9861 15.4341 22.2518 15.1684C22.5175 14.9027 22.6667 14.5424 22.6667 14.1667V12.75H25.5001V26.9167Z"
                             fill="white" />
                     </svg>
                 </a>
-                <a href="login.html">
+                <a href="../login.html">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 34 34" fill="none">
                         <path
                             d="M5.66675 25.5C5.66675 23.9971 6.26377 22.5558 7.32648 21.4931C8.38918 20.4304 9.83052 19.8333 11.3334 19.8333H22.6667C24.1696 19.8333 25.611 20.4304 26.6737 21.4931C27.7364 22.5558 28.3334 23.9971 28.3334 25.5C28.3334 26.2514 28.0349 26.9721 27.5035 27.5035C26.9722 28.0348 26.2515 28.3333 25.5001 28.3333H8.50008C7.74863 28.3333 7.02797 28.0348 6.49661 27.5035C5.96526 26.9721 5.66675 26.2514 5.66675 25.5Z"
@@ -110,64 +111,137 @@
                 </svg>
             </div>
             <ul>
-                <li><a href="#"><u>My Profile</u></a></li>
-                <li><a href="#">Orders</a></li>
-                <li><a href="#">Returned & Canceled</a></li>
-                <li><a href="#">My Reviews</a></li>
-                <li><a href="#">My Wishlist</a></li>
-                <li><a href="#">Settings</a></li>
-                <li><a href="#" class="logout">Log out</a></li>
+                <li>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                        <path d="M20 14.725L25.3 5.5625L27.4625 6.8125L20.925 18.125L12.7875 13.4375L6.825 23.75H27.5V26.25H2.5V3.75H5V21.925L11.875 10L20 14.725Z" fill="black"/>
+                    </svg>
+                    <a href="./admin_page.html">Statistics</a>
+                </li>
+                <li>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                        <path d="M21.25 5H8.75C7.36929 5 6.25 6.11929 6.25 7.5V23.75C6.25 25.1307 7.36929 26.25 8.75 26.25H21.25C22.6307 26.25 23.75 25.1307 23.75 23.75V7.5C23.75 6.11929 22.6307 5 21.25 5Z" stroke="black" stroke-width="2"/>
+                        <path d="M11.25 11.25H18.75M11.25 16.25H18.75M11.25 21.25H16.25" stroke="black" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <a href="#"><u>Add product</u></a>
+                </li>
+                <li>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                        <path d="M3.75 21.5625V26.25H8.4375L22.2625 12.425L17.575 7.7375L3.75 21.5625ZM25.8875 8.8C26.0034 8.68436 26.0953 8.547 26.158 8.39578C26.2208 8.24457 26.2531 8.08246 26.2531 7.91875C26.2531 7.75504 26.2208 7.59294 26.158 7.44172C26.0953 7.29051 26.0034 7.15315 25.8875 7.0375L22.9625 4.1125C22.8469 3.99662 22.7095 3.90469 22.5583 3.84196C22.4071 3.77924 22.245 3.74695 22.0813 3.74695C21.9175 3.74695 21.7554 3.77924 21.6042 3.84196C21.453 3.90469 21.3156 3.99662 21.2 4.1125L18.9125 6.4L23.6 11.0875L25.8875 8.8Z" fill="black"/>
+                    </svg>
+                    <a href="./edit_product.html">Edit products</a>
+                </li>
+                <li>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                        <path d="M5 15H16.875M7.5 18.75L3.75 15L7.5 11.25M13.75 8.75V7.5C13.75 6.83696 14.0134 6.20107 14.4822 5.73223C14.9511 5.26339 15.587 5 16.25 5H22.5C23.163 5 23.7989 5.26339 24.2678 5.73223C24.7366 6.20107 25 6.83696 25 7.5V22.5C25 23.163 24.7366 23.7989 24.2678 24.2678C23.7989 24.7366 23.163 25 22.5 25H16.25C15.587 25 14.9511 24.7366 14.4822 24.2678C14.0134 23.7989 13.75 23.163 13.75 22.5V21.25" stroke="black" stroke-width="2.83333" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    <a href="#">Log out</a>
+                </li>
             </ul>
         </div>
         <!-- Profile Content -->
         <div class="profile-content">
             <div class="profile-info">
                 <div class="center">
-                    <img src="IMGs/lower.jpeg" alt="Profile Picture" class="profile-pic">
+                    <img src="../IMGs/lower.jpeg" alt="Profile Picture" class="profile-pic">
                     <h3 class="profile-name">František Hraško</h3>
                     <h6>Administrator</h6>
                 </div>
-                <div class="main-content">
-                    <div class="statistic-element">
-                        <div class="statistic-container">
-                            <h6>Orders this month</h6>
-                            <h2>1005 orders</h2>
+                
+                <!-- MAIN CONTENT -->
+                <div class="main-content"> 
+                    <h2>Add product</h2>
+                    <div class="product-text-info">
+                        <div class="row row1">
+                            <label for="product-name">Product name</label>
+                            <input type="text" id="product-name" placeholder="Watch name and type">
+                        </div>
+                    
+                        <div class="row">
+                            <label for="product-price">Price</label>
+                            <input type="text" id="product-price" placeholder="5799.98€">
+                        </div>
+
+                        <div class="row">
+                            <label for="product-color">Color</label>
+                            <input type="text" id="product-color" placeholder="Gold">
+                        </div>
+                    </div>                    
+                    <div class="product-sizes">
+                        <h4>Sizes</h4>
+                        <div class="product-sizes-container">
+                            <label class="custom-checkbox">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                42mm
+                            </label>    
+                            <label class="custom-checkbox">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                43mm
+                            </label>
+                            <label class="custom-checkbox">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                44mm
+                            </label>
+                            <label class="custom-checkbox">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                45mm
+                            </label>
+                            <label class="custom-checkbox">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                46mm
+                            </label> 
+                        </div>                                          
+                    </div>
+                    <div class="product-category">
+                        <h4>Category</h4>
+                        <select id="watch-category" class="dropdown">
+                            <option value="luxury">Entry luxury</option>
+                            <option value="sport">Basic luxury</option>
+                            <option value="smart">Ultra luxury</option>
+                        </select>
+
+                    </div>
+                    <div class="upload-images">
+                        <h4>Upload images</h4>
+                        <div class="upload-images-container">
+                            <div class="product-img">
+                                <img src="../IMGs/small-img.jpg" alt="img-photo">
+                                <button class="trash-can">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 9 9" fill="none">
+                                        <path d="M1.96875 1.96875L2.32031 7.59375C2.33701 7.91877 2.57344 8.15625 2.88281 8.15625H6.11719C6.42779 8.15625 6.65982 7.91877 6.67969 7.59375L7.03125 1.96875" stroke="black" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M1.40625 1.96875H7.59375H1.40625Z" fill="black"/>
+                                        <path d="M1.40625 1.96875H7.59375" stroke="black" stroke-width="0.75" stroke-miterlimit="10" stroke-linecap="round"/>
+                                        <path d="M3.375 1.96875V1.26563C3.37484 1.21018 3.38564 1.15525 3.40678 1.10399C3.42793 1.05273 3.459 1.00616 3.4982 0.966954C3.53741 0.927747 3.58398 0.896678 3.63524 0.875534C3.6865 0.854391 3.74143 0.843589 3.79688 0.843752H5.20312C5.25857 0.843589 5.3135 0.854391 5.36476 0.875534C5.41602 0.896678 5.46259 0.927747 5.5018 0.966954C5.54101 1.00616 5.57207 1.05273 5.59322 1.10399C5.61436 1.15525 5.62516 1.21018 5.625 1.26563V1.96875M4.5 3.09375V7.03125M3.23438 3.09375L3.375 7.03125M5.76562 3.09375L5.625 7.03125" stroke="black" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </buttons>
+                            </div>
+                            <div class="product-img">
+                                <img src="../IMGs/watch-tissot.jpg" alt="img-photo">
+                                <button class="trash-can">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 9 9" fill="none">
+                                        <path d="M1.96875 1.96875L2.32031 7.59375C2.33701 7.91877 2.57344 8.15625 2.88281 8.15625H6.11719C6.42779 8.15625 6.65982 7.91877 6.67969 7.59375L7.03125 1.96875" stroke="black" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M1.40625 1.96875H7.59375H1.40625Z" fill="black"/>
+                                        <path d="M1.40625 1.96875H7.59375" stroke="black" stroke-width="0.75" stroke-miterlimit="10" stroke-linecap="round"/>
+                                        <path d="M3.375 1.96875V1.26563C3.37484 1.21018 3.38564 1.15525 3.40678 1.10399C3.42793 1.05273 3.459 1.00616 3.4982 0.966954C3.53741 0.927747 3.58398 0.896678 3.63524 0.875534C3.6865 0.854391 3.74143 0.843589 3.79688 0.843752H5.20312C5.25857 0.843589 5.3135 0.854391 5.36476 0.875534C5.41602 0.896678 5.46259 0.927747 5.5018 0.966954C5.54101 1.00616 5.57207 1.05273 5.59322 1.10399C5.61436 1.15525 5.62516 1.21018 5.625 1.26563V1.96875M4.5 3.09375V7.03125M3.23438 3.09375L3.375 7.03125M5.76562 3.09375L5.625 7.03125" stroke="black" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </buttons>
+                            </div>
+                            
+                            <div class="add-img">
+                                <p>+</p>
+                            </div>
                         </div>
                     </div>
-                    <!-- 2 -->
-                    <div class="statistic-element">
-                        <div class="statistic-container">
-                            <h6>New users this mont</h6>
-                            <h2>35 new users</h2>
-                        </div>
+                    <div class="product-description">
+                        <h4>Product description</h4>
+                        <textarea id="text-area" class="text-input" placeholder="Lorem ipsum dolor sit amet..."></textarea>
                     </div>
-                    <!-- 3 -->
-                    <div class="statistic-element">
-                        <div class="statistic-container">
-                            <h6>Total orders</h6>
-                            <h2>2063 orders</h2>
-                        </div>
-                    </div>
-                    <!-- 4 -->
-                    <div class="statistic-element">
-                        <div class="statistic-container">
-                            <h6>Total sales this month</h6>
-                            <h2>4589 €</h2>
-                        </div>
-                    </div>
-                    <!-- 5 -->
-                    <div class="statistic-element">
-                        <div class="statistic-container">
-                            <h6>Total sales this year</h6>
-                            <h2>35 022 €</h2>
-                        </div>
-                    </div>
-                    <!-- 6 -->
-                    <div class="statistic-element">
-                        <div class="statistic-container">
-                            <h6>Total sales overall</h6>
-                            <h2>56 021 € </h2>
-                        </div>
+                    <div class="button-area">
+                        <button class="upload-button">Upload Product</button>
                     </div>
                 </div>
 
@@ -269,10 +343,21 @@
         </div>
     </footer>
 
+    <script>
+        const textarea = document.getElementById("text-area");
+
+        textarea.addEventListener("input", function () {
+            this.style.height = "auto"; // Reset výšky
+            this.style.height = this.scrollHeight + "px"; // Nastavenie na aktuálnu výšku obsahu
+        });
+
+    </script>
+
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
-    <script src="script.js"></script>
-    <script src="Scripts/header.js"></script>
-    <script src="Scripts/profile.js"></script>
+    <script src="../script.js"></script>
+    <script src="../Scripts/header.js"></script>
+    <script src="../Scripts/payment.js"></script>
+    <script src="../Scripts/profile.js"></script>
 </body>
 
 </html>
