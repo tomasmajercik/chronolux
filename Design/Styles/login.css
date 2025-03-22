@@ -184,6 +184,10 @@ button {
         font-size: 1px;
     }
 
+    .container{
+        margin: 0;
+    }
+
     .form-container{
         padding: 20px;
     }
