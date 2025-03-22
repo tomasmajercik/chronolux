@@ -15,12 +15,15 @@ function toggleCardInfo() {
 
 // SIDEBAR
 function openSidebar() {
-  document.querySelector(".sidebar").classList.toggle("active");
-  
+  // document.querySelector(".sidebar").classList.toggle("active");
+  document.getElementById("sidebar").classList.toggle("active");
+
   if (sidebar.classList.contains("active")) {
       console.log("Sidebar is now HIDDEN");
-  } else {
+      document.body.style.overflow = "hidden";
+    } else {
       console.log("Sidebar is now VISIBLE");
+      document.body.style.overflow = "auto";
   }
 }
 

@@ -216,10 +216,6 @@ main {
     {
         font-size: 18px;
     }
-    .name-remove-fav span button
-    {
-        margin: 5px;
-    }
 
 } 
 @media only screen and (max-width: 1187px) 
@@ -260,6 +256,7 @@ main {
     {
         margin: 0 auto;
         width: 250px;
+        margin-top: 10px;
     }
 }
 @media only screen and (max-width: 490px) 
@@ -292,10 +289,6 @@ main {
     .name-remove-fav button{
         margin:5px 5px;
     }
-
-    .name-remove-fav span{
-        justify-content: flex-start;
-    } 
 }
 
 
