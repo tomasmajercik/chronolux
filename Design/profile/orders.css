@@ -154,19 +154,31 @@ main {
     }
 }
 
-@media (max-width: 350px) {
+@media (max-width: 420px) {
     .top{
         grid-template-columns: 1fr;
     }
-
+    
     .order-number{
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 0px;
         place-items: start;
     }
+    .left
+    {
+        padding-bottom: 10px;
+        border-bottom: 1px solid #ccc;
+
+        text-align: center;
+    }
 
     .manage.mobile{
         margin: 0;
+    }
+    .order-number
+    {
+        width: 90%;
+        margin: 0 auto;
     }
 }

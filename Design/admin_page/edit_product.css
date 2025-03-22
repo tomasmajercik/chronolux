@@ -88,7 +88,7 @@ main {
 .table-container
 {
     max-width: 1000px;
-    max-height: 100px;
+    min-height: 800px;
     margin: 0 auto;
     overflow-x: scroll;
     overflow-y: scroll;

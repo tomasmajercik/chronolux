@@ -174,6 +174,15 @@ main {
     border: 1px solid #e0e0e0; /* Light border for definition */
     transition: box-shadow 0.4s ease; /* Smooth hover effect */
     cursor: pointer;
+
+    position: relative;
+}
+.overlay
+{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
 }
 
 .order-box svg, .order-box .status, .order-box .price{
@@ -197,29 +206,21 @@ main {
     margin-right: 10px;
 }
 
+
+
 /************************* MEDIA *************************/
 @media (max-width: 475px) {
     .summary{
         gap: 7px;
         row-gap: 15px;
     }
-    .order-box{
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: 5px;
-    }
+
     .images img{
         /* width: 50%; */
         min-width: none;
         margin: 0;
     }
 
-    .images{
-        grid-column: span 3;
-    }
-
-    .order-box .status{
-        justify-self: start;
-    }
 }
 
 
@@ -228,6 +229,23 @@ main {
     .summary {
         grid-template-columns: 1fr 1fr;
     }
+
+    .images{
+        grid-column: span 3;
+    }
+    
+    .order-box{
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 5px;
+    }
+
+    .order-box .status{
+        justify-self: start;
+    }
+
+    .order-box .price{
+        justify-self: center;
+    }
 }
 
 
@@ -235,5 +253,9 @@ main {
     .summary{
         margin: 0;
         margin-bottom: 20px;
+    }
+
+    main{
+        grid-template-columns: 1fr;
     }
 }
