@@ -1,7 +1,6 @@
 main{
     min-height: 100vh;
 }
-
 .title
 {
     margin-left: 10%;
@@ -217,7 +216,7 @@ main{
     .cart-summary-container
     {
         width: 80%;
-        margin: 0 auto;
+        margin: 30px auto;
     }
 }
 @media only screen and (max-width: 780px) 
@@ -259,7 +258,7 @@ main{
     
 }
 
-nav
+.categorization
 {
     width: 90%;
     margin: 0 auto;
