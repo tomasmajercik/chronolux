@@ -1,0 +1,88 @@
+main
+{
+    height: 80vh;
+}
+.thanks h1
+{
+    font-size: 50px;
+}
+.thanks h3
+{
+    font-size: 30px;
+    font-weight: normal;
+}
+.thanks-hide
+{
+    text-align: center;
+    padding: 30px 0;
+    opacity: 0;
+    transform: translateY(30px);
+}
+.order-info
+{
+    opacity: 0;
+    transform: translateY(30px);
+}
+.order-container
+{
+    display: flex;
+    width: 600px;
+    align-items: center;
+    margin: 0 auto;
+}
+.order-container h4
+{
+    margin-left: 10px;
+    font-weight: normal;
+}
+.profile-redirect
+{
+    padding: 50px;
+    width: 500px;
+    margin: 0 auto;
+    opacity: 0;
+    transform: translateY(30px);
+}
+.nice-a
+{
+    color: #334547;
+    font-weight: bold;
+}
+
+
+.show
+{
+    transform: translateY(0);
+    opacity: 1;
+    transition: 1s;
+}
+
+
+@media only screen and (max-width: 660px) 
+{
+    .order-container
+    {
+        width: 80%;
+        margin: 0 auto;
+        font-size: 12px;
+    }
+}
+@media only screen and (max-width: 450px)
+{
+    .profile-redirect
+    {
+        padding: 20px 0;
+        width: 80%;
+    }
+}
+@media only screen and (max-width: 435px) 
+{
+    .thanksh1
+    {
+        font-size: 40px;
+    }
+    .thanksh3
+    {
+        font-size: 15px;
+    }
+}
