@@ -1,3 +1,7 @@
+main
+{
+    min-height: 85vh;
+}
 /* Navigation */
 .categorization ul {
     list-style: none;
@@ -148,8 +152,20 @@
     }
 
     .categorization ul{
-        font-size: 70%;
+        font-size: 85%;
+        margin: 0;
         padding: 0;
         padding-top: 10px;
+    }
+}
+@media (max-width: 410px)
+{
+    nav ul li
+    {
+        margin: 0;
+    }
+    .product-info h2
+    {
+        font-size: 20px;
     }
 }

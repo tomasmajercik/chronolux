@@ -99,8 +99,8 @@
                 <div class="form-container sign-in-container">
                     <h1>Sign in to ChronoLux</h1>
                     <form class="input-fields">
-                        <label for="username">Username</label>
-                        <input type="text" class="input" placeholder="Username">
+                        <label for="email">Email</label>
+                        <input type="email" class="input" placeholder="name.surname@mail.com">
 
                         <label for="password">Password</label>
                         <input type="password" class="input" placeholder="Password">
@@ -112,15 +112,17 @@
                 </div>
                 <div class="form-container sign-up-container">
                     <h1>Sign up to ChronoLux</h1>
-                    <form class="input-fields">
-                        <label for="username">Username</label>
-                        <input type="text" class="input" placeholder="Username">
+                    <form class="input-fields" onsubmit="return validatePassword(event)">
+                        <label for="email">Email</label>
+                        <input type="email" class="input" placeholder="name.surname@mail.com">
 
                         <label for="password">Password</label>
-                        <input type="password" class="input" placeholder="••••••••">
+                        <input type="password" id="password" class="input" placeholder="••••••••" required>
 
-                        <label for="password">Confirm Password</label>
-                        <input type="password" class="input" placeholder="••••••••">
+                        <label for="confirm-password">Confirm Password</label>
+                        <input type="password" id="confirm-password" class="input" placeholder="••••••••" required>
+
+                        <p id="error-message" style="color: red; display: none;">Passwords do not match!</p>
                         <button>Sign Up</button>
                         <span onclick="toggleLink()" class="sign-up-btn">Already have an acount?</span>
                     </form>
@@ -245,6 +247,25 @@
     </footer>
 
     <script src="script.js"></script>
+
+    <script>
+        function validatePassword(event) {
+            let password = document.getElementById("password").value;
+            let confirmPassword = document.getElementById("confirm-password").value;
+            let errorMessage = document.getElementById("error-message");
+    
+            if (password !== confirmPassword) {
+                errorMessage.style.display = "block";
+                event.preventDefault(); // Zastaví odoslanie formulára
+                return false;
+            } else {
+                errorMessage.style.display = "none";
+                return true;
+            }
+        }
+    </script>
+
 </body>
+
 
 </html>
