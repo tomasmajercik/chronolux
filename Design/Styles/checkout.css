@@ -199,64 +199,7 @@ main{
     background-color: #273e2f;
 }
 
-/* Responsive stuff */
-@media only screen and (max-width: 1187px) 
-{
-    .cart-wrapper
-    {
-        width: 90%;
-    }
-}
-@media only screen and (max-width: 1055px) 
-{
-    .cart-wrapper
-    {
-        flex-direction: column;
-    }
-    .cart-summary-container
-    {
-        width: 80%;
-        margin: 30px auto;
-    }
-}
-@media only screen and (max-width: 780px) 
-{
-    .cart-header span
-    {
-        display: none;
-    }
-    .cart-item
-    {
-        flex-direction: column;
-    }
-    .info-holder
-    {
-        margin: 0 auto;
-        width: 250px;
-    }
-}
-@media only screen and (max-width: 451px) 
-{
-    .name-remove-fav button
-    {
-        font-size: 10px;
-    }
-    .name-remove-fav h2
-    {
-        font-size: 20px;
-    }
-    .cart-item-img
-    {
-        width: 75px;
-        height: 75px;
-    }
-    .cart-summary-container
-    {
-        width: 100%;
-    }
 
-    
-}
 
 .categorization
 {
@@ -320,3 +263,72 @@ label
 {
     margin-bottom: 10px;
 }
+
+/* Responsive stuff */
+@media only screen and (max-width: 1187px) 
+{
+    .cart-wrapper
+    {
+        width: 90%;
+    }
+}
+@media only screen and (max-width: 1055px) 
+{
+    .cart-wrapper
+    {
+        flex-direction: column;
+    }
+    .cart-summary-container
+    {
+        width: 80%;
+        margin: 30px auto;
+    }
+}
+@media only screen and (max-width: 780px) 
+{
+    .cart-header span
+    {
+        display: none;
+    }
+    .cart-item
+    {
+        flex-direction: column;
+    }
+    .info-holder
+    {
+        margin: 0 auto;
+        width: 250px;
+    }
+}
+@media only screen and (max-width: 451px) 
+{
+    .name-remove-fav button
+    {
+        font-size: 10px;
+    }
+    .name-remove-fav h2
+    {
+        font-size: 20px;
+    }
+    .cart-item-img
+    {
+        width: 75px;
+        height: 75px;
+    }
+    .cart-summary-container
+    {
+        width: 100%;
+    }
+    .form-wrapper
+    {
+        flex-direction: column;
+    }
+    .input-holder
+    {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    
+}
+

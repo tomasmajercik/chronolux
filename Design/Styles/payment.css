@@ -204,7 +204,7 @@ main{
     background-color: #273e2f;
 }
 
-.categorization
+nav
 {
     width: 90%;
     margin: 0 auto;
@@ -275,8 +275,11 @@ label
 
 .card-info.active
 {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
 }
+
 
 .card-info.active
 
@@ -351,6 +354,9 @@ label
     {
         width: 70%;
         margin-bottom: 10px;
+    }
+    .card-info.active{
+        grid-template-columns: 1fr;
     }
 }
 
