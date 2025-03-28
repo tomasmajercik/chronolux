@@ -164,6 +164,30 @@ main
     max-height: 90%;
 }
 
+/* arrows */
+.prev, .next 
+{
+    position: absolute;
+    top: 50%;
+    color: white;
+    font-size: 30px;
+    padding: 16px;
+    margin-top: -22px;
+    cursor: pointer;
+    user-select: none;
+}
+.prev 
+{
+    left: 20px;
+}
+.next 
+{
+    right: 20px;
+}
+.prev:hover, .next:hover 
+{
+    font-size: 35px;
+}
 
 
 
@@ -192,6 +216,14 @@ main
         margin: 0;
         padding: 0;
         padding-top: 10px;
+    }
+}
+@media (max-width: 452px)
+{
+    .product-gallery img 
+    {
+        width: 70px;
+        height: 70px;
     }
 }
 @media (max-width: 410px)
