@@ -30,7 +30,7 @@
             </div>
             <div class="icons">
                 <span class="finder">
-                    <input id="finder-input" class="finder-input" type="text">
+                    <input id="finder-input" class="finder-input" type="text" placeholder="Search">
                 </span> <!-- Tu by sme mohli ak to bude matuce dat ze ta lupa sa prepne z ukaz/skry input na odosli input alebo co  -->
                 <button class="finder-btn" onclick="showSearch()">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 35 35" fill="none">
@@ -85,7 +85,7 @@
             </div>
 
             <nav class="mobile-menu">
-                <input id="finder-input-mobile" class="finder-input-mobile" type="text">
+                <input id="finder-input-mobile" class="finder-input-mobile" type="text" placeholder="Search">
                 <a href="index.html">Home</a>
                 <a href="product_page.html#product-catalog">Products</a>
                 <a href="#footer" onclick="toggleMenu()">Contact</a>
@@ -102,13 +102,92 @@
 
     <main>
         <section class="product-catalog" id="product-catalog">
+
+
+
+
             <div class="product-menu">
                 <h4>1024 products found</h4>
                 <div>
-                    <button>Sort by</button>
-                    <button>Filter by</button>
+                    <button onclick="openSort()">Sort by</button>
+                    <button onclick="openFilter()">Filter by</button>
                 </div>
             </div>
+            
+            <!-- MODAL FOR FILTER -->
+            <div id="filter-modal" class="filter-modal">
+                <div class="filter-content">
+                    <span class="close-btn" onclick="closeFilter()">&times;</span>
+                    <h3>Filter Products</h3>
+                    <div class="selects">
+                        <div class="filter-modal-holder">
+                            <label for="category">Category:</label>
+                            <select id="category">
+                                <option value="all">All</option>
+                                <option value="watches">Entry Luxury</option>
+                                <option value="smartwatch">Basic Luxuruy</option>
+                                <option value="luxury">Ultra Luxury</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-modal-holder">
+                            <label for="brand">Brand:</label>
+                            <select id="brand">
+                                <option value="all">All</option>
+                                <option value="rolex">Rolex</option>
+                                <option value="tissot">Tissot</option>
+                                <option value="tudor">Tudor</option>
+                            </select>
+                        </div>
+                    </div>
+            
+                    <label id="label-size" for="size">Size:</label>
+                    <div class="size-options">
+                        <input type="checkbox" id="size-42" value="42mm"> <label for="size-42">42mm</label>
+                        <input type="checkbox" id="size-43" value="43mm"> <label for="size-42">43mm</label>
+                        <input type="checkbox" id="size-44" value="44mm"> <label for="size-44">44mm</label>
+                        <input type="checkbox" id="size-45" value="45mm"> <label for="size-45">45mm</label>
+                        <input type="checkbox" id="size-46" value="46mm"> <label for="size-46">46mm</label>
+                    </div>
+            
+                    <div class="price-range">
+                        <input type="range" id="price" min="100" max="10000" step="50" oninput="updatePriceValue(this.value)">
+                        <span id="price-value">100€ - 10000€</span>
+                    </div>
+            
+                    <button class="apply-filter" onclick="applyFilter()">Apply Filter</button>
+                </div>
+            </div>
+            <!-- MODAL FOR SORT -->
+            <div id="sort-modal" class="sort-modal">
+                <div class="sort-content">
+                    <span class="close-btn" onclick="closeSort()">&times;</span>
+                    <h3>Sort Products</h3>
+                    
+                    <div class="sort-modal-holder">
+                        <label for="sort-price">Sort by Price:</label>
+                        <select id="sort-price">
+                            <option value="none">-- Select --</option>
+                            <option value="low-to-high">Low to High</option>
+                            <option value="high-to-low">High to Low</option>
+                        </select>
+                    </div>
+
+                    <div class="sort-modal-holder">
+                        <label for="sort-brand">Sort by Brand:</label>
+                        <select id="sort-brand">
+                            <option value="none">-- Select --</option>
+                            <option value="a-z">A - Z</option>
+                            <option value="z-a">Z - A</option>
+                        </select>
+                    </div>
+
+                    <button class="apply-sort" onclick="applySort()">Apply Sort</button>
+                </div>
+            </div>
+
+
+
 
             <div class="product-grid">
                 <div class="product-container">
@@ -414,6 +493,7 @@
         </div>
     </footer>
 
+    <script src="filterSortingModal.js"></script>
     <script src="script.js"></script>
     <script src="searchScript.js"></script>
 </body>

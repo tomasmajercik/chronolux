@@ -50,7 +50,7 @@ main
     text-align: center;
 }
 
-.product-img img {
+.main-img{
     max-width: 100%;
     height: auto;
     border-radius: 20px;
@@ -131,6 +131,66 @@ main
     background: #253a2c;
 }
 
+
+/***************  krasne obrazky ***********************/
+.product-gallery img 
+{
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+    cursor: pointer;
+}
+.product-gallery img:hover 
+{
+    transform: scale(1.03);
+}
+
+/* modal */
+.modal 
+{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+}
+#modal-img 
+{
+    max-width: 90%;
+    max-height: 90%;
+}
+
+/* arrows */
+.prev, .next 
+{
+    position: absolute;
+    top: 50%;
+    color: white;
+    font-size: 30px;
+    padding: 16px;
+    margin-top: -22px;
+    cursor: pointer;
+    user-select: none;
+}
+.prev 
+{
+    left: 20px;
+}
+.next 
+{
+    right: 20px;
+}
+.prev:hover, .next:hover 
+{
+    font-size: 35px;
+}
+
+
+
 @media (max-width: 768px) {
     .product {
         grid-template-columns: 1fr;
@@ -156,6 +216,14 @@ main
         margin: 0;
         padding: 0;
         padding-top: 10px;
+    }
+}
+@media (max-width: 452px)
+{
+    .product-gallery img 
+    {
+        width: 70px;
+        height: 70px;
     }
 }
 @media (max-width: 410px)
