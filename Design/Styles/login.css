@@ -72,7 +72,7 @@
     border: 1px solid #d1d1d1;
 }
 
-button {
+main button {
     padding: 15px 60px;
     border-radius: 20px;
     font-size: large;
@@ -176,7 +176,7 @@ button {
         margin: 0 20px;
     }
 
-    button{
+    main button{
         padding: 10px;
         font-size: small;
     }

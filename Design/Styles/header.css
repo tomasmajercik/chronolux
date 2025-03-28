@@ -32,6 +32,7 @@ header
 .header-text h1
 {
     color: #eee;
+    cursor: pointer;
 }
 .header-text h6
 {
@@ -151,8 +152,64 @@ body.no-scroll {
     overflow: hidden; /* Prevent scrolling */
 }
 
+/*//////////* search bar ********/
+header .upper-header .finder-btn
+{
+    border: none;
+    background-color: transparent;
+    margin: 0 10px;
+}
+header .upper-header .finder-input
+{
+    width: 100%;
+    border: none;
+    border-radius: 20px;
+    opacity: 0;
+    transform: scaleX(0.01);
+    transition: .5s;
+    padding: 10px 0px;
+    padding-left: 15px;
+}
+header .upper-header .finder-input:focus
+{
+    outline: 3px solid #057c75;
+}
+header .upper-header .finder-input-show
+{
+    transition: .5s;
+    opacity: 1;
+    transform: scaleX(1);
+}
+#finder-input-mobile
+{
+    margin-bottom: 20px;
+    width: 300px;
+    padding: 10px 0px;
+    padding-left: 15px;
+    border: none;
+    border-radius: 20px;
+}
+#finder-input-mobile:focus
+{
+    outline: 3px solid #057c75;
+}
+
 
 /* MEDIA QUERY - Show hamburger menu after 670px */
+@media (max-width: 855px)
+{
+    .finder
+    {
+        width: 250px;
+        position: absolute;
+        top: 87px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        text-align: center;
+    }
+}
+
 @media (max-width: 670px) {
     .header-container-desktop {
         display: none; /* Hide main menu */

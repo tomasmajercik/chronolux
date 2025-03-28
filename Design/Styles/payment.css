@@ -204,7 +204,7 @@ main{
     background-color: #273e2f;
 }
 
-nav
+main nav
 {
     width: 90%;
     margin: 0 auto;
@@ -223,7 +223,8 @@ nav
     text-decoration: underline;
     color: #666;
 }
-input[type="text"] {
+main input[type="text"] {
+
     width: 100%;
     padding: 10px;
     font-size: 16px;
@@ -261,7 +262,7 @@ label
 {
     display: flex;
     flex-direction: column;
-    width: 40%;
+    width: 90%;
 }
 
 .card-info
@@ -278,9 +279,6 @@ label
     grid-template-columns: 1fr 1fr;
     gap: 10px;
 }
-
-
-.card-info.active
 
 .delivery-inputs
 {
@@ -342,7 +340,7 @@ label
     }
 
 }
-@media only screen and (max-width: 542px) 
+@media only screen and (max-width: 570px) 
 {
     .form-wrapper
     {
@@ -355,10 +353,37 @@ label
         margin-bottom: 10px;
     }
     .card-info.active{
-        grid-template-columns: 1fr;
-        margin: 40px 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px; /* Medzera medzi prvkami */
+    }
+
+    .input-holder {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .input-holder:nth-child(1) label:nth-of-type(1),
+    .input-holder:nth-child(1) input:nth-of-type(1) {
+        order: 1; /* Card Holder Name */
+    }
+
+    .input-holder:nth-child(2) label:nth-of-type(1),
+    .input-holder:nth-child(2) input:nth-of-type(1) {
+        order: 2; /* Card Number */
+    }
+
+    .input-holder:nth-child(1) label:nth-of-type(2),
+    .input-holder:nth-child(1) input:nth-of-type(2) {
+        order: 3; /* Expiry Date */
+    }
+
+    .input-holder:nth-child(2) label:nth-of-type(2),
+    .input-holder:nth-child(2) input:nth-of-type(2) {
+        order: 4; /* CVC */
     }
 }
+
 
 @media only screen and (max-width: 451px) 
 {
