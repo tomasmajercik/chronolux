@@ -32,6 +32,7 @@ header
 .header-text h1
 {
     color: #eee;
+    cursor: pointer;
 }
 .header-text h6
 {
@@ -179,7 +180,7 @@ header .upper-header .finder-input-show
     opacity: 1;
     transform: scaleX(1);
 }
-header .upper-header .finder-input-mobile
+#finder-input-mobile
 {
     margin-bottom: 20px;
     width: 300px;
@@ -188,7 +189,7 @@ header .upper-header .finder-input-mobile
     border: none;
     border-radius: 20px;
 }
-header .upper-header .finder-input-mobile:focus
+#finder-input-mobile:focus
 {
     outline: 3px solid #057c75;
 }
