@@ -158,6 +158,7 @@ header .upper-header .finder-btn
     border: none;
     background-color: transparent;
     margin: 0 10px;
+    cursor: pointer;
 }
 header .upper-header .finder-input
 {
