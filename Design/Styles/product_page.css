@@ -15,6 +15,7 @@ header
     max-width: 1200px;
     margin: 0 auto;
     margin-top: -50px;
+    margin-bottom: 20px;
     padding: 20px 20px 20px 20px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     z-index: 10;

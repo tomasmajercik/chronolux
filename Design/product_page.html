@@ -31,7 +31,8 @@
             <div class="icons">
                 <span class="finder">
                     <input id="finder-input" class="finder-input" type="text" placeholder="Search">
-                </span> <!-- Tu by sme mohli ak to bude matuce dat ze ta lupa sa prepne z ukaz/skry input na odosli input alebo co  -->
+                </span>
+                <!-- Tu by sme mohli ak to bude matuce dat ze ta lupa sa prepne z ukaz/skry input na odosli input alebo co  -->
                 <button class="finder-btn" onclick="showSearch()">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 35 35" fill="none">
                         <path
@@ -87,7 +88,7 @@
             <nav class="mobile-menu">
                 <input id="finder-input-mobile" class="finder-input-mobile" type="text" placeholder="Search">
                 <a href="index.html">Home</a>
-                <a href="product_page.html#product-catalog">Products</a>
+                <a href="product_page.html#product-catalog" onclick="toggleMenu()">Products</a>
                 <a href="#footer" onclick="toggleMenu()">Contact</a>
                 <a href="cart.html">Shopping Cart</a>
                 <a href="profile/profile.html">Wish List</a>
@@ -113,7 +114,7 @@
                     <button onclick="openFilter()">Filter by</button>
                 </div>
             </div>
-            
+
             <!-- MODAL FOR FILTER -->
             <div id="filter-modal" class="filter-modal">
                 <div class="filter-content">
@@ -129,7 +130,7 @@
                                 <option value="luxury">Ultra Luxury</option>
                             </select>
                         </div>
-                        
+
                         <div class="filter-modal-holder">
                             <label for="brand">Brand:</label>
                             <select id="brand">
@@ -140,7 +141,7 @@
                             </select>
                         </div>
                     </div>
-            
+
                     <label id="label-size" for="size">Size:</label>
                     <div class="size-options">
                         <input type="checkbox" id="size-42" value="42mm"> <label for="size-42">42mm</label>
@@ -149,12 +150,13 @@
                         <input type="checkbox" id="size-45" value="45mm"> <label for="size-45">45mm</label>
                         <input type="checkbox" id="size-46" value="46mm"> <label for="size-46">46mm</label>
                     </div>
-            
+
                     <div class="price-range">
-                        <input type="range" id="price" min="100" max="10000" step="50" oninput="updatePriceValue(this.value)">
+                        <input type="range" id="price" min="100" max="10000" step="50"
+                            oninput="updatePriceValue(this.value)">
                         <span id="price-value">100€ - 10000€</span>
                     </div>
-            
+
                     <button class="apply-filter" onclick="applyFilter()">Apply Filter</button>
                 </div>
             </div>
@@ -163,7 +165,7 @@
                 <div class="sort-content">
                     <span class="close-btn" onclick="closeSort()">&times;</span>
                     <h3>Sort Products</h3>
-                    
+
                     <div class="sort-modal-holder">
                         <label for="sort-price">Sort by Price:</label>
                         <select id="sort-price">
@@ -192,8 +194,8 @@
             <div class="product-grid">
                 <div class="product-container">
                     <a href="product_detail.html" class="clickable-overlay"></a>
-                    <div class="product-image"><img class="img-product" src="IMGs/tissot-sm.jpg" alt="" ,
-                            width="330px" , height="330px"></div>
+                    <div class="product-image"><img class="img-product" src="IMGs/tissot-sm.jpg" alt="" , width="330px"
+                            , height="330px"></div>
                     <div class="product-info">
                         <h2>Tissot Tradition Silver</h2>
                         <div class="reviews">
@@ -262,8 +264,8 @@
                 </div>
                 <div class="product-container">
                     <a href="product_detail.html" class="clickable-overlay"></a>
-                    <div class="product-image"><img class="img-product" src="IMGs/watch-sm.jpg" alt="" ,
-                            width="330px" , height="330px"></div>
+                    <div class="product-image"><img class="img-product" src="IMGs/watch-sm.jpg" alt="" , width="330px" ,
+                            height="330px"></div>
                     <div class="product-info">
                         <h2>Thomas Earnshaw ES-8011-07</h2>
                         <div class="reviews">
@@ -276,8 +278,8 @@
                 </div>
                 <div class="product-container">
                     <a href="product_detail.html" class="clickable-overlay"></a>
-                    <div class="product-image"><img class="img-product" src="IMGs/iwc-sm.jpg" alt="" ,
-                            width="330px" , height="330px"></div>
+                    <div class="product-image"><img class="img-product" src="IMGs/iwc-sm.jpg" alt="" , width="330px" ,
+                            height="330px"></div>
                     <div class="product-info">
                         <h2>Ingersoll IN1800CR</h2>
                         <div class="reviews">
@@ -290,8 +292,8 @@
                 </div>
                 <div class="product-container">
                     <a href="product_detail.html" class="clickable-overlay"></a>
-                    <div class="product-image"><img class="img-product" src="IMGs/rolex-2-sm.jpg" alt="" ,
-                            width="330px" , height="330px"></div>
+                    <div class="product-image"><img class="img-product" src="IMGs/rolex-2-sm.jpg" alt="" , width="330px"
+                            , height="330px"></div>
                     <div class="product-info">
                         <h2>Rolex Submariner</h2>
                         <div class="reviews">
@@ -304,8 +306,8 @@
                 </div>
                 <div class="product-container">
                     <a href="product_detail.html" class="clickable-overlay"></a>
-                    <div class="product-image"><img class="img-product" src="IMGs/tudor-sm.jpg" alt="" ,
-                            width="330px" , height="330px"></div>
+                    <div class="product-image"><img class="img-product" src="IMGs/tudor-sm.jpg" alt="" , width="330px" ,
+                            height="330px"></div>
                     <div class="product-info">
                         <h2>Tudor Black Bay Fifty-Eight</h2>
                         <div class="reviews">
@@ -318,8 +320,8 @@
                 </div>
                 <div class="product-container">
                     <a href="product_detail.html" class="clickable-overlay"></a>
-                    <div class="product-image"><img class="img-product" src="IMGs/fossil-sm.jpg" alt="" ,
-                            width="330px" , height="330px"></div>
+                    <div class="product-image"><img class="img-product" src="IMGs/fossil-sm.jpg" alt="" , width="330px"
+                            , height="330px"></div>
                     <div class="product-info">
                         <h2>Fossil CH2882</h2>
                         <div class="reviews">
@@ -332,8 +334,8 @@
                 </div>
                 <div class="product-container">
                     <a href="product_detail.html" class="clickable-overlay"></a>
-                    <div class="product-image"><img class="img-product" src="IMGs/mauron-sm.jpg" alt="" ,
-                            width="330px" , height="330px"></div>
+                    <div class="product-image"><img class="img-product" src="IMGs/mauron-sm.jpg" alt="" , width="330px"
+                            , height="330px"></div>
                     <div class="product-info">
                         <h2>Mauron Musy MU03 Armor</h2>
                         <div class="reviews">
@@ -346,8 +348,8 @@
                 </div>
                 <div class="product-container">
                     <a href="product_detail.html" class="clickable-overlay"></a>
-                    <div class="product-image"><img class="img-product" src="IMGs/rolex-sm.jpg" alt="" ,
-                            width="330px" , height="330px"></div>
+                    <div class="product-image"><img class="img-product" src="IMGs/rolex-sm.jpg" alt="" , width="330px" ,
+                            height="330px"></div>
                     <div class="product-info">
                         <h2>Rolex Air-King 14010</h2>
                         <div class="reviews">

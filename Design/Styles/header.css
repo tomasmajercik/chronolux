@@ -24,7 +24,6 @@ header
 }
 .header-container-desktop
 {
-    /* border: 1px red solid; */
     display: flex;
     align-items: center;
     padding: 0 20px;
@@ -38,13 +37,13 @@ header
 {
     color: #eee;
     font-weight: 100;
+    cursor: pointer;
 }
 .icons
 {
     display: flex;
     align-items: center;
     padding: 5px;
-    /* border: green 2px solid; */
 }
 .icons a
 {
@@ -184,8 +183,8 @@ header .upper-header .finder-input-show
 #finder-input-mobile
 {
     margin-bottom: 20px;
-    width: 300px;
-    padding: 10px 0px;
+    width: 250px;
+    padding: 12px 0px;
     padding-left: 15px;
     border: none;
     border-radius: 20px;
