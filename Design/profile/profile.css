@@ -63,7 +63,7 @@ main {
     margin-top: 10px;
 }
 
-/* Account Summary */
+/************************* ACOUNT SUMMARY *************************/
 .account-summary {
     padding: 20px;
 }
@@ -75,7 +75,7 @@ main {
     text-align: left;
 }
 
-/* Summary Boxes */
+/************************* SUMARRY BOXES *************************/
 .summary {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -119,7 +119,7 @@ main {
     font-size: 18px;
 }
 
-/* Last Orders */
+/************************* Last Orders *************************/
 .account-summary h3 {
     font-size: 18px;
     font-weight: bold;
@@ -145,7 +145,7 @@ main {
 }
 
 .status.delivered{
-    background-color: #2ecc71; /* Emerald green (same as summary box) */
+    background-color: #2ecc71;
     color: #eee;
 }
 
@@ -170,9 +170,9 @@ main {
     background: white;
     padding: 20px;
     border-radius: 20px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow for lift */
-    border: 1px solid #e0e0e0; /* Light border for definition */
-    transition: box-shadow 0.4s ease; /* Smooth hover effect */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+    border: 1px solid #e0e0e0; 
+    transition: box-shadow 0.4s ease; 
     cursor: pointer;
 
     position: relative;
@@ -207,7 +207,6 @@ main {
 }
 
 
-
 /************************* MEDIA *************************/
 @media (max-width: 475px) {
     .summary{
@@ -222,8 +221,6 @@ main {
     }
 
 }
-
-
 
 @media (max-width: 720px) {
     .summary {

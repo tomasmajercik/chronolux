@@ -51,7 +51,6 @@ header
 }
 .icons a svg
 {
-    /* background-color: #1b6d62; */
     border-radius: 50%;
 }
 nav
@@ -97,14 +96,14 @@ nav ul li a
 
 .mobile-menu {
     display: none;
-    position: fixed; /* Cover the whole screen */
+    position: fixed;
     margin: 0;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.9); /* Semi-transparent black background */
-    z-index: 1000; /* Ensure it's above other content */
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
 }
 
 .mobile-menu a {
@@ -151,7 +150,7 @@ body.no-scroll {
     overflow: hidden; /* Prevent scrolling */
 }
 
-/*//////////* search bar ********/
+/************************* SEARCH BAR *************************/
 header .upper-header .finder-btn
 {
     border: none;
@@ -194,7 +193,7 @@ header .upper-header .finder-input-show
     outline: 3px solid #057c75;
 }
 
-
+/************************* MEDIA *************************/
 /* MEDIA QUERY - Show hamburger menu after 670px */
 @media (max-width: 855px)
 {

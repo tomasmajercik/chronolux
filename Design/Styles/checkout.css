@@ -38,7 +38,7 @@ main{
     text-align: center;
 }
 
-/* Items in cart section */
+/************************* ITEM IN CART Section *************************/
 .cart-section
 {
     min-height: 80vh;
@@ -69,12 +69,7 @@ main{
 .item-name-info
 {
     display: flex;
-
 }
-/* .item-name-info img
-{
-    border-radius: 20px;
-} */
 .name-remove-fav
 {
     margin: 10px;
@@ -90,7 +85,7 @@ main{
     margin-right: 5px;
 
     border: none;
-    border-radius: 20px; /* Soft rounded edges */
+    border-radius: 20px;
     color: #333;
     font-size: 14px;
     cursor: pointer;
@@ -125,7 +120,7 @@ main{
     border-radius: 20px; 
 }
 
-/* Aside section */
+/************************* Aside Section *************************/
 .cart-summary-container
 {
     margin-left: 10px;
@@ -134,7 +129,6 @@ main{
     width: 25%;
     margin-top: 30px; /* .cart-header height + .cart-itemheight = 20 + 10 = 30px*/
 
-    /* padding: 10px; */
     border-radius: 20px;
     
     display: flex;
@@ -149,11 +143,9 @@ main{
 }
 .total-products 
 {
-    /* padding: 20px 0; */
     display: flex;
     flex-direction: column;
     gap: 10px; /* Space between rows */
-    
     margin: 10px 20px;
 }
 
@@ -198,8 +190,6 @@ main{
 {
     background-color: #273e2f;
 }
-
-
 
 .categorization
 {
@@ -263,8 +253,7 @@ label
 {
     margin-bottom: 10px;
 }
-
-/* Responsive stuff */
+/************************* MEDIA *************************/
 @media only screen and (max-width: 1187px) 
 {
     .cart-wrapper

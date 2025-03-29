@@ -5,7 +5,7 @@ main {
     grid-template-columns: 1fr 6fr;
 }
 
-/* Orders */
+/************************* Orders *************************/
 
 .orders h1{
     margin: 30px 0 50px 50px;

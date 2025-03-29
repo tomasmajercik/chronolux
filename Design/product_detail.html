@@ -31,7 +31,7 @@
             <div class="icons">
                 <span class="finder">
                     <input id="finder-input" class="finder-input" type="text" placeholder="Search">
-                </span> <!-- Tu by sme mohli ak to bude matuce dat ze ta lupa sa prepne z ukaz/skry input na odosli input alebo co  -->
+                </span>
                 <button class="finder-btn" onclick="showSearch()">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 35 35" fill="none">
                         <path
@@ -98,6 +98,7 @@
 
     <main>
         <section class="product-section">
+            <!-- Navigation -->
             <nav class="categorization">
                 <ul>
                     <li><a href="index.html">Home</a></li>
@@ -105,14 +106,19 @@
                     <li><a href="product_detail.html">Product Name</a></li>
                 </ul>
             </nav>
+            <!-- Product -->
             <div class="product">
                 <div class="product-img">
-                    <img class="main-img" src="IMGs/watch-tissot.jpg" alt="Product Image" width="440px" height="440px" onclick="showLargeImage('IMGs/watch-tissot.jpg', 0)">
+                    <img class="main-img" src="IMGs/watch-tissot.jpg" alt="Product Image" width="440px" height="440px"
+                        onclick="showLargeImage('IMGs/watch-tissot.jpg', 0)">
 
                     <div class="product-gallery">
-                        <img src="IMGs/watch-sm.jpg" alt="Product Image 2" onclick="showLargeImage('IMGs/watch-sm.jpg', 1)">
-                        <img src="IMGs/rolex-sm.jpg" alt="Product Image 3" onclick="showLargeImage('IMGs/rolex-sm.jpg', 2)">
-                        <img src="IMGs/tudor-sm.jpg" alt="Product Image 4" onclick="showLargeImage('IMGs/tudor-sm.jpg', 3)">
+                        <img src="IMGs/watch-sm.jpg" alt="Product Image 2"
+                            onclick="showLargeImage('IMGs/watch-sm.jpg', 1)">
+                        <img src="IMGs/rolex-sm.jpg" alt="Product Image 3"
+                            onclick="showLargeImage('IMGs/rolex-sm.jpg', 2)">
+                        <img src="IMGs/tudor-sm.jpg" alt="Product Image 4"
+                            onclick="showLargeImage('IMGs/tudor-sm.jpg', 3)">
                     </div>
                 </div>
                 <div class="product-info">
@@ -149,8 +155,6 @@
                 <img id="modal-img" src="" alt="Large Product Image">
                 <span class="next" onclick="changeImage(1, event)">&#10095;</span>
             </div>
-            
-                       
         </section>
     </main>
 
