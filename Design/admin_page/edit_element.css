@@ -28,7 +28,7 @@ main {
 }
 
 
-/* main content */
+/************************* Main Content *************************/
 .main-content
 {
     max-width: 1200px;
@@ -200,7 +200,7 @@ input[type="text"]
     text-align: center;
     width: 100%;
 }
-/*********************** checkbox ************************/
+/************************* CHECKBOX *************************/
 .custom-checkbox 
 {
     display: flex;
@@ -229,14 +229,12 @@ input[type="text"]
     position: relative;
 }
 
-/* Štýl pre zaškrtnutý stav */
 .custom-checkbox input:checked + .checkmark 
 {
     background-color: black;
     border-color: black;
 }
 
-/* Pridáme bielu fajku (✓) do checkboxu */
 .custom-checkbox input:checked + .checkmark::after 
 {
     content: "✔";

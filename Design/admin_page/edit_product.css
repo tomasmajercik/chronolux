@@ -6,13 +6,11 @@ main {
 }
 /************************* Profile Section *************************/
 .profile-container {
-    /* display: flex; */
     padding: 40px;
     background: white;
 }
 
 .profile-content {
-    /* display: flex; */
     width: 100%;
 }
 
@@ -60,8 +58,7 @@ main {
     margin-top: 10px;
 }
 
-
-/* main content */
+/************************* Main Content *************************/
 .main-content h2
 {
     justify-self: start;

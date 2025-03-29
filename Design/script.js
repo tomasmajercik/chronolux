@@ -27,6 +27,23 @@ function openSidebar() {
   }
 }
 
+// PROCEED
+let thanks = document.getElementById("thanks");
+let orderInfo = document.getElementById("order-info")
+let profile = document.getElementById("profile-redirect")
+
+setTimeout(() => {
+    thanks.classList.add("show")
+}, 500)
+
+setTimeout(() => {
+    orderInfo.classList.add("show")
+}, 1000)
+
+setTimeout(() => {
+    profile.classList.add("show")
+}, 1500)
+
 //LOGIN
 // Code built with help of Chat GPT to ensure proper functionality of animations on desktop and mobile
 const container = document.getElementById('container');

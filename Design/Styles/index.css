@@ -50,10 +50,9 @@ main
     text-align: center;
 }
 
-/* Watch category section */
+/************************* Watch Category Section *************************/
 .watch-category
 {
-    /* border: 1px solid green; */
     max-width: 1200px;
     width: 90%;
     margin: 0 auto;
@@ -62,7 +61,6 @@ main
 }
 .category-heading
 {
-    /* border: 1px solid blue; */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -115,15 +113,12 @@ main
 .category-card .category-description h1
 {
     margin-bottom: 10px;
-    /* display: inline-block; */
-    /* border: 1px solid red; */
 }
 .category-card .category-description p
 {
     font-size: 12px;
     width: 250px;
 }
-/* Ak sa ten hover efect bude kazit asi hlavne pri responsive tak to treba dat prec button z html */
 .category-card .category-description button {
     box-shadow: 0px 6px 24px rgba(0, 0, 0, 0.15);
     background: linear-gradient(135deg, #106e42, #047d79);
@@ -173,7 +168,6 @@ main
     flex-grow: .5;
     transition: 1s;
 }
-
 
 /********************** Reviews section *********************/
 .web-reviews
@@ -360,15 +354,7 @@ main
 {
     display: none;
 }
-
-
-
-/********************* Responsive Design *********************/
-/* Header fajn po 670  len zarovnat text na stred od 750*/
-/* Hamburger od 670 v Headeri */
-
-/* Category section po 1060 pohode potom treba dat pod seba*/
-
+/************************* MEDIA *************************/
 
 /* MEDIA QUERY - Show hamburger menu after 670px */
 @media (max-width: 1200px) {

@@ -27,7 +27,7 @@ footer
 
 .map
 {
-    margin-right: 40px; /*Has pair margin-left on line 40*/
+    margin-right: 40px;
 }
 .upper-footer
 {
@@ -95,7 +95,7 @@ footer
     height: 40px;
 }
 
-
+/************************* MEDIA *************************/
 @media (max-width: 435px) {
     .map iframe {
         width: 100%;

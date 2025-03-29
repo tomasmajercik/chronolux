@@ -31,7 +31,7 @@
             <div class="icons">
                 <span class="finder">
                     <input id="finder-input" class="finder-input" type="text" placeholder="Search">
-                </span> <!-- Tu by sme mohli ak to bude matuce dat ze ta lupa sa prepne z ukaz/skry input na odosli input alebo co  -->
+                </span>
                 <button class="finder-btn" onclick="showSearch()">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 35 35" fill="none">
                         <path
@@ -256,7 +256,7 @@
             let password = document.getElementById("password").value;
             let confirmPassword = document.getElementById("confirm-password").value;
             let errorMessage = document.getElementById("error-message");
-    
+
             if (password !== confirmPassword) {
                 errorMessage.style.display = "block";
                 event.preventDefault(); // Zastaví odoslanie formulára

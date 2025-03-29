@@ -7,13 +7,11 @@ main {
 
 /************************* Profile Section *************************/
 .profile-container {
-    /* display: flex; */
     padding: 40px;
     background: white;
 }
 
 .profile-content {
-    /* display: flex; */
     width: 100%;
 }
 
@@ -62,7 +60,7 @@ main {
 }
 
 
-/* main content */
+/************************* MAIN CONTENT *************************/
 .main-content
 {
     display: grid;

@@ -27,8 +27,7 @@ main {
     margin-top: 10px;
 }
 
-
-/* main content */
+/************************* Main Section *************************/
 .main-content
 {
     max-width: 1200px;
@@ -200,7 +199,7 @@ input[type="text"]
     text-align: center;
     width: 100%;
 }
-/*********************** checkbox ************************/
+/*********************** CHECKBOX ************************/
 .custom-checkbox 
 {
     display: flex;
@@ -236,7 +235,6 @@ input[type="text"]
     border-color: black;
 }
 
-/* Pridáme bielu fajku (✓) do checkboxu */
 .custom-checkbox input:checked + .checkmark::after 
 {
     content: "✔";

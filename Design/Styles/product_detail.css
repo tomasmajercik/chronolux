@@ -2,7 +2,7 @@ main
 {
     min-height: 85vh;
 }
-/* Navigation */
+/************************* Navigation *************************/
 .categorization ul {
     list-style: none;
     padding: 20px 20px;
@@ -29,7 +29,7 @@ main
     font-weight: bold;
 }
 
-/* Product Section */
+/************************* Product Section *************************/
 .product-section {
     padding: 20px;
 }
@@ -44,7 +44,7 @@ main
     border-radius: 10px;
 }
 
-/* Product Image */
+/************************* Product Image *************************/
 .product-img {
     flex: 1;
     text-align: center;
@@ -57,7 +57,7 @@ main
     cursor: pointer;
 }
 
-/* Product Info */
+/************************* Product Info *************************/
 .product-info {
     flex: 1;
     padding-left: 30px;
@@ -74,7 +74,7 @@ main
     margin: 10px 0 5px;
 }
 
-/* Sizes */
+/************************* Sizes *************************/
 .product-sizes button {
     background: #ddd;
     border: none;
@@ -88,21 +88,21 @@ main
     background: #aaa;
 }
 
-/* Description */
+/************************* Description *************************/
 .product-description p {
     font-size: 14px;
     color: #444;
     line-height: 1.5;
 }
 
-/* Price */
+/************************* Price *************************/
 .product-price h2 {
     font-size: 24px;
     color: #333;
     margin-top: 5px;
 }
 
-/* Quantity Selector */
+/************************* Quantity Selector *************************/
 .product-quantity button {
     padding: 5px 10px;
     font-size: 16px;
@@ -116,7 +116,7 @@ main
     font-size: 18px;
 }
 
-/* Add to Cart Button */
+/************************* Add to Cart Button *************************/
 .product-buttons button {
     background: #3b6048;
     color: white;
@@ -133,7 +133,7 @@ main
 }
 
 
-/***************  krasne obrazky ***********************/
+/************************* Images *************************/
 .product-gallery img 
 {
     width: 100px;
@@ -148,7 +148,7 @@ main
     transform: scale(1.03);
 }
 
-/* modal */
+/************************* Modal *************************/
 .modal 
 {
     display: none;
@@ -166,8 +166,7 @@ main
     max-width: 90%;
     max-height: 90%;
 }
-
-/* arrows */
+/************************* Arrows *************************/
 .prev, .next 
 {
     position: absolute;
@@ -192,8 +191,7 @@ main
     font-size: 35px;
 }
 
-
-
+/************************* MEDIA *************************/
 @media (max-width: 768px) {
     .product {
         grid-template-columns: 1fr;

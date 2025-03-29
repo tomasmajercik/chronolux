@@ -57,7 +57,7 @@ main
     transition: 1s;
 }
 
-
+/************************* MEDIA *************************/
 @media only screen and (max-width: 660px) 
 {
     .order-container

@@ -32,7 +32,7 @@
             <div class="icons">
                 <span class="finder">
                     <input id="finder-input" class="finder-input" type="text" placeholder="Search">
-                </span> <!-- Tu by sme mohli ak to bude matuce dat ze ta lupa sa prepne z ukaz/skry input na odosli input alebo co  -->
+                </span>
                 <button class="finder-btn" onclick="showSearch()">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 35 35" fill="none">
                         <path
@@ -100,88 +100,90 @@
 
     <main>
         <div class="main-content">
-                <!-- Cart header -->
-                <div class="cart-overview-container">
-                    <div class="cart-header">
-                        <h3>Product</h3>
-                        <span>
-                            <h4>Size</h4>
-                            <h4>Amount</h4>
-                            <h4>Price</h4>
-                        </span>
-                    </div>
-
-                    <!-- First item in cart -->
-                    <div class="cart-item">
-                        <div class="item-name-info">
-                            <img class="cart-item-img" src="../IMGs/tissot-3-sm.jpg" alt="watch photo" width="100px" height="100px">
-                            <div class="name-remove-fav">
-                                <h2>Tissot PRX Powermatic 80</h2>
-                            </div>
-                        </div>
-                        <span class="info-holder">
-                            <h4>42mm</h4>
-                            <span class="amount-holder">
-                                <p class="ammount-indicator">1</p>
-                            </span> 
-                            <h4>839.99€</h4>
-                        </span>
-                    </div>
-                    <!-- Second item in cart -->
-                    <div class="cart-item">
-                        <div class="item-name-info">
-                            <img class="cart-item-img" src="../IMGs/tissot-prx-sm.jpg" alt="watch photo" width="100px" height="100px">
-                            <div class="name-remove-fav">
-                                <h2>Tissot PRX</h2>
-                            </div>
-                        </div>
-                        <span class="info-holder">
-                            <h4>43mm</h4>
-                            <span class="amount-holder">
-                                <p class="ammount-indicator">1</p>
-                            </span> 
-                            <h4>736.99€</h4>
-                        </span>
-                    </div>
-                    <!-- Third item in cart -->
-                    <div class="cart-item">
-                        <div class="item-name-info">
-                            <img class="cart-item-img" src="../IMGs/rolex-2-sm.jpg" alt="watch photo" width="100px" height="100px">
-                            <div class="name-remove-fav">
-                                <h2>Rolex Submariner</h2>
-                            </div>
-                        </div>
-                        <span class="info-holder">
-                            <h4>45mm</h4>
-                            <span class="amount-holder">
-                                <p class="ammount-indicator">1</p>
-                            </span> 
-                            <h4>16 999.99€</h4>
-                        </span>
-                    </div>
-
-
+            <!-- Cart header -->
+            <div class="cart-overview-container">
+                <div class="cart-header">
+                    <h3>Product</h3>
+                    <span>
+                        <h4>Size</h4>
+                        <h4>Amount</h4>
+                        <h4>Price</h4>
+                    </span>
                 </div>
-                <div class="cart-summary-container">
-                    <h2>Summary</h2>
 
-                    <div class="total-products">
-                        <div>
-                            <h5>Total products:</h5>
-                            <p>18 573,97€</p>
-                        </div>
-                        <div>
-                            <h5>Shipping:</h5>
-                            <p>25.80€</p>
+                <!-- First item -->
+                <div class="cart-item">
+                    <div class="item-name-info">
+                        <img class="cart-item-img" src="../IMGs/tissot-3-sm.jpg" alt="watch photo" width="100px"
+                            height="100px">
+                        <div class="name-remove-fav">
+                            <h2>Tissot PRX Powermatic 80</h2>
                         </div>
                     </div>
-
-                    <div class="total-total-price">
-                        <h3>Total:</h3>
-                        <p>18 599,77€</p>
-                    </div>
-                    
+                    <span class="info-holder">
+                        <h4>42mm</h4>
+                        <span class="amount-holder">
+                            <p class="ammount-indicator">1</p>
+                        </span>
+                        <h4>839.99€</h4>
+                    </span>
                 </div>
+                <!-- Second item -->
+                <div class="cart-item">
+                    <div class="item-name-info">
+                        <img class="cart-item-img" src="../IMGs/tissot-prx-sm.jpg" alt="watch photo" width="100px"
+                            height="100px">
+                        <div class="name-remove-fav">
+                            <h2>Tissot PRX</h2>
+                        </div>
+                    </div>
+                    <span class="info-holder">
+                        <h4>43mm</h4>
+                        <span class="amount-holder">
+                            <p class="ammount-indicator">1</p>
+                        </span>
+                        <h4>736.99€</h4>
+                    </span>
+                </div>
+                <!-- Third item -->
+                <div class="cart-item">
+                    <div class="item-name-info">
+                        <img class="cart-item-img" src="../IMGs/rolex-2-sm.jpg" alt="watch photo" width="100px"
+                            height="100px">
+                        <div class="name-remove-fav">
+                            <h2>Rolex Submariner</h2>
+                        </div>
+                    </div>
+                    <span class="info-holder">
+                        <h4>45mm</h4>
+                        <span class="amount-holder">
+                            <p class="ammount-indicator">1</p>
+                        </span>
+                        <h4>16 999.99€</h4>
+                    </span>
+                </div>
+            </div>
+            <!-- Summary -->
+            <div class="cart-summary-container">
+                <h2>Summary</h2>
+
+                <div class="total-products">
+                    <div>
+                        <h5>Total products:</h5>
+                        <p>18 573,97€</p>
+                    </div>
+                    <div>
+                        <h5>Shipping:</h5>
+                        <p>25.80€</p>
+                    </div>
+                </div>
+
+                <div class="total-total-price">
+                    <h3>Total:</h3>
+                    <p>18 599,77€</p>
+                </div>
+
+            </div>
         </div>
 
 

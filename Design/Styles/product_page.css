@@ -309,7 +309,7 @@ select{
 {
     margin-top: 5px;
 }
-/* MODAL SORT */
+/************************* Modal Sort *************************/
 .sort-modal 
 {
     display: none;
@@ -394,7 +394,7 @@ select{
 
 
 
-/************ MEDIA QUERY  ***********/
+/************************* MEDIA *************************/
 @media (max-width: 1200px) {
     .product-catalog{
         width: 100%;
