@@ -15,6 +15,7 @@ header
     max-width: 1200px;
     margin: 0 auto;
     margin-top: -50px;
+    margin-bottom: 20px;
     padding: 20px 20px 20px 20px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     z-index: 10;
@@ -205,7 +206,7 @@ header
 }
 .filter-modal select
 {
-    border: none;
+    border: 1px solid rgb(188, 188, 188);
     padding: 10px;
     margin-left: 20px;
     border-radius: 10px;
@@ -220,9 +221,9 @@ header
 .filter-content {
     background: white;
     padding: 20px;
-    width: 350px;
-    height: 400px;
-    border-radius: 8px;
+    width: 360px;
+    height: 450px;
+    border-radius: 20px;
     text-align: center;
     position: relative;
 
@@ -263,7 +264,7 @@ header
 
 .size-options 
 {
-    width: 250px;
+    width: 270px;
     margin: 0 auto;
     display: flex;
     justify-content: center;
@@ -271,15 +272,26 @@ header
     gap: 10px;
 }
 
+select{
+    cursor: pointer;
+}
+
+.size-options input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+.price-range input[type="range"]{
+    cursor: pointer;   
+}
+
 .apply-filter {
     background-color: #3b6048;
     color: white;
     border: none;
-    padding: 10px;
-    margin-top: 10px;
     cursor: pointer;
     margin-top: 20px;
-    padding: 20px;
+    padding: 15px 25px;
     border-radius: 20px;
     width: 40%;
 }
@@ -332,7 +344,7 @@ header
 }
 .sort-modal select
 {
-    border: none;
+    border: 1px solid rgb(188, 188, 188);
     padding: 10px;
     margin-left: 20px;
     border-radius: 10px;
@@ -345,8 +357,8 @@ header
     background: white;
     padding: 20px;
     width: 350px;
-    height: 250px;
-    border-radius: 8px;
+    height: 300px;
+    border-radius: 20px;
     text-align: center;
     position: relative;
 
@@ -370,9 +382,9 @@ header
     background-color: #3b6048;
     color: white;
     border: none;
-    padding: 10px;
     margin-top: 10px;
     cursor: pointer;
+    padding: 15px 25px !important;
 }
 
 .apply-sort:hover 
