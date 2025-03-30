@@ -27,12 +27,12 @@ main{
     padding: 0 20px;
     height: 20px;
 }
-.cart-header span
+.inline
 {
     display: flex;
     justify-content: space-between;
 }
-.cart-header span h4
+.inline h4
 {
     width: 100px;
     text-align: center;
@@ -53,13 +53,19 @@ main{
     display: flex;
     justify-content: space-between;
 }
-.cart-item span
+.info-holder
 {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.cart-item span h4
+.amount-holder{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.info-holder h4
 {
     width: 100px;
     text-align: center;
@@ -212,7 +218,7 @@ main{
 }
 @media only screen and (max-width: 780px) 
 {
-    .cart-header span
+    .inline
     {
         display: none;
     }
@@ -257,7 +263,7 @@ main{
         margin:5px 5px;
     }
 
-    .name-remove-fav span{
+    .remove-fav {
         justify-content: flex-start;
     } 
 }
