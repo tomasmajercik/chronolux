@@ -262,7 +262,6 @@ label
 .card-info
 {
     padding-left: 20px;
-    justify-content: space-evenly;
     margin: 40px;
     display: none;
 }
@@ -302,22 +301,6 @@ label
         margin: 30px auto;
     }
 }
-@media only screen and (max-width: 780px) 
-{
-    .cart-header span
-    {
-        display: none;
-    }
-    .cart-item
-    {
-        flex-direction: column;
-    }
-    .info-holder
-    {
-        margin: 0 auto;
-        width: 250px;
-    }
-}
 
 @media only screen and (max-width: 685px) 
 {
@@ -346,57 +329,18 @@ label
         margin-bottom: 10px;
     }
     .card-info.active{
-        display: flex;
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: 1fr;
         gap: 10px; 
-    }
-
-    .input-holder {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .input-holder:nth-child(1) label:nth-of-type(1),
-    .input-holder:nth-child(1) input:nth-of-type(1) {
-        order: 1; /* Card Holder Name */
-    }
-
-    .input-holder:nth-child(2) label:nth-of-type(1),
-    .input-holder:nth-child(2) input:nth-of-type(1) {
-        order: 2; /* Card Number */
-    }
-
-    .input-holder:nth-child(1) label:nth-of-type(2),
-    .input-holder:nth-child(1) input:nth-of-type(2) {
-        order: 3; /* Expiry Date */
-    }
-
-    .input-holder:nth-child(2) label:nth-of-type(2),
-    .input-holder:nth-child(2) input:nth-of-type(2) {
-        order: 4; /* CVC */
+        padding-left: 0;
     }
 }
 
 
 @media only screen and (max-width: 451px) 
 {
-    .name-remove-fav button
-    {
-        font-size: 10px;
-    }
-    .name-remove-fav h2
-    {
-        font-size: 20px;
-    }
-    .cart-item-img
-    {
-        width: 75px;
-        height: 75px;
-    }
     .cart-summary-container
     {
         width: 100%;
     }
-
-    
 }
