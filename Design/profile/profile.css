@@ -215,8 +215,6 @@ main {
     }
 
     .images img{
-        /* width: 50%; */
-        min-width: none;
         margin: 0;
     }
 
