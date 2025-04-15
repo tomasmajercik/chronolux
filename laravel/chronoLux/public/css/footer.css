@@ -1,0 +1,159 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+footer
+{
+    background-color: #0f413a;
+    font-size: 12px;
+    font-weight: normal;
+    background-color: #1E2D2F;
+    font-weight: normal;
+    color: #E0E0E0;
+}
+.map iframe
+{
+    border-radius: 20px;
+}
+.end
+{
+    text-align: center;
+    background-color: #000000;
+    padding: 20px 0;
+    color: #ddd;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.map
+{
+    margin-right: 40px;
+}
+.upper-footer
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+    justify-content: center;
+    padding: 40px 0;
+}
+.footer-container
+{
+    margin-left: 30px;
+    background-color: #1E2D2F;
+    border-radius: 20px;
+    padding: 30px 0;
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+}
+.about
+{
+    text-align-last: left;
+    margin-top: 13px;
+}
+.support
+{
+    margin-top: 13px;
+    text-align-last: left;
+}
+.web-name
+{
+    font-size: 25px;
+}
+.info-column
+{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: space-between;
+}
+.info-column h2
+{
+    font-size: 40px;
+}
+.footer-container ul li
+{
+    list-style: none;
+    line-height: 25px;
+}
+.footer-container ul
+{
+    margin-top: 20px;
+}
+.social-nws a
+{
+    text-decoration: none;
+    margin-right: 5px;
+}
+.social-nws svg
+{
+    background-color: #B3C2BF;
+    border-radius: 50%;
+    padding: 10px;
+    width: 40px;
+    height: 40px;
+}
+
+/************************* MEDIA *************************/
+@media (max-width: 435px) {
+    .map iframe {
+        width: 100%;
+        max-width: 800px;
+        height: 300px;
+    }
+    .footer-container {
+        font-size: 80%;
+        padding-top: 10px;
+        gap: 10px;
+    }
+
+    .info-column h2{
+        font-size: 25px;
+    }
+    .social-nws svg{
+        width: 30px;
+        height: 30px;
+        padding: 5px;
+    }
+    .web-name{
+        font-size: 20px;
+    }
+
+    .footer-container{
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        place-items: center;
+    }
+    .info-column{
+        grid-column: span 2;
+        place-items: center;
+        gap: 10px;
+        grid-row: 3;
+        padding: 20px 0;
+    }
+
+    .about, .support{
+        align-self: start;
+    }
+
+    .upper-footer{
+        padding-bottom: 0;
+    }
+}
+
+@media (max-width: 900px) {
+    .upper-footer{
+        grid-template-columns: 1fr;
+    }
+
+    .map{
+        margin-right: 0;
+    }
+
+    .footer-container{
+        margin: 0;
+    }
+}
+

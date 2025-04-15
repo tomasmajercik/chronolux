@@ -1,0 +1,225 @@
+*
+{
+    scroll-behavior: smooth;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    scroll-padding-top: 80px;
+}
+
+header 
+{
+    background-image: url('/storage/IMGs/header.jpeg');
+    background-size: cover;
+    background-position: center 40%; /* Moves image lower */
+    background-repeat: no-repeat; /* Avoids repetition */
+    padding: 20px 0;
+}
+.upper-header
+{
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+}
+.header-container-desktop
+{
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+.header-text h1
+{
+    color: #eee;
+    cursor: pointer;
+}
+.header-text h6
+{
+    color: #eee;
+    font-weight: 100;
+    cursor: pointer;
+}
+.icons
+{
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+.icons a
+{
+    margin-right: 15px;
+}
+.icons a svg
+{
+    border-radius: 50%;
+}
+nav
+{
+    margin-left: 30px;
+}
+nav ul 
+{
+    list-style: none;
+    display: flex;
+}
+  nav ul li 
+{
+    margin-left: 20px;
+}
+nav ul li a 
+{
+    text-decoration: none;
+    color: #eee;
+}
+
+.header-container-mobile {
+    display: flex;
+    justify-content: space-between; /* Pushes items to opposite sides */
+    align-items: center; /* Align items vertically */
+    color: white;
+    display: none;
+}
+
+.hamburger {
+    cursor: pointer;
+    margin-right: 60px;
+    z-index: 1001;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-container-mobile .header-text {
+    margin-left: 50px;
+}
+
+.mobile-menu {
+    display: none;
+    position: fixed;
+    margin: 0;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+}
+
+.mobile-menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+    margin: 15px 0; 
+}
+
+.mobile-menu.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.menu-icon,
+.close-icon {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    position: absolute;
+}
+
+.menu-icon {
+    opacity: 1;
+    transform: rotate(0deg);
+}
+
+.close-icon {
+    opacity: 0;
+    transform: rotate(-90deg);
+}
+
+.menu-icon.active {
+    opacity: 0;
+    transform: rotate(90deg);
+}
+
+.close-icon.active {
+    opacity: 1;
+    transform: rotate(0deg);
+}
+
+body.no-scroll {
+    overflow: hidden; /* Prevent scrolling */
+}
+
+/************************* SEARCH BAR *************************/
+header .upper-header .finder-btn
+{
+    border: none;
+    background-color: transparent;
+    margin: 0 10px;
+    cursor: pointer;
+}
+header .upper-header .finder-input
+{
+    width: 100%;
+    border: none;
+    border-radius: 20px;
+    opacity: 0;
+    transform: scaleX(0.01);
+    transition: .5s;
+    padding: 10px 0px;
+    padding-left: 15px;
+}
+header .upper-header .finder-input:focus
+{
+    outline: 3px solid #057c75;
+}
+header .upper-header .finder-input-show
+{
+    transition: .5s;
+    opacity: 1;
+    transform: scaleX(1);
+}
+#finder-input-mobile
+{
+    margin-bottom: 20px;
+    width: 250px;
+    padding: 12px 0px;
+    padding-left: 15px;
+    border: none;
+    border-radius: 20px;
+}
+#finder-input-mobile:focus
+{
+    outline: 3px solid #057c75;
+}
+
+/************************* MEDIA *************************/
+/* MEDIA QUERY - Show hamburger menu after 670px */
+@media (max-width: 855px)
+{
+    .finder
+    {
+        width: 250px;
+        position: absolute;
+        top: 87px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        text-align: center;
+    }
+}
+
+@media (max-width: 670px) {
+    .header-container-desktop {
+        display: none; /* Hide main menu */
+    }
+    
+    .icons {
+        display: none; /* Hide social media icons */
+    }
+
+    .header-container-mobile {
+        display: flex; /* Show hamburger */
+    }
+    
+}
