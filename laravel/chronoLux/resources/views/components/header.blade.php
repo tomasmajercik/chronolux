@@ -79,8 +79,5 @@
             <a href="login.html#sign-in-section">Profile</a>
         </nav>
     </div>
-    <div class="lower-header">
-        <h1 class="category-title">Ultra Luxury</h1>
-    </div>
-
+    {{ $slot }}
 </header>

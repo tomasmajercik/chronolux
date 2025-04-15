@@ -1,0 +1,240 @@
+main
+{
+    min-height: 85vh;
+}
+/************************* Navigation *************************/
+.categorization ul {
+    list-style: none;
+    padding: 20px 20px;
+    gap: 10px;
+    font-size: 1.2rem;
+    font-weight: normal;
+    color: #666;
+   
+}
+
+.categorization ul li a{
+    text-decoration: underline;
+    color: #666;
+}
+
+.categorization ul li:not(:last-child)::after {
+    content: " > ";
+    margin-left: 10px;
+    color: #aaa;
+}
+
+.categorization ul li:last-child a{
+    color: #000000;
+    font-weight: bold;
+}
+
+/************************* Product Section *************************/
+.product-section {
+    padding: 20px;
+}
+
+.product {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+}
+
+/************************* Product Image *************************/
+.product-img {
+    flex: 1;
+    text-align: center;
+}
+
+.main-img{
+    max-width: 100%;
+    height: auto;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+/************************* Product Info *************************/
+.product-info {
+    flex: 1;
+    padding-left: 30px;
+}
+
+.product-info h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+.product-info h5 {
+    font-size: 16px;
+    color: #666;
+    margin: 10px 0 5px;
+}
+
+/************************* Sizes *************************/
+.product-sizes button {
+    background: #ddd;
+    border: none;
+    padding: 8px 15px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.product-sizes button:hover {
+    background: #aaa;
+}
+
+/************************* Description *************************/
+.product-description p {
+    font-size: 14px;
+    color: #444;
+    line-height: 1.5;
+}
+
+/************************* Price *************************/
+.product-price h2 {
+    font-size: 24px;
+    color: #333;
+    margin-top: 5px;
+}
+
+/************************* Quantity Selector *************************/
+.product-quantity button {
+    padding: 5px 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    background-color: white;
+    border-radius: 10px;
+}
+.product-quantity span {
+    margin: 0 10px;
+    font-size: 18px;
+}
+
+/************************* Add to Cart Button *************************/
+.product-buttons button {
+    background: #3b6048;
+    color: white;
+    font-size: 1.2rem;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.product-buttons button:hover {
+    background: #253a2c;
+}
+
+
+/************************* Images *************************/
+.product-gallery img 
+{
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 10px;
+    object-fit: cover;
+}
+.product-gallery img:hover 
+{
+    transform: scale(1.03);
+}
+
+/************************* Modal *************************/
+.modal 
+{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+}
+#modal-img 
+{
+    max-width: 90%;
+    max-height: 90%;
+}
+/************************* Arrows *************************/
+.prev, .next 
+{
+    position: absolute;
+    top: 50%;
+    color: white;
+    font-size: 30px;
+    padding: 16px;
+    margin-top: -22px;
+    cursor: pointer;
+    user-select: none;
+}
+.prev 
+{
+    left: 20px;
+}
+.next 
+{
+    right: 20px;
+}
+.prev:hover, .next:hover 
+{
+    font-size: 35px;
+}
+
+/************************* MEDIA *************************/
+@media (max-width: 768px) {
+    .product {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        margin: 10px 0 0 0;
+    }
+
+    .product-info{
+        padding-left: 0;
+    }
+
+    .product-img img {
+        max-width: 90%;
+    }
+
+    .categorization{
+        margin: 0;
+       
+    }
+
+    .categorization ul{
+        font-size: 85%;
+        margin: 0;
+        padding: 0;
+        padding-top: 10px;
+    }
+}
+@media (max-width: 452px)
+{
+    .product-gallery img 
+    {
+        width: 70px;
+        height: 70px;
+    }
+}
+@media (max-width: 410px)
+{
+    nav ul li
+    {
+        margin: 0;
+    }
+    .product-info h2
+    {
+        font-size: 20px;
+    }
+}
