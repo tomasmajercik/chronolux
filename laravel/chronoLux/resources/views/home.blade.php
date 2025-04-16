@@ -50,6 +50,7 @@
             </div>
         </div>
     </section>
+    <!-- Static design reccomendations -->
     <section class="web-reviews">
         <div class="reviews-container">
 
@@ -71,5 +72,22 @@
 
         </div>
     </section>
+    <!-- Recommended -->
+        <section class="recommended">
+            <h1>Recommended</h1>
+            <div class="recommended-container">
+                
+                @for($i = 0; $i < 4; $i++)
+                    <x-product-container
+                        url="product_detail.html"
+                        image="IMGs/tissot-sm.jpg"
+                        title="Tissot Tradition Silver"
+                        reviews="2k reviews"
+                        price="545.99"
+                    />
+                @endfor
+
+            </div>
+        </section>
 </main>
 @endsection
