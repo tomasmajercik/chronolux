@@ -19,4 +19,6 @@ Route::get('/checkout', function () {
 });
 Route::get('/payment', function () {
     return view('payment');
+Route::get('/product-page', function () {
+    return view('product_page');
 });

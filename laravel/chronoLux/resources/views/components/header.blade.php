@@ -79,5 +79,5 @@
             <a href="login.html#sign-in-section">Profile</a>
         </nav>
     </div>
-    {{ $slot }}
+    @yield('header-slot')
 </header>

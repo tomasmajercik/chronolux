@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{{ asset('css/header.css') }}">
     <link rel="stylesheet" href="{{ asset('css/product_page.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
     <title>WTECH-Watch</title>
     <link rel="icon" href="IMGs/icon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
