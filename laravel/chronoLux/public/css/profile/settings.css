@@ -19,6 +19,8 @@ main {
 
 .settings-container ul li a{
     display: flex;
+    text-decoration: none;
+    color: inherit;
     justify-content: space-between;
     align-items: center;
     margin-left: 5px;
