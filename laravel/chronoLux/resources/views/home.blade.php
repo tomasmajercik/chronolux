@@ -48,6 +48,26 @@
                     link="/product-page"
                 />
             </div>
+        </div>
+    </section>
+    <section class="web-reviews">
+        <div class="reviews-container">
+
+            <x-reviews-homepage
+                text="Fantastic shopping experience! The selection is incredible, and the prices are competitive. My watch arrived quickly, beautifully packaged, and exactly as described. Highly recommend this store!"
+                stars="5"
+                fullName="Tomáš Majerčík"
+            />
+            <x-reviews-homepage
+                text="Decent prices and good selection, but customer service response time could be improved. My watch arrived in good condition, but some updates were unclear"
+                stars="3"
+                fullName="Zdenko Kanoš"
+            />
+            <x-reviews-homepage
+                text="Great variety of watches and smooth checkout process. Shipping took a bit longer than expected, but the watch was authentic and well-packaged"
+                stars="4"
+                fullName="Tom Hanks"
+            />
 
         </div>
     </section>
