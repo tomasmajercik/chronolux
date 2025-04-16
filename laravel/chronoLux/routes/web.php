@@ -18,3 +18,15 @@ Route::get('/product-detail', function () {
 Route::get('/auth', function () {
     return view('auth');
 });
+
+Route::get('/profile', function () {
+    return view('profile');
+});
+
+Route::get('/profile/orders', function () {
+    return view('orders');
+});
+
+Route::get('/profile/settings', function () {
+    return view('settings');
+});

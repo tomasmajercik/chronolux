@@ -1,0 +1,256 @@
+/************************* Layout *************************/
+main {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 6fr;
+}
+
+/************************* Profile Section *************************/
+.profile-container {
+    padding: 40px;
+    background: white;
+}
+
+.profile-content {
+    width: 100%;
+}
+
+.profile-info {
+    padding: 20px;
+} 
+
+.profile-info h5{
+    color: gray;
+    font-weight: normal;
+}
+
+.profile-info img.profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile-info-title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 25px 0 10px 0;
+    border-top: 1px solid rgb(225, 225, 225);
+    padding: 20px 0 5px 0;
+}
+
+.profile-info-title a {
+    font-size: 13px;
+    color: blue;
+}
+
+.profile-info-title .contact-info {
+    gap: 10px;
+}
+
+.contact-info h6{
+    font-size: 10px;
+    margin: 5px 0;
+    font-weight: normal;
+}
+
+.center{
+    text-align: center;
+}
+
+.profile-name {
+    margin-top: 10px;
+}
+
+/************************* ACOUNT SUMMARY *************************/
+.account-summary {
+    padding: 20px;
+}
+
+.account-summary h2 {
+    margin-bottom: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: left;
+}
+
+/************************* SUMARRY BOXES *************************/
+.summary {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 20px;
+    margin:0 70px 20px 70px;
+}
+
+.summary .box {
+    padding: 15px 20px;
+    background: linear-gradient(135deg, #14532d, #064e3b);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    color: white;
+    position: relative;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: normal;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 150px;
+}
+
+.summary .box::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        rgba(255, 255, 255, 0.25),
+        rgba(255, 255, 255, 0.05)
+    );
+    mix-blend-mode: screen; /* Makes it glossy */
+    pointer-events: none;
+}
+
+.summary .box strong {
+    font-size: 18px;
+}
+
+/************************* Last Orders *************************/
+.account-summary h3 {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.last-orders-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.status{
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 12px;
+    color: #4a3f1c;
+}
+
+.status.packing{
+    background-color: #f4c430; /* Soft golden amber */
+}
+
+.status.delivered{
+    background-color: #2ecc71;
+    color: #eee;
+}
+
+.orders {
+    display: grid;
+    gap: 20px;
+}
+
+.order-container h5{
+    font-size: 12px;
+    font-weight: normal;
+    color: gray;
+    margin-bottom: 5px;
+    margin-left: 10px;
+}
+
+
+.order-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    align-items: center;
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+    border: 1px solid #e0e0e0; 
+    transition: box-shadow 0.4s ease; 
+    cursor: pointer;
+
+    position: relative;
+}
+.overlay
+{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+}
+
+.order-box svg, .order-box .status, .order-box .price{
+    justify-self: end;
+}
+
+.order-box:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.orders img {
+    object-fit: cover;
+}
+
+.images{
+    min-width: 300px;
+}
+
+.images img{
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+
+/************************* MEDIA *************************/
+@media (max-width: 475px) {
+    .summary{
+        gap: 7px;
+        row-gap: 15px;
+    }
+
+    .images img{
+        margin: 0;
+    }
+
+}
+
+@media (max-width: 720px) {
+    .summary {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .images{
+        grid-column: span 3;
+    }
+    
+    .order-box{
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 5px;
+    }
+
+    .order-box .status{
+        justify-self: start;
+    }
+
+    .order-box .price{
+        justify-self: center;
+    }
+}
+
+
+@media (max-width: 1000px) {
+    .summary{
+        margin: 0;
+        margin-bottom: 20px;
+    }
+
+    main{
+        grid-template-columns: 1fr;
+    }
+}
