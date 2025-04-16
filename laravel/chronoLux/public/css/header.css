@@ -10,7 +10,7 @@
 
 header 
 {
-    background-image: url('/storage/IMGs/header.jpeg');
+    background-image: url('/IMGs/header.jpeg');
     background-size: cover;
     background-position: center 40%; /* Moves image lower */
     background-repeat: no-repeat; /* Avoids repetition */
