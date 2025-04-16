@@ -1,20 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="{{ asset('css/header.css') }}">
+@section('title', 'Checkout')
+
+@push('styles')
     <link rel="stylesheet" href="{{ asset('css/checkout.css') }}">
-    <title>WTECH-Watch</title>
-    <link rel="icon" href="IMGs/icon.png">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
+@endpush
 
-<body>
-
-<x-header/>
-
+@section('content')
 <main>
     <section class="cart-section">
         <nav class="categorization">
@@ -77,7 +69,4 @@
         </div>
     </section>
 </main>
-
-
-</body>
-</html>
+@endsection
