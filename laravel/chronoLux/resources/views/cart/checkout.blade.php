@@ -11,7 +11,7 @@
     <section class="cart-section">
         <nav class="categorization">
             <ul>
-                <li><a href="cart.html">My Cart</a></li>
+                <li><a href="/cart">My Cart</a></li>
                 <li><a href="#">Shipping</a></li>
             </ul>
         </nav>

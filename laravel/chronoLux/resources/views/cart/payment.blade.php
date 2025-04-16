@@ -11,8 +11,8 @@
 <section class="cart-section">
             <nav class="categorization">
                 <ul>
-                    <li><a href="cart.html">My Cart</a></li>
-                    <li><a href="checkout.html">Shipping</a></li>
+                    <li><a href="/cart">My Cart</a></li>
+                    <li><a href="/checkout">Shipping</a></li>
                     <li><a href="#">Payment</a></li>
                 </ul>
             </nav>
@@ -114,7 +114,7 @@
                 <!-- Summary -->
                 <x-cart-summary 
                     button-message="Pay Now" 
-                    button-url="/payment" 
+                    button-url="/proceed" 
                 />
             </div>
         </section>
