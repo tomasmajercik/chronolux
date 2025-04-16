@@ -5,6 +5,8 @@
     <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
 @endpush
 
+@section('title', 'Profile')
+
 @php
     $orders = [
         [

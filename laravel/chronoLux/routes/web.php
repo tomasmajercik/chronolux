@@ -20,7 +20,7 @@ Route::get('/payment', function () {
 });
 
 Route::get('/product-page', function () {
-    return view('/cart/product_page');
+    return view('/product_page');
 });
 
 Route::get('/proceed', function () {
