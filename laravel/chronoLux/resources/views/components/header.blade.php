@@ -1,14 +1,14 @@
 <header>
     <div class="upper-header">
         <div class="header-container-desktop">
-            <div class="header-text" onclick="location.href='index.html'">
+            <div class="header-text" onclick="location.href='/'">
                 <h1>ChronoLux</h1>
                 <h6><i>Time is never wasted with us</i></h6>
             </div>
             <nav>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="product_page.html#product-catalog">Products</a></li>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/product-page#product-catalog">Products</a></li>
                     <li><a href="#footer">Contact</a></li>
                 </ul>
             </nav>
@@ -24,21 +24,14 @@
                         fill="white" />
                 </svg>
             </button>
-            <a href="profile/profile.html">
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 35 35" fill="none">
-                    <path
-                        d="M17.6459 27.0521L17.5001 27.1979L17.3397 27.0521C10.4126 20.7667 5.83341 16.6104 5.83341 12.3958C5.83341 9.47917 8.02092 7.29167 10.9376 7.29167C13.1834 7.29167 15.3709 8.75 16.1438 10.7333H18.8563C19.6292 8.75 21.8167 7.29167 24.0626 7.29167C26.9792 7.29167 29.1667 9.47917 29.1667 12.3958C29.1667 16.6104 24.5876 20.7667 17.6459 27.0521ZM24.0626 4.375C21.5251 4.375 19.0897 5.55625 17.5001 7.40833C15.9105 5.55625 13.4751 4.375 10.9376 4.375C6.44591 4.375 2.91675 7.88958 2.91675 12.3958C2.91675 17.8938 7.87508 22.4 15.3855 29.2104L17.5001 31.1354L19.6147 29.2104C27.1251 22.4 32.0834 17.8938 32.0834 12.3958C32.0834 7.88958 28.5542 4.375 24.0626 4.375Z"
-                        fill="white" />
-                </svg>
-            </a>
-            <a href="cart.html">
+            <a href="/cart">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 34 34" fill="none">
                     <path
                         d="M26.9167 9.91667H22.6667V8.5C22.6667 6.99711 22.0697 5.55577 21.007 4.49306C19.9443 3.43036 18.503 2.83334 17.0001 2.83334C15.4972 2.83334 14.0558 3.43036 12.9931 4.49306C11.9304 5.55577 11.3334 6.99711 11.3334 8.5V9.91667H7.08341C6.70769 9.91667 6.34736 10.0659 6.08168 10.3316C5.816 10.5973 5.66675 10.9576 5.66675 11.3333V26.9167C5.66675 28.0438 6.11451 29.1248 6.91154 29.9219C7.70857 30.7189 8.78958 31.1667 9.91675 31.1667H24.0834C25.2106 31.1667 26.2916 30.7189 27.0886 29.9219C27.8856 29.1248 28.3334 28.0438 28.3334 26.9167V11.3333C28.3334 10.9576 28.1842 10.5973 27.9185 10.3316C27.6528 10.0659 27.2925 9.91667 26.9167 9.91667ZM14.1667 8.5C14.1667 7.74856 14.4653 7.02789 14.9966 6.49653C15.528 5.96518 16.2486 5.66667 17.0001 5.66667C17.7515 5.66667 18.4722 5.96518 19.0035 6.49653C19.5349 7.02789 19.8334 7.74856 19.8334 8.5V9.91667H14.1667V8.5ZM25.5001 26.9167C25.5001 27.2924 25.3508 27.6527 25.0851 27.9184C24.8195 28.1841 24.4591 28.3333 24.0834 28.3333H9.91675C9.54102 28.3333 9.18069 28.1841 8.91501 27.9184C8.64934 27.6527 8.50008 27.2924 8.50008 26.9167V12.75H11.3334V14.1667C11.3334 14.5424 11.4827 14.9027 11.7483 15.1684C12.014 15.4341 12.3744 15.5833 12.7501 15.5833C13.1258 15.5833 13.4861 15.4341 13.7518 15.1684C14.0175 14.9027 14.1667 14.5424 14.1667 14.1667V12.75H19.8334V14.1667C19.8334 14.5424 19.9827 14.9027 20.2483 15.1684C20.514 15.4341 20.8744 15.5833 21.2501 15.5833C21.6258 15.5833 21.9861 15.4341 22.2518 15.1684C22.5175 14.9027 22.6667 14.5424 22.6667 14.1667V12.75H25.5001V26.9167Z"
                         fill="white" />
                 </svg>
             </a>
-            <a href="login.html#sign-in-section">
+            <a href="/auth">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 34 34" fill="none">
                     <path
                         d="M5.66675 25.5C5.66675 23.9971 6.26377 22.5558 7.32648 21.4931C8.38918 20.4304 9.83052 19.8333 11.3334 19.8333H22.6667C24.1696 19.8333 25.611 20.4304 26.6737 21.4931C27.7364 22.5558 28.3334 23.9971 28.3334 25.5C28.3334 26.2514 28.0349 26.9721 27.5035 27.5035C26.9722 28.0348 26.2515 28.3333 25.5001 28.3333H8.50008C7.74863 28.3333 7.02797 28.0348 6.49661 27.5035C5.96526 26.9721 5.66675 26.2514 5.66675 25.5Z"
@@ -51,7 +44,7 @@
         </div>
     </div>
     <div class="header-container-mobile">
-        <div class="header-text" onclick="location.href='index.html'">
+        <div class="header-text" onclick="location.href='/'">
             <h1>ChronoLux</h1>
             <h6><i>Time is never wasted with us</i></h6>
         </div>
@@ -71,12 +64,11 @@
 
         <nav class="mobile-menu">
             <input id="finder-input-mobile" class="finder-input-mobile" type="text" placeholder="Search">
-            <a href="index.html">Home</a>
-            <a href="product_page.html#product-catalog" onclick="toggleMenu()">Products</a>
+            <a href="/">Home</a>
+            <a href="/product-page#product-catalog" onclick="toggleMenu()">Products</a>
             <a href="#footer" onclick="toggleMenu()">Contact</a>
-            <a href="cart.html">Shopping Cart</a>
-            <a href="profile/profile.html">Wish List</a>
-            <a href="login.html#sign-in-section">Profile</a>
+            <a href="/cart">Shopping Cart</a>
+            <a href="/auth">Profile</a>
         </nav>
     </div>
     @yield('header-slot')
