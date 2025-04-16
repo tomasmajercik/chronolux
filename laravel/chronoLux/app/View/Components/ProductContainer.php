@@ -14,13 +14,7 @@ class ProductContainer extends Component
     public string $reviews;
     public float $price;
 
-    public function __construct(
-        string $url,
-        string $image,
-        string $title,
-        string $reviews,
-        float $price
-    ) {
+    public function __construct(string $url, string $image, string $title, string $reviews, float $price) {
         $this->url = $url;
         $this->image = $image;
         $this->title = $title;

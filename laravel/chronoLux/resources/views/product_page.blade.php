@@ -34,7 +34,7 @@
         <div class="product-grid">
             @for ($i = 0; $i < 12; $i++)
             <x-product-container
-                url="product_detail.html"
+                url="/product-detail"
                 image="IMGs/tissot-sm.jpg"
                 title="Tissot Tradition Silver"
                 reviews="2k reviews"

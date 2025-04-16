@@ -11,6 +11,7 @@
     width: 100%;
 }
 
+
 .sidebar ul li {
     padding: 12px;
     display: flex;
@@ -29,6 +30,9 @@
     color: red;
 }
 
+.sidebar ul li.active a{
+    text-decoration: underline;
+}
 
 .close{
     position: absolute;
