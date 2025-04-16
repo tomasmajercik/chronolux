@@ -7,8 +7,24 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/cart', function () {
+    return view('/cart/cart');
+});
+
+Route::get('/checkout', function () {
+    return view('/cart/checkout');
+});
+
+Route::get('/payment', function () {
+    return view('/cart/payment');
+});
+
 Route::get('/product-page', function () {
-    return view('product_page');
+    return view('/cart/product_page');
+});
+
+Route::get('/proceed', function () {
+    return view('/cart/proceed');
 });
 
 Route::get('/product-detail', function () {

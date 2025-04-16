@@ -13,6 +13,8 @@ php artisan storage:link
 
    INFO  The [public/storage] link has been connected to [storage/app/public].  
 
+# Component
+php artisan make:component cartSummary
 
 # TODO
 Tomas: 
