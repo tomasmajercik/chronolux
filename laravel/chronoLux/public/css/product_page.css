@@ -392,6 +392,12 @@ select{
     background-color: #2f4c39;
 }
 
+.not-found{
+    color: gray;
+    font-size: 25px;
+    font-weight: bold;
+    padding: 50px; 
+}
 
 
 /************************* MEDIA *************************/

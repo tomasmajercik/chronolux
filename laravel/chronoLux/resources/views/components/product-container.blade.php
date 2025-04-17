@@ -1,7 +1,7 @@
 <div class="product-container">
     <a href="{{ $url }}" class="clickable-overlay"></a>
     <div class="product-image">
-        <img class="img-product" src="{{ $image }}" alt="{{ $title }}" width="330" height="330">
+        <img class="img-product" src="{{ asset($image) }}" alt="{{ $title }}" width="330" height="330">
     </div>
     <div class="product-info">
         <h2>{{ $title }}</h2>

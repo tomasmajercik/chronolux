@@ -8,7 +8,7 @@
             <nav>
                 <ul>
                     <li><a href="/">Home</a></li>
-                    <li><a href="/product-page#product-catalog">Products</a></li>
+                    <li><a href="/#watch-category">Products</a></li>
                     <li><a href="#footer">Contact</a></li>
                 </ul>
             </nav>
