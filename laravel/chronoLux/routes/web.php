@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
 
 
 Route::get('/', function () {
@@ -46,3 +47,5 @@ Route::get('/profile/orders', function () {
 Route::get('/profile/settings', function () {
     return view('settings');
 });
+
+Route::get('/products/{category_name}', [ProductController::class, 'showByCategory'])->name('products.byCategory');

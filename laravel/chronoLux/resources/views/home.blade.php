@@ -29,7 +29,7 @@
                 <x-watch-category-preview
                     categoryName="Entry Luxury"
                     description="A perfect blend of elegance and affordability, this watch elevates everyday style with luxury details."
-                    link="/product-page"
+                    link="{{ route('products.byCategory', ['category_name' => 'Entry Luxury']) }}#product-catalog"
                 />
             </div>
 
@@ -37,7 +37,7 @@
                 <x-watch-category-preview
                     categoryName="Basic Luxury"
                     description="A sophisticated timepiece with exquisite craftsmanship, offering luxury beyond the basics for refined tastes."
-                    link="/product-page"
+                    link="{{ route('products.byCategory', ['category_name' => 'Basic Luxury']) }}#product-catalog"
                 />
             </div>
 
@@ -45,7 +45,7 @@
                <x-watch-category-preview
                     categoryName="Ultra Luxury"
                     description="A masterpiece of innovation and precision, this ultra-luxury watch embodies the pinnacle of craftsmanship and design."
-                    link="/product-page"
+                    link="{{ route('products.byCategory', ['category_name' => 'Ultra Luxury']) }}#product-catalog"
                 />
             </div>
         </div>
