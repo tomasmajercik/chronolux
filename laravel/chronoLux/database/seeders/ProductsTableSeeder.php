@@ -16,6 +16,7 @@ class ProductsTableSeeder extends Seeder
                 'description' => 'Elegantné hodinky Tissot Tradition s klasickým vzhľadom.',
                 'category_id' => 1,
                 'brand_id' => 1,
+                'price' => 250.00,  
                 'images' => [
                     ['path' => 'IMGs/tissot-sm.jpg', 'is_cover' => true],
                 ]
@@ -25,6 +26,7 @@ class ProductsTableSeeder extends Seeder
                 'description' => 'Moderný dizajn a vysoká presnosť, ideálne pre každodenné nosenie.',
                 'category_id' => 1,
                 'brand_id' => 1,
+                'price' => 350.00,  
                 'images' => [
                     ['path' => 'IMGs/tissot-prx-sm.jpg', 'is_cover' => true],
                 ]
@@ -34,6 +36,7 @@ class ProductsTableSeeder extends Seeder
                 'description' => 'Automatické hodinky s výdržou až 80 hodín.',
                 'category_id' => 1,
                 'brand_id' => 1,
+                'price' => 500.00,  
                 'images' => [
                     ['path' => 'IMGs/tissot-3-sm.jpg', 'is_cover' => true],
                 ]
@@ -43,6 +46,7 @@ class ProductsTableSeeder extends Seeder
                 'description' => 'Luxusné pilotné hodinky s ikonickým dizajnom.',
                 'category_id' => 1,
                 'brand_id' => 2,
+                'price' => 6200.00,  
                 'images' => [
                     ['path' => 'IMGs/breitling-sm.jpg', 'is_cover' => true],
                 ]
@@ -52,6 +56,7 @@ class ProductsTableSeeder extends Seeder
                 'description' => 'Ikona medzi potápačskými hodinkami.',
                 'category_id' => 1,
                 'brand_id' => 3,
+                'price' => 8800.00,  
                 'images' => [
                     ['path' => 'IMGs/rolex-2-sm.jpg', 'is_cover' => true],
                 ]
@@ -61,6 +66,7 @@ class ProductsTableSeeder extends Seeder
                 'description' => 'Štýlové a dostupné hodinky s chronografom.',
                 'category_id' => 1,
                 'brand_id' => 4,
+                'price' => 150.00,  
                 'images' => [
                     ['path' => 'IMGs/fossil-sm.jpg', 'is_cover' => true],
                 ]
@@ -70,6 +76,7 @@ class ProductsTableSeeder extends Seeder
                 'description' => 'Exkluzívny švajčiarsky model s patentovaným tesniacim systémom.',
                 'category_id' => 1,
                 'brand_id' => 5,
+                'price' => 12000.00,  
                 'images' => [
                     ['path' => 'IMGs/mauron-sm.jpg', 'is_cover' => true],
                 ]
@@ -82,9 +89,10 @@ class ProductsTableSeeder extends Seeder
                 'description' => $product['description'],
                 'category_id' => $product['category_id'],
                 'brand_id' => $product['brand_id'],
+                'price' => $product['price'], // Insert price into the database
                 'created_at' => now(),
             ]);
-
+        
             foreach ($product['images'] as $image) {
                 DB::table('products_images')->insert([
                     'product_id' => $productId,
@@ -92,6 +100,6 @@ class ProductsTableSeeder extends Seeder
                     'is_cover' => $image['is_cover'],
                 ]);
             }
-        }
-    }
+        }   
+    }   
 }
