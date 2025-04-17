@@ -50,7 +50,7 @@
                     :image="$product->coverImage->image_path"
                     :title="$product->name"
                     :reviews="'2k reviews'"
-                    :price="'545.99'"
+                    :price="$product->price"
                 />
             @endforeach
         </div>

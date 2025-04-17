@@ -42,3 +42,9 @@ php artisan migrate:reset //toto robi to ze to resetne aj historiu vsetkych migr
 
 - vraj sa nechavaju subory ktore su default vygenerovane pokial chces pouzit autentifikaciu co podporuje laravel lebo si tam potrebuje ukladat dake veci asi aby si nevymyslal koleso
 
+```ini
+php artisan migrate:fresh --force
+```
+```ini
+php artisan db:seed
+```
