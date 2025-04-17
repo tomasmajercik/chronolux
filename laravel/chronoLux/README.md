@@ -16,11 +16,29 @@ php artisan storage:link
 # Component
 php artisan make:component cartSummary
 
-# TODO
-Tomas: 
-- home
-- kosik
+# Database
+- precitaj najprv asi cele
+```ini
+php artisan migrate:fresh --seed
+```
+- mozes to nakoniec spravit aj cez toto lebo toto ti tam rovno vlozi random hodnoty ako som nastavil
 
-Zdenko:
-- product page
-- product detail
+- spustis prikaz:
+```ini
+php artisan migrate
+```
+- tento prikaz ti vytvori vsetky potrebne tabulky
+- ked spustis tie subory a potom v nich nieco upravis a pustis znovu tak sa to nezmeni
+- best practice napisat novy subor aby to potom ostatny mohli iba spustit cez ten prikaz
+- ak ale potrebujes nahodou spustit znovu:
+```ini
+php artisan migrate:rollback
+```
+- spusti metodu down v migracnych filoch, kde je defaultne zmazanie tabuliek, nerobit ak su v nich data ktore chces!!
+
+```ini
+php artisan migrate:reset //toto robi to ze to resetne aj historiu vsetkych migracii co sa nachadza v db tiez
+```
+
+- vraj sa nechavaju subory ktore su default vygenerovane pokial chces pouzit autentifikaciu co podporuje laravel lebo si tam potrebuje ukladat dake veci asi aby si nevymyslal koleso
+
