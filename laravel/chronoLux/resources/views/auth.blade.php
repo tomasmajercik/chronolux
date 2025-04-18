@@ -28,7 +28,7 @@
                 {{-- Registration form --}}
                 <div class="form-container sign-up-container">
                     <h2>Sign up to ChronoLux</h2>
-                    <form method="POST" action="{{ route('register') }}" class="input-fields">
+                    <form method="POST" action="{{ route('register') }}" onsubmit="return validatePassword(event)" class="input-fields">
                         @csrf
                         <label>Email</label>
                         <input type="email" name="email" class="input" placeholder="name.surname@mail.com">

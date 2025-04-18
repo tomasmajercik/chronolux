@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 
+use Illuminate\Http\RedirectResponse;
+
 class RegisteredUserController extends Controller
 {
     /**
@@ -20,14 +22,10 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): Response
     {
-        try {
-            $request->validate([
-                'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-                'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            ]);
-        } catch (\Illuminate\Validation\ValidationException $e) {
-            dd($e->errors()); 
-        }
+        $request->validate([
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);           
 
         $user = User::create([
             'email' => $request->email,
@@ -39,13 +37,9 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        // shout refresh the token and session
-        session()->invalidate();
-        session()->regenerateToken();
-
         Auth::login($user);
 
-        // return redirect()->route('profile');
-        return response()->redirect('profile');//->with('success', 'Registration successful! Welcome to ChronoLux!');
+        return redirect('/profile');
+        // return response(); //->redirect('profile');//->with('success', 'Registration successful! Welcome to ChronoLux!');
     }
 }

@@ -66,6 +66,8 @@ Route::get('/register', function () {
 })->name('register');
 
 Route::post('/register', [RegisteredUserController::class, 'store'])->name('register');
+Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login');
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 //--//
 
 require __DIR__.'/auth.php';
