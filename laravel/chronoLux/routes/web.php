@@ -46,11 +46,11 @@ Route::get('/profile', function () {
 
 Route::get('/profile/orders', function () {
     return view('orders');
-});
+})->middleware('auth');
 
 Route::get('/profile/settings', function () {
     return view('settings');
-});
+})->middleware('auth');
 
 Route::get('/products/{category_name}', [ProductController::class, 'showByCategory'])->name('products.byCategory');
 

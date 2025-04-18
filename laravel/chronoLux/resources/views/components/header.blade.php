@@ -83,7 +83,12 @@
             <a href="/product-page#product-catalog" onclick="toggleMenu()">Products</a>
             <a href="#footer" onclick="toggleMenu()">Contact</a>
             <a href="/cart">Shopping Cart</a>
-            <a href="/auth#sign-in-section">Profile</a>
+            @auth
+                <a href="{{ route('profile') }}">Profile</a>
+            @else
+                <a href="/auth#sign-in-section">Profile</a>
+            @endauth
+                
         </nav>
     </div>
     @yield('header-slot')
