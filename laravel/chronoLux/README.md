@@ -55,3 +55,5 @@ php artisan db:seed
 - `php artisan breeze:install api`
 - vrat naspat routy v `routes/web.php` ak sa prepisu (pravdepodobne ano)
 
+- tento trapny use chybal `use Illuminate\Http\RedirectResponse;`
+

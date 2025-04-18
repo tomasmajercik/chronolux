@@ -26,6 +26,13 @@
     flex-grow: 1;
 }
 
+.sidebar ul li form
+{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 .logout {
     background-color: transparent;
     border: none;

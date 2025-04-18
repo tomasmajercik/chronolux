@@ -14,10 +14,20 @@
                     <form method="POST" action="{{ route('login') }}" class="input-fields">
                         @csrf
                         <label>Email</label>
-                        <input type="email" name="email" class="input" placeholder="name.surname@mail.com">
+                        <input type="email" name="email" class="input" placeholder="name.surname@mail.com" value="{{ old('email') }}">
+
+                        {{-- <label>Email</label> --}}
+                        {{-- <input type="email" name="email" class="input" placeholder="name.surname@mail.com"> --}}
 
                         <label for="password">Password</label>
                         <input type="password" name="password" class="input" placeholder="Password">
+
+                        <!-- Error Message -->
+                        @error('loginFailed')
+                            <p class="error-message">
+                                {{ $message }}
+                            </p>
+                        @enderror
 
                         <a href="#">Forgot your password?</a>
                         <button type="submit">Sign In</button>
@@ -39,7 +49,12 @@
                         <label for="confirm-password">Confirm Password</label>
                         <input type="password" name="password_confirmation" id="confirm-password" class="input" placeholder="••••••••" required>
 
-                        <p id="error-message" style="color: red; display: none;">Passwords do not match!</p>
+                        <p id="error-message" class="error-message" style="display: none;">Passwords do not match!</p>
+                        @error('email')
+                            <p class="error-message">
+                                {{ $message }}
+                            </p>
+                        @enderror
                         <button type="submit">Sign Up</button>
                         <span onclick="toggleLink()" class="sign-up-btn">Already have an account?</span>
                     </form>

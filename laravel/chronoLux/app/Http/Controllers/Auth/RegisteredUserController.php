@@ -20,6 +20,7 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
+    // Validate input fields
     public function store(Request $request): Response
     {
         $request->validate([
@@ -27,6 +28,7 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);           
 
+        // If validation passes, create a new user
         $user = User::create([
             'email' => $request->email,
             'password' => Hash::make($request->password),
@@ -35,8 +37,10 @@ class RegisteredUserController extends Controller
             'role' => 'customer',
         ]);
 
+        // Trigger the Registered event
         event(new Registered($user));
 
+        // Log the user in after registration
         Auth::login($user);
 
         return redirect('/profile');

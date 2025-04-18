@@ -169,6 +169,11 @@ main button {
 
 /* End of CHATGPT generated code */
 
+.error-message
+{
+    color: red;
+    margin-top: 10px;
+}
 
 /*********** MEDIA ********************/
 @media (max-width: 425px){

@@ -20,15 +20,16 @@ class AuthenticatedSessionController extends Controller
             'password' => ['required'],
         ]);
 
+        // if successful login
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
             return redirect('/profile');
-            // return response()->noContent();
         }
 
+        // if unsuccessful login
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
+            'loginFailed' => 'Email or password are incorrect.'
         ]);
     }
 
