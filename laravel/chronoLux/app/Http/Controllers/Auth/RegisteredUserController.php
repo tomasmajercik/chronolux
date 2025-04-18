@@ -21,7 +21,7 @@ class RegisteredUserController extends Controller
      * @throws \Illuminate\Validation\ValidationException
      */
     // Validate input fields
-    public function store(Request $request): Response
+    public function store(Request $request)
     {
         $request->validate([
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
@@ -43,7 +43,8 @@ class RegisteredUserController extends Controller
         // Log the user in after registration
         Auth::login($user);
 
-        return redirect('/profile');
+        return response()->json(['success' => true]);
+        // return redirect('/profile');
         // return response(); //->redirect('profile');//->with('success', 'Registration successful! Welcome to ChronoLux!');
     }
 }

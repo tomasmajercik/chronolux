@@ -13,7 +13,7 @@ use Illuminate\Http\RedirectResponse;
 
 class AuthenticatedSessionController extends Controller
 {
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
         $credentials = $request->validate([
             'email' => ['required', 'email'],
@@ -24,13 +24,17 @@ class AuthenticatedSessionController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect('/profile');
+            // Return success with redirection URL
+            return response()->json(['success' => true, 'redirect' => route('profile')]);
         }
 
         // if unsuccessful login
-        return back()->withErrors([
-            'loginFailed' => 'Email or password are incorrect.'
-        ]);
+        // return back()->withErrors([
+        //     'loginFailed' => 'Email or password are incorrect.'
+        // ]);
+
+        // If login fails, return an error message
+        return response()->json(['success' => false, 'message' => 'Email or password are incorrect.'], 422);
     }
 
 
