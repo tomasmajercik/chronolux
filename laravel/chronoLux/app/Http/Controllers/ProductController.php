@@ -21,7 +21,7 @@ class ProductController extends Controller
         ]);
     }
 
-    public function show($id)
+    public function showProductDetail($id)
     {
         $product = Product::with('coverImage')->findOrFail($id);
         return view('product_detail', compact('product'));

@@ -35,18 +35,9 @@
             @if($productCount == 0)
                 <div class="not-found">No products found!</div>
             @endif
-            {{-- @for ($i = 0; $i < 12; $i++)
-            <x-product-container
-                url="/product-detail"
-                image="IMGs/tissot-sm.jpg"
-                title="Tissot Tradition Silver"
-                reviews="2k reviews"
-                price="545.99"
-            />
-            @endfor --}}
             @foreach ($products as $product)
                 <x-product-container
-                    :url="'/product-detail'"
+                    :url="route('product.detail', ['id' => $product->id])"
                     :image="$product->coverImage->image_path"
                     :title="$product->name"
                     :reviews="'2k reviews'"

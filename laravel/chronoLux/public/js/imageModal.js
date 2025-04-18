@@ -1,66 +1,49 @@
-function showLargeImage(imageSrc) 
-{
-    var modal = document.getElementById('image-modal');
-    var modalImg = document.getElementById('modal-img');
+let currentImageIndex = 0;
+let galleryImages = [];
+
+document.addEventListener('DOMContentLoaded', function () {
+    const mainImg = document.querySelector('.main-img');
+    const thumbnails = Array.from(document.querySelectorAll('.product-gallery img'));
+
+    // Prvý obrázok bude hlavný obrázok, potom všetky ostatné
+    galleryImages = [mainImg, ...thumbnails];
+
+    // Pridaj click event aj na hlavný obrázok
+    galleryImages.forEach((img, index) => {
+        img.addEventListener('click', () => {
+            showLargeImage(img.src, index);
+        });
+    });
+});
+
+function showLargeImage(imageSrc, index) {
+    currentImageIndex = index;
+
+    const modal = document.getElementById('image-modal');
+    const modalImg = document.getElementById('modal-img');
+
     modalImg.src = imageSrc;
     modal.style.display = "flex";
 }
 
-function closeModal() 
-{
-    var modal = document.getElementById('image-modal');
-    modal.style.display = "none";  
-}
-
-
-// we may return to this upper code, if it is too hard to implement,
-// but for now, lets place here this
-
-// Array of all image sources
-const images = [
-    'IMGs/watch-tissot.jpg',
-    'IMGs/watch-sm.jpg',
-    'IMGs/rolex-sm.jpg',
-    'IMGs/tudor-sm.jpg',
-];
-
-// Current index of the image displayed in the modal
-let currentImageIndex = 0;
-
-// Show the larger image in the modal
-function showLargeImage(imageSrc, index) {
-    currentImageIndex = index; // Set current index based on clicked image
-    const modal = document.getElementById('image-modal');
-    const modalImg = document.getElementById('modal-img');
-    modalImg.src = imageSrc;
-    modal.style.display = "flex";  // Show the modal
-}
-
-// Change image when the arrow is clicked
-// Change image when the arrow is clicked
 function changeImage(direction, event) {
-    event.stopPropagation();  // Prevent the modal from closing when the arrow is clicked
+    event.stopPropagation();
 
     currentImageIndex += direction;
 
-    // Ensure the index stays within bounds (looping back if necessary)
     if (currentImageIndex < 0) {
-        currentImageIndex = images.length - 1;
-    } else if (currentImageIndex >= images.length) {
+        currentImageIndex = galleryImages.length - 1;
+    } else if (currentImageIndex >= galleryImages.length) {
         currentImageIndex = 0;
     }
 
-    // Update the image in the modal
     const modalImg = document.getElementById('modal-img');
-    modalImg.src = images[currentImageIndex];
+    modalImg.src = galleryImages[currentImageIndex].src;
 }
 
-
-// Close the modal when clicked outside the image
 function closeModal() {
     const modal = document.getElementById('image-modal');
-    modal.style.display = "none";  // Hide the modal
+    modal.style.display = "none";
 }
-
 
 // this code was created by ChatGPT

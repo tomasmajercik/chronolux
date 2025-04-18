@@ -50,4 +50,4 @@ Route::get('/profile/settings', function () {
 
 Route::get('/products/{category_name}', [ProductController::class, 'showByCategory'])->name('products.byCategory');
 
-Route::get('/product-detail/{id}', [ProductController::class, 'show']);
+Route::get('/product-detail/{id}', [ProductController::class, 'showProductDetail'])->name('product.detail');
