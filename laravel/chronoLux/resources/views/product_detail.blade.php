@@ -13,7 +13,9 @@
         <nav class="categorization">
             <ul>
                 <li><a href="/">Home</a></li>
-                <li><a href="/product-page">Product Category</a></li>
+                <li>
+                    <a href="{{ route('products.byCategory', ['category_name' => $product->category->category_name]) }}">{{ $product->category->category_name }}</a>
+                </li>
                 <li><a href="{{ url()->current() }}">{{ $product->name }}</a></li>
             </ul>
         </nav>
