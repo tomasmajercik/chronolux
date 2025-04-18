@@ -56,7 +56,7 @@
                         <span>Previous</span>
                     </div>
                 @else
-                    <a href="{{ $products->previousPageUrl() }}" class="prev">
+                    <a href="{{ $products->appends(request()->query())->previousPageUrl() }}" class="prev">
                         <x-left-arrow />
                         <span>Previous</span>
                     </a>
@@ -65,7 +65,7 @@
                 {{-- Page numbers --}}
                 <div class="page-numbering">
                     @for ($i = 1; $i <= $products->lastPage(); $i++)
-                        <a href="{{ $products->url($i) }}">
+                        <a href="{{ $products->appends(request()->query())->url($i) }}">
                             <button class="{{ $products->currentPage() == $i ? 'active' : '' }}">
                                 {{ $i }}
                             </button>
@@ -75,7 +75,7 @@
 
                 {{-- Next --}}
                 @if ($products->hasMorePages())
-                    <a href="{{ $products->nextPageUrl() }}" class="next">
+                    <a href="{{ $products->appends(request()->query())->nextPageUrl() }}" class="next">
                         <span>Next</span>
                         <x-right-arrow />
                     </a>

@@ -5,26 +5,61 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Brand;
 
 class ProductController extends Controller
 {
-    public function showByCategory($category_name = null)
+    public function showByCategory(Request $request, $category_name = null)
     {
+        // Handle category if present
         if ($category_name) {
             $category = Category::where('category_name', $category_name)->firstOrFail();
-            $products = $category->products()->paginate(2);
             $category_name = $category->category_name;
-            $productCount = $products->total();
+            $products = $category->products();
         } else {
-            $products = Product::with('coverImage')->paginate(2);
+            // If no category, fetch all products
             $category_name = 'All Products';
-            $productCount = $products->total();
+            $products = Product::query();
         }
+
+        // Filter by brand (if provided)
+        if ($request->filled('brand') && $request->brand != 'all') {
+            $products->whereHas('brand', function ($query) use ($request) {
+                $query->where('brand_name', $request->brand);  // Filter by brand name
+            });
+        }
+
+        // Filter by size (if provided)
+        if ($request->filled('sizes')) {
+            $sizes = $request->input('sizes'); // Toto je pole veľkostí
+        
+            $products->whereHas('variants', function ($query) use ($sizes) {
+                $query->whereIn('size', $sizes);
+            });
+        }
+
+        // Filter by price range (if provided)
+        if ($request->filled('price_min')) {
+            $products->where('price', '>=', $request->price_min);
+        }
+
+        if ($request->filled('price_max')) {
+            $products->where('price', '<=', $request->price_max);
+        }
+
+        // Paginate the results
+        $products = $products->with('coverImage')->paginate(2);
+
+        // Get the total product count
+        $productCount = $products->total();
 
         return view('product_page', [
             'category_name' => $category_name,
             'products' => $products,
             'productCount' => $productCount,
+            'categories' => Category::all(),
+            'brands' => Brand::all(),  
+            'brand_name' => $request->brand,
         ]);
     }
 
