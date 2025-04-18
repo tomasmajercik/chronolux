@@ -47,8 +47,24 @@ class ProductController extends Controller
             $products->where('price', '<=', $request->price_max);
         }
 
+        if ($request->has('sort_price')) {
+            if ($request->sort_price === 'low-to-high') {
+                $products->orderBy('price', 'asc');
+            } elseif ($request->sort_price === 'high-to-low') {
+                $products->orderBy('price', 'desc');
+            }
+        }
+        
+        if ($request->has('sort_name')) {
+            if ($request->sort_name === 'a-z') {
+                $products->orderBy('name', 'asc');
+            } elseif ($request->sort_name === 'z-a') {
+                $products->orderBy('name', 'desc');
+            }
+        }
+
         // Paginate the results
-        $products = $products->with('coverImage')->paginate(2);
+        $products = $products->with('coverImage')->paginate(12);
 
         // Get the total product count
         $productCount = $products->total();

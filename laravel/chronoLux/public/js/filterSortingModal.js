@@ -90,3 +90,31 @@ function applyFilter() {
     document.body.appendChild(form);
     form.submit();
 }
+
+function applySort() {
+    const priceSort = document.getElementById('sort-price').value;
+    const nameSort = document.getElementById('sort-name').value;
+
+    const params = new URLSearchParams(window.location.search);
+
+    // Price sorting
+    if (priceSort === 'low-to-high') {
+        params.set('sort_price', 'low-to-high');
+    } else if (priceSort === 'high-to-low') {
+        params.set('sort_price', 'high-to-low');
+    } else {
+        params.delete('sort_price');
+    }
+
+    // Name sorting
+    if (nameSort === 'a-z') {
+        params.set('sort_name', 'a_z');
+    } else if (nameSort === 'z-a') {
+        params.set('sort_name', 'z_a');
+    } else {
+        params.delete('sort_name');
+    }
+
+    // Go to new URL with params
+    window.location.search = params.toString();
+}
