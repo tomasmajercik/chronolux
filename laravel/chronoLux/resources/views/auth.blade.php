@@ -9,36 +9,43 @@
         <section id="sign-in-section">
             <div class="container" id="container">
                 <div class="form-container sign-in-container">
+                    {{-- Login form --}}
                     <h2>Sign in to ChronoLux</h2>
-                    <form class="input-fields">
+                    <form method="POST" action="{{ route('login') }}" class="input-fields">
+                        @csrf
                         <label>Email</label>
-                        <input type="email" class="input" placeholder="name.surname@mail.com">
+                        <input type="email" name="email" class="input" placeholder="name.surname@mail.com">
 
                         <label for="password">Password</label>
-                        <input type="password" class="input" placeholder="Password">
+                        <input type="password" name="password" class="input" placeholder="Password">
 
                         <a href="#">Forgot your password?</a>
-                        <button>Sign In</button>
+                        <button type="submit">Sign In</button>
                         <span onclick="toggleLink()" class="sign-up-btn">Don't have an account yet?</span>
                     </form>
                 </div>
+
+                {{-- Registration form --}}
                 <div class="form-container sign-up-container">
                     <h2>Sign up to ChronoLux</h2>
-                    <form class="input-fields" onsubmit="return validatePassword(event)">
+                    <form method="POST" action="{{ route('register') }}" class="input-fields">
+                        @csrf
                         <label>Email</label>
-                        <input type="email" class="input" placeholder="name.surname@mail.com">
+                        <input type="email" name="email" class="input" placeholder="name.surname@mail.com">
 
                         <label for="password">Password</label>
-                        <input type="password" id="password" class="input" placeholder="••••••••" required>
+                        <input type="password" name="password" id="password" class="input" placeholder="••••••••" required>
 
                         <label for="confirm-password">Confirm Password</label>
-                        <input type="password" id="confirm-password" class="input" placeholder="••••••••" required>
+                        <input type="password" name="password_confirmation" id="confirm-password" class="input" placeholder="••••••••" required>
 
                         <p id="error-message" style="color: red; display: none;">Passwords do not match!</p>
-                        <button>Sign Up</button>
+                        <button type="submit">Sign Up</button>
                         <span onclick="toggleLink()" class="sign-up-btn">Already have an account?</span>
                     </form>
                 </div>
+
+
                 <div class="overlay-container">
                     <div class="overlay">
                         <div class="overlay-panel overlay-left">

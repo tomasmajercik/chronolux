@@ -48,3 +48,10 @@ php artisan migrate:fresh --force
 ```ini
 php artisan db:seed
 ```
+
+# auth
+- skopiruj si routy v `routes/web.php`
+- `composer require laravel/breeze --dev`
+- `php artisan breeze:install api`
+- vrat naspat routy v `routes/web.php` ak sa prepisu (pravdepodobne ano)
+

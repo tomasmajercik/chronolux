@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\RegisteredUserController;
+
 
 Route::get('/', function () {
     return view('home');
@@ -37,8 +40,9 @@ Route::get('/auth', function () {
 });
 
 Route::get('/profile', function () {
-    return view('profile');
-});
+    return view('profile'); 
+})->name('profile')->middleware('auth');
+
 
 Route::get('/profile/orders', function () {
     return view('orders');
@@ -49,3 +53,19 @@ Route::get('/profile/settings', function () {
 });
 
 Route::get('/products/{category_name}', [ProductController::class, 'showByCategory'])->name('products.byCategory');
+
+// Authentication Routes
+Route::get('/login', function () {
+    return view('auth');
+})->name('login');
+
+Route::post('/login', [AuthenticatedSessionController::class, 'store']);
+
+Route::get('/register', function () {
+    return view('auth');
+})->name('register');
+
+Route::post('/register', [RegisteredUserController::class, 'store'])->name('register');
+//--//
+
+require __DIR__.'/auth.php';
