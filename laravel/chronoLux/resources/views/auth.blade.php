@@ -9,36 +9,52 @@
         <section id="sign-in-section">
             <div class="container" id="container">
                 <div class="form-container sign-in-container">
+                    {{-- Login form --}}
                     <h2>Sign in to ChronoLux</h2>
-                    <form class="input-fields">
+                    <form method="POST" action="{{ route('login') }}" id="login-form" class="input-fields">
+                        @csrf
+
                         <label>Email</label>
-                        <input type="email" class="input" placeholder="name.surname@mail.com">
+                        <input type="email" name="email" class="input" placeholder="name.surname@mail.com">
 
                         <label for="password">Password</label>
-                        <input type="password" class="input" placeholder="Password">
+                        <input type="password" name="password" class="input" placeholder="Password">
+
+                        <!-- Error Message -->
+                        <p id="login-error" class="error-message"></p>
 
                         <a href="#">Forgot your password?</a>
-                        <button>Sign In</button>
+                        <button type="submit">Sign In</button>
                         <span onclick="toggleLink()" class="sign-up-btn">Don't have an account yet?</span>
                     </form>
                 </div>
+
+                {{-- Registration form --}}
                 <div class="form-container sign-up-container">
                     <h2>Sign up to ChronoLux</h2>
-                    <form class="input-fields" onsubmit="return validatePassword(event)">
+                    <form method="POST" action="{{ route('register') }}" id="register-form" onsubmit="return validatePassword(event)" class="input-fields">
+                        @csrf
                         <label>Email</label>
-                        <input type="email" class="input" placeholder="name.surname@mail.com">
+                        <input type="email" name="email" id="email" class="input" placeholder="name.surname@mail.com">
+
+                        <p id="email-error" class="error-message"></p>
 
                         <label for="password">Password</label>
-                        <input type="password" id="password" class="input" placeholder="••••••••" required>
+                        <input type="password" name="password" id="password" class="input" placeholder="••••••••" required>
+
 
                         <label for="confirm-password">Confirm Password</label>
-                        <input type="password" id="confirm-password" class="input" placeholder="••••••••" required>
+                        <input type="password" name="password_confirmation" id="confirm-password" class="input" placeholder="••••••••" required>
 
-                        <p id="error-message" style="color: red; display: none;">Passwords do not match!</p>
-                        <button>Sign Up</button>
+                        <p id="password-error" class="error-message"></p>
+                        <p id="password_confirmation-error" class="error-message"></p>
+
+                        <button type="submit">Sign Up</button>
                         <span onclick="toggleLink()" class="sign-up-btn">Already have an account?</span>
                     </form>
                 </div>
+
+
                 <div class="overlay-container">
                     <div class="overlay">
                         <div class="overlay-panel overlay-left">
@@ -82,4 +98,75 @@
             }
         }
     </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $('#login-form').on('submit', function(e) {
+            e.preventDefault(); // Prevent form from reloading the page
+
+            // Reset previous error messages
+            $('#email-error').text('');
+            $('#password-error').text('');
+
+            $.ajax({
+                url: '{{ route("login") }}', // Laravel route for login
+                type: 'POST',
+                data: $(this).serialize(), // Serialize form data
+                success: function(response) {
+                    if (response.success) {
+                        window.location.href = response.redirect; // Redirect to profile if login is successful
+                    }
+                },
+                error: function(xhr) {
+                    // Handle validation errors or other errors
+                    if (xhr.status === 422) {
+                        let errors = xhr.responseJSON.message; // The server sends a message like "Email or password are incorrect."
+
+                        // Show the error message in the respective field
+                        $('#login-error').text(errors);
+                    } else {
+                        // Handle generic errors
+                        alert('An error occurred. Please try again.');
+                    }
+                }
+            });
+        });
+
+        $('#register-form').on('submit', function(e) {
+            e.preventDefault(); // blocks reload
+            // reset previous error messages
+
+            $('#email-error').text('');
+            $('#password-error').text('');
+            $('#password_confirmation-error').text('');
+
+            $.ajax({
+                url: '{{ route("register") }}', // Laravel route for registration
+                type: 'POST',
+                data: $(this).serialize(), // Serialize form data
+                success: function(response) {
+                    window.location.href = '/profile'; // if success, redirect to profile page 
+                },
+                error: function(xhr) {
+                    // Handle errors here
+                    if (xhr.status === 422) { // Validation errors
+                        let errors = xhr.responseJSON.errors;
+
+                        if (errors.email) {
+                            $('#email-error').text(errors.email[0]);
+                        }
+                        if (errors.password) {
+                            $('#password-error').text(errors.password[0]);
+                        }
+                        if (errors.password_confirmation) {
+                            $('#password_confirmation-error').text(errors.password_confirmation[0]);
+                        }
+
+                    } else {
+                        alert('An error occurred. Please try again.');
+                    }
+                }
+            })
+        });
+        </script>
+
 @endpush

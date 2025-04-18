@@ -26,8 +26,19 @@
     flex-grow: 1;
 }
 
-.sidebar ul li a.logout {
+.sidebar ul li form
+{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logout {
+    background-color: transparent;
+    border: none;
+    font-size: 18px;
     color: red;
+    font-weight: bold;
 }
 
 .sidebar ul li.active a{

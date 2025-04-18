@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
 
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\RegisteredUserController;
+
 
 Route::get('/', [HomeController::class, 'index']);
 
@@ -36,17 +39,37 @@ Route::get('/auth', function () {
 });
 
 Route::get('/profile', function () {
-    return view('profile');
-});
+    return view('profile'); 
+})->name('profile')->middleware('auth');
+
 
 Route::get('/profile/orders', function () {
     return view('orders');
-});
+})->middleware('auth');
 
 Route::get('/profile/settings', function () {
     return view('settings');
-});
+})->middleware('auth');
+
+Route::get('/products/{category_name}', [ProductController::class, 'showByCategory'])->name('products.byCategory');
+
+// Authentication Routes
+Route::get('/login', function () {
+    return view('auth');
+})->name('login');
+
+Route::post('/login', [AuthenticatedSessionController::class, 'store']);
+
+Route::get('/register', function () {
+    return view('auth');
+})->name('register');
+
+Route::post('/register', [RegisteredUserController::class, 'store'])->name('register');
+Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login');
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+//--//
 
 Route::get('/products/{category_name?}', [ProductController::class, 'showByCategory'])->name('products.byCategory');
-
 Route::get('/product-detail/{id}', [ProductController::class, 'showProductDetail'])->name('product.detail');
+
+require __DIR__.'/auth.php';
