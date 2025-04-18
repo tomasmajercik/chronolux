@@ -57,6 +57,12 @@ main
     cursor: pointer;
 }
 
+.product img{
+    height: 440px;
+    width: 440px;
+    object-fit: cover;
+}
+
 /************************* Product Info *************************/
 .product-info {
     flex: 1;

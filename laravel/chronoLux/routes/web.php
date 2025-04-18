@@ -2,14 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\HomeController;
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/cart', function () {
     return view('/cart/cart');
@@ -69,5 +68,8 @@ Route::post('/register', [RegisteredUserController::class, 'store'])->name('regi
 Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login');
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 //--//
+
+Route::get('/products/{category_name?}', [ProductController::class, 'showByCategory'])->name('products.byCategory');
+Route::get('/product-detail/{id}', [ProductController::class, 'showProductDetail'])->name('product.detail');
 
 require __DIR__.'/auth.php';

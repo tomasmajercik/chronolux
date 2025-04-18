@@ -21,7 +21,7 @@
     <section class="watch-category" id="watch-category">
         <div class="category-heading">
             <h2>Watch categories</h2>
-            <button onclick="window.location.href='product_page.html'">View all products</button>
+            <button onclick="window.location.href='/products#product-catalog'">View all products</button>
         </div>
         <div class="category-container">
 
@@ -77,15 +77,15 @@
             <h1>Recommended</h1>
             <div class="recommended-container">
                 
-                @for($i = 0; $i < 4; $i++)
+                @foreach($recommendedProducts as $product)
                     <x-product-container
-                        url="product_detail.html"
-                        image="IMGs/tissot-sm.jpg"
-                        title="Tissot Tradition Silver"
-                        reviews="2k reviews"
-                        price="545.99"
+                        :url="route('product.detail', ['id' => $product->id])"
+                        :image="$product->coverImage->image_path"
+                        :title="$product->name"
+                        :reviews="'2k reviews'"
+                        :price="$product->price"
                     />
-                @endfor
+                @endforeach
 
             </div>
         </section>

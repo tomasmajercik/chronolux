@@ -8,7 +8,7 @@
             <nav>
                 <ul>
                     <li><a href="/">Home</a></li>
-                    <li><a href="/#watch-category">Products</a></li>
+                    <li><a href="/products#product-catalog">Products</a></li>
                     <li><a href="#footer">Contact</a></li>
                 </ul>
             </nav>
@@ -80,7 +80,7 @@
         <nav class="mobile-menu">
             <input id="finder-input-mobile" class="finder-input-mobile" type="text" placeholder="Search">
             <a href="/">Home</a>
-            <a href="/product-page#product-catalog" onclick="toggleMenu()">Products</a>
+            <a href="/products#product-catalog" onclick="toggleMenu()">Products</a>
             <a href="#footer" onclick="toggleMenu()">Contact</a>
             <a href="/cart">Shopping Cart</a>
             @auth

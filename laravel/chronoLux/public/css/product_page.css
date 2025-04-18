@@ -222,7 +222,7 @@ header
     background: white;
     padding: 20px;
     width: 360px;
-    height: 450px;
+    height: 480px;
     border-radius: 20px;
     text-align: center;
     position: relative;
@@ -281,8 +281,14 @@ select{
     height: 20px;
     cursor: pointer;
 }
-.price-range input[type="range"]{
-    cursor: pointer;   
+.price-range input[type="number"]{
+    cursor: pointer; 
+    width: 120px;
+    height: 30px;
+    border: 1px solid rgb(188, 188, 188);
+    border-radius: 10px;
+    margin: 5px 0;
+    padding: 0 10px;
 }
 
 .apply-filter {
@@ -397,6 +403,47 @@ select{
     font-size: 25px;
     font-weight: bold;
     padding: 50px; 
+}
+
+
+/* PAGING */
+.paging {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.paging .prev,
+.paging .next {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: #000;
+    transition: opacity 0.3s ease;
+}
+
+.paging .disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.page-numbering {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.page-numbering button:hover {
+    background-color: #eee;
+}
+
+.page-numbering button.active {
+    background-color: #ccc;
+    font-weight: bold;
 }
 
 

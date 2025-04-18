@@ -29,6 +29,8 @@ class ProductsTableSeeder extends Seeder
                 'price' => 350.00,  
                 'images' => [
                     ['path' => 'IMGs/tissot-prx-sm.jpg', 'is_cover' => true],
+                    ['path' => 'IMGs/tissot-prx1-sm.jpg', 'is_cover' => false],
+                    ['path' => 'IMGs/tissot-prx2-sm.jpg', 'is_cover' => false],
                 ]
             ],
             [
@@ -84,22 +86,35 @@ class ProductsTableSeeder extends Seeder
         ];
 
         foreach ($products as $product) {
-            $productId = DB::table('products')->insertGetId([
-                'name' => $product['name'],
-                'description' => $product['description'],
-                'category_id' => $product['category_id'],
-                'brand_id' => $product['brand_id'],
-                'price' => $product['price'], // Insert price into the database
-                'created_at' => now(),
-            ]);
+            $existingProduct = DB::table('products')->where('name', $product['name'])->first();
         
-            foreach ($product['images'] as $image) {
-                DB::table('products_images')->insert([
-                    'product_id' => $productId,
-                    'image_path' => $image['path'],
-                    'is_cover' => $image['is_cover'],
+            if ($existingProduct) {
+                $productId = $existingProduct->id;
+            } else {
+                $productId = DB::table('products')->insertGetId([
+                    'name' => $product['name'],
+                    'description' => $product['description'],
+                    'category_id' => $product['category_id'],
+                    'brand_id' => $product['brand_id'],
+                    'price' => $product['price'],
+                    'created_at' => now(),
                 ]);
             }
-        }   
+        
+            foreach ($product['images'] as $image) {
+                $exists = DB::table('products_images')
+                    ->where('product_id', $productId)
+                    ->where('image_path', $image['path'])
+                    ->exists();
+        
+                if (!$exists) {
+                    DB::table('products_images')->insert([
+                        'product_id' => $productId,
+                        'image_path' => $image['path'],
+                        'is_cover' => $image['is_cover'],
+                    ]);
+                }
+            }
+        }
     }   
 }
