@@ -11,13 +11,19 @@ class ProductController extends Controller
     public function showByCategory($category_name)
     {
         $category = Category::where('category_name', $category_name)->firstOrFail();
-        $products = $category->products()->paginate(12);
-        $productCount = $products->count();
+        $products = $category->products()->paginate(2);
+        $productCount = $products->total();
 
         return view('product_page', [
             'category_name' => $category->category_name,
             'products' => $products,
             'productCount' => $productCount,
         ]);
+    }
+
+    public function show($id)
+    {
+        $product = Product::with('coverImage')->findOrFail($id);
+        return view('product_detail', compact('product'));
     }
 }

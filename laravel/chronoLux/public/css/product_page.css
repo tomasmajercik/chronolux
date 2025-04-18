@@ -400,6 +400,47 @@ select{
 }
 
 
+/* PAGING */
+.paging {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.paging .prev,
+.paging .next {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: #000;
+    transition: opacity 0.3s ease;
+}
+
+.paging .disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.page-numbering {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.page-numbering button:hover {
+    background-color: #eee;
+}
+
+.page-numbering button.active {
+    background-color: #ccc;
+    font-weight: bold;
+}
+
+
 /************************* MEDIA *************************/
 @media (max-width: 1200px) {
     .product-catalog{
