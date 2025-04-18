@@ -8,14 +8,21 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
-    public function showByCategory($category_name)
+    public function showByCategory($category_name = null)
     {
-        $category = Category::where('category_name', $category_name)->firstOrFail();
-        $products = $category->products()->paginate(2);
-        $productCount = $products->total();
+        if ($category_name) {
+            $category = Category::where('category_name', $category_name)->firstOrFail();
+            $products = $category->products()->paginate(2);
+            $category_name = $category->category_name;
+            $productCount = $products->total();
+        } else {
+            $products = Product::with('coverImage')->paginate(2);
+            $category_name = 'All Products';
+            $productCount = $products->total();
+        }
 
         return view('product_page', [
-            'category_name' => $category->category_name,
+            'category_name' => $category_name,
             'products' => $products,
             'productCount' => $productCount,
         ]);

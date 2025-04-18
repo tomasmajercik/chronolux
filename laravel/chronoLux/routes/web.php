@@ -2,11 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\HomeController;
 
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/cart', function () {
     return view('/cart/cart');
@@ -48,6 +47,6 @@ Route::get('/profile/settings', function () {
     return view('settings');
 });
 
-Route::get('/products/{category_name}', [ProductController::class, 'showByCategory'])->name('products.byCategory');
+Route::get('/products/{category_name?}', [ProductController::class, 'showByCategory'])->name('products.byCategory');
 
 Route::get('/product-detail/{id}', [ProductController::class, 'showProductDetail'])->name('product.detail');
