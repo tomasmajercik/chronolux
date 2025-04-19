@@ -50,6 +50,11 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Address::class, 'default_address');
     }
+    
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 
 
 }

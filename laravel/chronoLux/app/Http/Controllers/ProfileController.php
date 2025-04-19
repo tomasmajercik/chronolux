@@ -9,21 +9,45 @@ use App\Models\Address;
 
 class ProfileController extends Controller
 {
+
     public function show()
     {
         $user = Auth::user();
 
         $memberSince = $user->created_at->diffInMonths(now());
+        $orderCount = $user->orders()->count();
+        $lastOrder = $user->orders()->latest()->first();
+        $lastOrderDaysAgo = $lastOrder ? $lastOrder->created_at->diffInDays(now()) : null;
+        $moneySpent = $user->orders()->sum('total_price');
 
         return view('profile', [
             'user' => $user,
-            'memberSince' => floor($memberSince)
+            'memberSince' => floor($memberSince),
+            'orderCount' => $orderCount,
+            'lastOrderDaysAgo' => floor($lastOrderDaysAgo),
+            'moneySpent' => $moneySpent
         ]);
     }
+
     public function editName()
     {
         $user = Auth::user();
-        return view('profile', ['user' => $user, 'isEditingName' => true]);
+
+        $memberSince = $user->created_at->diffInMonths(now());
+        $orderCount = $user->orders()->count();
+        $lastOrder = $user->orders()->latest()->first();
+        $lastOrderDaysAgo = $lastOrder ? $lastOrder->created_at->diffInDays(now()) : null;
+        $moneySpent = $user->orders()->sum('total_price');
+
+        return view('profile', [
+            'user' => $user, 
+            'isEditingName' => true,
+            'memberSince' => floor($memberSince),
+            'orderCount' => $orderCount,
+            'lastOrder' => $lastOrder,
+            'lastOrderDaysAgo' => floor($lastOrderDaysAgo),
+            'moneySpent' => $moneySpent
+        ]);
     }
     public function updateName(Request $request)
     {

@@ -125,9 +125,9 @@
             <h2>Hello{{ ", " . explode(" ", $user->name)[0] }}</h2>
             <div class="summary">
                 <div class="box">Member for <strong>{{ $memberSince }} months</strong></div>
-                <div class="box">Ordered <strong>3 times</strong></div>
-                <div class="box">Last order <strong>2 days ago</strong></div>
-                <div class="box">Something <strong>28 days ago</strong></div>
+                <div class="box">Ordered <strong>{{ $orderCount }} times</strong></div>
+                <div class="box">Last order <strong>{{ $lastOrderDaysAgo ?? '0' }} days ago</strong></div>
+                <div class="box">Money spent <strong>{{ $moneySpent . "€" ?? '0' }}</strong></div>
             </div>
 
             <div class="last-orders-title">
