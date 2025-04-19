@@ -9,6 +9,12 @@
 @section('header-slot')
     <div class="lower-header">
         <h1 class="category-title">{{$category_name}}</h1>
+        @if(request()->has('search'))
+            <div class="search-query">
+                Results for "<strong>{{ request('search') }}</strong>"
+                <button onclick="clearSearch()" class="clear-search" title="Clear search">✕</button>
+            </div>
+        @endif
     </div>
 @endsection
 
