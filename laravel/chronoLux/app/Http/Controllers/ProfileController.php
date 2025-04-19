@@ -19,13 +19,16 @@ class ProfileController extends Controller
         $lastOrder = $user->orders()->latest()->first();
         $lastOrderDaysAgo = $lastOrder ? $lastOrder->created_at->diffInDays(now()) : null;
         $moneySpent = $user->orders()->sum('total_price');
+        // $orders = $user->orders()->with('orderItems')->latest()->get();
 
         return view('profile', [
             'user' => $user,
             'memberSince' => floor($memberSince),
             'orderCount' => $orderCount,
             'lastOrderDaysAgo' => floor($lastOrderDaysAgo),
-            'moneySpent' => $moneySpent
+            'moneySpent' => $moneySpent,
+            'lastOrder' => $lastOrder,
+            // 'orders' => $orders,
         ]);
     }
 
@@ -38,6 +41,8 @@ class ProfileController extends Controller
         $lastOrder = $user->orders()->latest()->first();
         $lastOrderDaysAgo = $lastOrder ? $lastOrder->created_at->diffInDays(now()) : null;
         $moneySpent = $user->orders()->sum('total_price');
+        // $orders = $user->orders()->with('orderItems')->latest()->get();
+
 
         return view('profile', [
             'user' => $user, 
@@ -46,7 +51,8 @@ class ProfileController extends Controller
             'orderCount' => $orderCount,
             'lastOrder' => $lastOrder,
             'lastOrderDaysAgo' => floor($lastOrderDaysAgo),
-            'moneySpent' => $moneySpent
+            'moneySpent' => $moneySpent,
+            // 'orders' => $orders
         ]);
     }
     public function updateName(Request $request)
@@ -109,13 +115,26 @@ class ProfileController extends Controller
 
         $validated = $request->validate([
             'phone-number' => 'nullable|string|max:255',
-            'email' => 'required|string|max:255'
+            'email' => 'required|string|max:255|email'
         ]);
 
-        $user->phone_number = $validated['phone-number'];
-        $user->email = $validated['email'];
-        $user->save();
-        return redirect()->route('profile')->with('success', 'Contact information successfully changed.');
+        try {
+            if ($user->email !== $validated['email']) 
+            {
+                if (\App\Models\User::where('email', $validated['email'])->exists()) {
+                    return redirect()->route('profile')->withErrors(['email' => 'This email is already taken.']);
+                }
+            }
+
+            $user->phone_number = $validated['phone-number'];
+            $user->email = $validated['email'];
+            $user->save();
+
+            return redirect()->route('profile')->with('success', 'Contact information successfully changed.');
+        } catch (\Exeption $e) {
+            return redirect()->route('profile')->withErrors(['email' => 'An error occurred while updating contact information.']);
+        }
+
 
     }   
 }

@@ -269,7 +269,11 @@ main {
     cursor: pointer;
     color: #1d1dff;
 }
-
+.error
+{
+    color: red;
+    margin-top: 5px;
+}
 /************************* MEDIA *************************/
 @media (max-width: 475px) {
     .summary{

@@ -117,6 +117,10 @@
                 <p><b>Email</b></p>
                 <p>{{ $user->email }}</p>
             @endif
+            @if($errors->has('email'))
+                <p class="error"> {{ $errors->first('email') }} </p>
+            @endif
+
             </div>
 
         </div>
