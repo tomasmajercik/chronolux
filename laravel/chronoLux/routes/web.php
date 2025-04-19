@@ -56,7 +56,7 @@ Route::get('/profile/settings', function () {
 //Cart Routes
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
 Route::get('/cart', [CartController::class, 'show'])->name('cart.show');
-Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
+Route::put('/cart/update/{order_item_id}', [CartController::class, 'update'])->name('cart.update');
 Route::delete('/cart/remove/{order_item_id}', [CartController::class, 'remove'])->name('cart.remove');
 
 // Authentication Routes

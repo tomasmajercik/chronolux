@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 
 use Illuminate\Http\RedirectResponse;
+use App\Http\Controllers\CartController;
 
 class RegisteredUserController extends Controller
 {
@@ -42,6 +43,7 @@ class RegisteredUserController extends Controller
 
         // Log the user in after registration
         Auth::login($user);
+        (new CartController)->transferSessionCart();
 
         return response()->json(['success' => true]);
         // return redirect('/profile');

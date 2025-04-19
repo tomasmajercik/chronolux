@@ -74,38 +74,39 @@ class CartController extends Controller
 
         return view('cart.cart', compact('items', 'totalProducts', 'shipping', 'total'));
     }
-    public function update(Request $request)
+    public function update(Request $request, $order_item_id)
     {
         if (Auth::check()) {
-            $item = OrderItem::findOrFail($request->id);
+            $item = OrderItem::findOrFail($order_item_id);
 
             // Uistíme sa, že položka patrí aktuálnemu používateľovi
             if ($item->order->user_id !== Auth::id()) {
                 abort(403, 'Unauthorized action.');
             }
 
-            $item->quantity = max(1, $request->quantity);
+            if ($request->action === 'increase') {
+                $item->quantity += 1;
+            } elseif ($request->action === 'decrease') {
+                $item->quantity = max(1, $item->quantity - 1); 
+            }
+
             $item->save();
 
-            return response()->json([
-                'success' => true,
-                'new_quantity' => $item->quantity,
-                'total_price' => number_format($item->variant->product->price * $item->quantity, 2)
-            ]);
+            return back()->with('success', 'The amount was changed successfully.');
         } else {
             $cart = session('cart', []);
-            foreach ($cart as &$cartItem) {
-                if ($cartItem['product_variant_id'] == $request->id) {
-                    $cartItem['quantity'] = max(1, $request->quantity);
-                    break;
+            foreach ($cart as $key => $cartItem) {
+                if ($cartItem['product_variant_id'] == $order_item_id) {
+                    if ($request->input('action') === 'increase') {
+                        $cart[$key]['quantity'] += 1;
+                    } elseif ($request->input('action') === 'decrease') {
+                        $cart[$key]['quantity'] = max(1, $cart[$key]['quantity'] - 1);
+                    }
                 }
             }
             session(['cart' => $cart]);
 
-            return response()->json([
-                'success' => true,
-                'new_quantity' => $request->quantity,
-            ]);
+            return back()->with('success', 'The amount was changed successfully.');
         }
     }
 
@@ -130,5 +131,32 @@ class CartController extends Controller
 
             return back()->with('success', 'The product has been removed.');
         }
+    }
+
+    public function transferSessionCart()
+    {
+        if (!Auth::check()) return;
+
+        $cart = session('cart', []);
+        if (empty($cart)) return;
+
+        $user = Auth::user();
+
+        $order = Order::firstOrCreate(
+            ['user_id' => $user->id, 'status' => 'pending'],
+            ['address_id' => null, 'email' => $user->email, 'total_price' => 0, 'delivery_price' => 0, 'delivery_method' => 'unknown']
+        );
+
+        foreach ($cart as $item) {
+            $existing = OrderItem::firstOrNew([
+                'order_id' => $order->id,
+                'product_variant_id' => $item['product_variant_id']
+            ]);
+
+            $existing->quantity += $item['quantity'];
+            $existing->save();
+        }
+
+        session()->forget('cart');
     }
 }

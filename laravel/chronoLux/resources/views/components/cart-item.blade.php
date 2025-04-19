@@ -29,27 +29,15 @@
             </div>
         </div>
     </div>
-    <div class="info-holder">
+    <form method="POST" class="info-holder" action="{{ route('cart.update', ['order_item_id' => $itemId]) }}">
+        @csrf
+        @method('PUT')
         <h4>{{ $size }}</h4>
         <div class="amount-holder">
-            <button class="decrease-btn">-</button>
+            <button type="submit" name="action" value="decrease" class="decrease-btn">-</button>
             <p class="amount-indicator">{{ $amount }}</p>
-            <button class="increase-btn">+</button>
+            <button type="submit" name="action" value="increase" class="increase-btn">+</button>
         </div>
         <h4>{{ $price }}€</h4>
-    </div>
-</div>
-
-<!-- Remove Item Modal -->
-<div id="remove-item-modal" class="remove-modal" style="display: none;">
-    <div class="modal-content">
-        <span class="close-btn" onclick="closeRemoveModal()">&times;</span>
-        <p>Are you sure you want to remove <span id="item-title"></span> from your cart?</p>
-        <form id="remove-item-form" method="POST" action="">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="confirm-btn">Yes, remove</button>
-            <button type="button" onclick="closeRemoveModal()" class="cancel-btn">Cancel</button>
-        </form>
-    </div>
+    </form>
 </div>

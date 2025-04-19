@@ -111,4 +111,8 @@ document.querySelectorAll('.size-btn').forEach(button => {
 });
 
 // Set default selected button (first one)
-document.querySelector('.size-btn')?.classList.add('selected');
+const firstSizeBtn = document.querySelector('.size-btn');
+if (firstSizeBtn) {
+    firstSizeBtn.classList.add('selected');
+    document.getElementById('selected-variant-id').value = firstSizeBtn.dataset.id;
+} // This ensures that the first button is selected by default and also behaves like clicked
