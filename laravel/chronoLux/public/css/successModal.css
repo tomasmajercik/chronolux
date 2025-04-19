@@ -37,3 +37,21 @@
 .close-btn:hover {
     color: #000;
 }
+
+.view-cart-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    font-size: 16px;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.view-cart-btn:hover {
+    background-color: #0056b3;
+}
+

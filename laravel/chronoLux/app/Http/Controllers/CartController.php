@@ -109,26 +109,26 @@ class CartController extends Controller
         }
     }
 
-    public function remove(Request $request)
+    public function remove(Request $request, $order_item_id)
     {
         if (Auth::check()) {
-            $item = OrderItem::findOrFail($request->id);
+            $item = OrderItem::findOrFail($order_item_id);
 
-            // Skontrolujeme, či daná položka patrí aktuálnemu používateľovi
+            // Overenie, či položka patrí aktuálnemu používateľovi
             if ($item->order->user_id !== Auth::id()) {
                 abort(403, 'Unauthorized action.');
             }
 
             $item->delete();
-            return response()->json(['success' => true]);
+            return back()->with('success', 'The product has been removed.');
         } else {
             $cart = session('cart', []);
-            $cart = array_filter($cart, function ($item) use ($request) {
-                return $item['product_variant_id'] != $request->id;
+            $cart = array_filter($cart, function ($item) use ($order_item_id) {
+                return $item['product_variant_id'] != $order_item_id;
             });
             session(['cart' => array_values($cart)]); // reset indexov
 
-            return response()->json(['success' => true]);
+            return back()->with('success', 'The product has been removed.');
         }
     }
 }

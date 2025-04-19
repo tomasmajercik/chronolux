@@ -126,6 +126,30 @@ main{
     object-fit: cover;
     border-radius: 20px; 
 }
+
+.empty{
+    color: gray;
+    font-size: 25px;
+    margin-left: 20px;
+    background-color: #fbfafa;
+    text-align: center;
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+}
+
+.empty a{
+    color: #3b6048;
+    font-weight: bold;
+}
+
+.empty a:hover{
+    color: #273e2f;
+}  
+
+.empty p{
+    margin-bottom: 10px;
+}
 /************************* ASIDE Section *************************/
 .cart-summary-container
 {

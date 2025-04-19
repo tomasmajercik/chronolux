@@ -91,6 +91,7 @@
         <div class="modal-content">
             <span class="close-btn" onclick="closeSuccessModal()">&times;</span>
             <p>{{ session('success') }}</p>
+            <a href="{{ route('cart.show') }}" class="view-cart-btn">View Cart</a>
         </div>
     </div>
 @endif
