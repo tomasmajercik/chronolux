@@ -446,6 +446,25 @@ select{
     font-weight: bold;
 }
 
+.search-query {
+    font-size: 2rem;
+    color: #fff;
+    margin-top: 0.5rem;
+}
+
+.clear-search {
+    background: none;
+    border: none;
+    color: #eee;
+    cursor: pointer;
+    margin-left: 8px;
+    font-size: 2rem;
+}
+
+.clear-search:hover {
+    color: gray;
+}
+
 
 /************************* MEDIA *************************/
 @media (max-width: 1200px) {

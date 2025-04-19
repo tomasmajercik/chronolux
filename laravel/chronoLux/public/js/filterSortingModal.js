@@ -33,62 +33,61 @@ function closeSort() {
 }
 
 function applyFilter() {
-    var form = document.createElement('form');
-    form.method = 'GET';
+    const category = document.getElementById('category').value;
+    const brand = document.getElementById('brand').value;
+    const priceMin = document.getElementById('min-price').value;
+    const priceMax = document.getElementById('max-price').value;
 
-    // Get the current category from the URL (from the select dropdown)
-    var category = document.getElementById('category').value;
-    var url = '/products';  // Default to '/products'
-
-    // If category is selected, append it to the URL
-    if (category && category !== 'all') {
-        url += '/' + encodeURIComponent(category);
-    }
-
-    form.action = url;
-
-    // Add the brand, and price filters to the form
-    var brand = document.getElementById('brand').value;
-    var priceMin = document.getElementById('min-price').value;
-    var priceMax = document.getElementById('max-price').value;
-
-    // Append values to the form as hidden inputs
-    if (brand && brand !== 'all') {
-        var brandInput = document.createElement('input');
-        brandInput.type = 'hidden';
-        brandInput.name = 'brand';
-        brandInput.value = brand;
-        form.appendChild(brandInput);
-    }
-
-    // Append sizes as an array
+    // Get selected sizes
+    const sizes = [];
     document.querySelectorAll('input[name="sizes[]"]:checked').forEach(function(checkbox) {
-        var sizeInput = document.createElement('input');
-        sizeInput.type = 'hidden';
-        sizeInput.name = 'sizes[]'; // Laravel spracuje ako pole
-        sizeInput.value = checkbox.value;
-        form.appendChild(sizeInput);
+        sizes.push(checkbox.value);
     });
 
+    // Create a new URLSearchParams object to handle query parameters
+    const params = new URLSearchParams(window.location.search);
 
+    // Update the URL path with the selected category
+    let url = '/products';  // Default URL
+    if (category && category !== 'all') {
+        url += '/' + encodeURIComponent(category);  // Append the category as part of the path
+    }
+
+    // Add the brand to the query string
+    if (brand && brand !== 'all') {
+        params.set('brand', brand);
+    } else {
+        params.delete('brand');
+    }
+
+    // Add the selected sizes as an array in the query string (sizes[])
+    if (sizes.length > 0) {
+        sizes.forEach(function(size) {
+            params.append('sizes[]', size); // Append each size as a separate 'sizes[]' parameter
+        });
+    } else {
+        params.delete('sizes[]');
+    }
+
+    // Add the price filter to the query string
     if (priceMin) {
-        var priceMinInput = document.createElement('input');
-        priceMinInput.type = 'hidden';
-        priceMinInput.name = 'price_min';
-        priceMinInput.value = priceMin;
-        form.appendChild(priceMinInput);
+        params.set('price_min', priceMin);
+    } else {
+        params.delete('price_min');
     }
 
     if (priceMax) {
-        var priceMaxInput = document.createElement('input');
-        priceMaxInput.type = 'hidden';
-        priceMaxInput.name = 'price_max';
-        priceMaxInput.value = priceMax;
-        form.appendChild(priceMaxInput);
+        params.set('price_max', priceMax);
+    } else {
+        params.delete('price_max');
     }
-    // Submit the form
-    document.body.appendChild(form);
-    form.submit();
+
+    // Update the URL with the new filters
+    if (params.toString()) {
+        url += '?' + params.toString();  // Append the query string to the URL
+    }
+
+    window.location.href = url;  // Navigate to the new URL
 }
 
 function applySort() {
