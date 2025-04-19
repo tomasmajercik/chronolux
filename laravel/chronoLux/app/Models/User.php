@@ -45,4 +45,11 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function address()
+    {
+        return $this->belongsTo(Address::class, 'default_address');
+    }
+
+
 }

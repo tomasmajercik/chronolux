@@ -260,6 +260,16 @@ main {
     background-color: #f24f4f;
 }
 
+/************************* MODALS *************************/
+.edit-address-btn
+{
+    border: none;
+    background-color: transparent;
+    text-decoration: underline;
+    cursor: pointer;
+    color: #1d1dff;
+}
+
 /************************* MEDIA *************************/
 @media (max-width: 475px) {
     .summary{

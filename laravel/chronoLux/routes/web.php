@@ -43,9 +43,6 @@ Route::get('/products/{category_name}', [ProductController::class, 'showByCatego
 
 
 //**** Protected Routes ****//
-// Route::get('/profile', function () {
-//     return view('profile'); 
-// })->name('profile')->middleware('auth');
 Route::get('/profile', [ProfileController::class, 'show'])
     ->name('profile')
     ->middleware('auth');
@@ -57,12 +54,16 @@ Route::get('/profile/orders', function () {
 Route::get('/profile/settings', function () {
     return view('settings');
 })->middleware('auth');
+//****                  ****//
 
 //**** Edit name Routes ****//
 Route::post('/profile/edit-name', [ProfileController::class, 'editName'])->middleware('auth')->name('profile.edit-name');
 Route::post('/profile/update-name', [ProfileController::class, 'updateName'])->middleware('auth');
-//****                  ****//
 //****                ****//
+//**** Edit address Routes ****//
+Route::post('/profile/update-address', [ProfileController::class, 'updateAddress'])->middleware('auth')->name('profile.update-address');
+Route::post('/profile/update-contact', [ProfileController::class, 'updateContact'])->middleware('auth')->name('profile.update-contact');
+
 
 //**** Authentication Routes ****//
 Route::get('/login', function () {

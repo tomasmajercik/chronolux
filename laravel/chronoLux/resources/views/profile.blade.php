@@ -3,6 +3,8 @@
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/profile/profile.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('css/profile/profile-modals.css') }}">
 @endpush
 
 @section('title', 'Profile')
@@ -81,28 +83,48 @@
                     @endif
                 </div>
             </div>
+            @include('partials.address-edit-modal')
             <div class="profile-info-title">
                 <h5>Shipping Adress</h5>
-                <a href="#">edit</a>
+                <button class="edit-address-btn" onclick="openAddressEditModal()">edit</button>
             </div>
-            <p>Super city, super country <br>Perfect Street, 37/11<br>977 87</p>
+            @if ($user->address)
+                <p>
+                    {{ $user->address->city }}, {{ $user->address->country }} <br>
+                    {{ $user->address->address }}<br>
+                    {{ $user->address->postal_code }}
+                </p>
+            @else
+                <p>Address not set: tap edit to set default address</p>
+            @endif
+            
+
+            @include('partials.contact-edit-modal')
             <div class="profile-info-title">
                 <h5>Contact</h5>
-                <a href="#">edit</a>
+                <button class="edit-address-btn" onclick="openContactEditModal()">edit</button>
             </div>
             <div class="contact-info">
-                <h6>Phone</h6>
-                <p>+421 123 456 789</p>
-                <h6>Email</h6>
-                <p>myemail@mail.com</p>
+                <p><b>Phone</b></p>
+                @if($user->phone_number)
+                    <p>
+                        {{ $user->phone_number ?? 'unset' }}
+                    </p>
+                @else
+                    <p class="name-placeholder">Phone number not set</p>
+            @endif
+            @if($user->email)
+                <p><b>Email</b></p>
+                <p>{{ $user->email }}</p>
+            @endif
             </div>
 
         </div>
 
         <div class="account-summary">
-            <h2>Hello, František!</h2>
+            <h2>Hello{{ ", " . explode(" ", $user->name)[0] }}</h2>
             <div class="summary">
-                <div class="box">Member for <strong>8 months</strong></div>
+                <div class="box">Member for <strong>{{ $memberSince }} months</strong></div>
                 <div class="box">Ordered <strong>3 times</strong></div>
                 <div class="box">Last order <strong>2 days ago</strong></div>
                 <div class="box">Something <strong>28 days ago</strong></div>
@@ -110,7 +132,7 @@
 
             <div class="last-orders-title">
                 <h3>Last Orders</h3>
-                <a href="orders.html">View all</a>
+                <a href="/profile/orders">View all</a>
             </div>
 
             <div class="orders">
@@ -128,3 +150,6 @@
     </div>
 </main>
 @endsection
+@push('scripts')
+    <script src="{{ asset('js/editingModals.js') }}"></script>
+@endpush
