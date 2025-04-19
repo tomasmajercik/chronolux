@@ -2,7 +2,11 @@
     <div class="item-name-info">
     <img class="cart-item-img" src="{{ asset($image) }}" alt="{{ $title }}" width="100" height="100">
         <div class="name-remove-fav">
-            <h2>{{ $title }}</h2>
+            <h2> 
+                <a href="{{ route('product.detail', ['id' => $productId]) }}">
+                    {{ $title }}
+                </a>
+            </h2>
             <div class="remove-fav">
                 <form method="POST" action="{{ route('cart.remove', ['order_item_id' => $itemId]) }}">
                     @csrf

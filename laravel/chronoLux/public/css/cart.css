@@ -83,6 +83,17 @@ main{
     justify-content: center;
     flex-direction: column;
 }
+.name-remove-fav h2
+{
+    margin-left: 20px;
+}
+.name-remove-fav h2 a{
+    text-decoration: none;
+    color: #000;
+}
+.name-remove-fav h2 a:hover{
+    color: #3e3e3e;
+}
 .name-remove-fav button
 {
     display: flex;
