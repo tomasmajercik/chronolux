@@ -13,16 +13,16 @@ main {
 
 .settings-container ul li{
     list-style: none;
-    padding: 20px 0;
     border-bottom: 1px solid #d1d1d1;
 }
 
 .settings-container ul li a{
     display: flex;
-    text-decoration: none;
-    color: inherit;
     justify-content: space-between;
     align-items: center;
+
+    text-decoration: none;
+    color: inherit;
     margin-left: 5px;
     cursor: pointer;
 }
@@ -38,6 +38,42 @@ main {
 .settings-container ul li:hover{
     background-color: #f9f9f9;
 }
+
+
+ul li form
+{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/************************* edits *************************/
+.logout-wrapper
+{
+    padding: 20px 0;
+    cursor: pointer;
+}
+.hidden
+{
+    display: none;
+    background-color: red;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+.setting-link
+{
+    padding: 20px 0;
+    cursor: pointer;
+}
+.arrow {
+    transition: transform 0.3s ease;
+}
+
+.setting-link.active .arrow {
+    transform: rotate(90deg);
+}
+
 
 /************************* MEDIA *************************/
 
