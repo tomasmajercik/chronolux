@@ -39,6 +39,7 @@
     font-size: 18px;
     color: red;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .sidebar ul li.active a{

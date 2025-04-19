@@ -51,7 +51,35 @@
         <div class="profile-info">
             <div class="center">
                 <img src="../IMGs/person.jpeg" alt="Profile Picture" class="profile-pic">
-                <h3 class="profile-name">František Hraško</h3>
+                <div class="profile-info-name">
+                    
+                    @if (isset($isEditingName) && $isEditingName)
+                        <form action="/profile/update-name" method="POST" class="edit-name-form">
+                            @csrf
+                            <input type="text" name="name" class="name-input" value="{{ $user->name ?? '' }}" placeholder="{{ $user->name ?? 'Name Surname' }}">
+                            <button type="button" class="abort-edit" onclick="window.location.href='{{ route('profile') }}'">Zrušiť</button>
+                            <button type="submit" class="apply-edit">Uložiť</button>
+                        </form>
+                    @else
+                        <h3 class="profile-name">
+                            @if ($user->name)
+                                {{ $user->name }}
+                            @else
+                                <span class="name-placeholder">Name Surname</span>
+                            @endif
+                        </h3>
+                        <form action="{{ route('profile.edit-name') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="pencil">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 36 36" fill="none">
+                                    <path d="M20.5498 13.1542L21.9237 14.5281L8.65256 27.77H7.30791V26.4253L20.5498 13.1542ZM25.8114 4.38477C25.446 4.38477 25.066 4.53092 24.7883 4.80862L22.1137 7.4833L27.5946 12.9642L30.2692 10.2895C30.8393 9.71951 30.8393 8.76949 30.2692 8.22871L26.8492 4.80862C26.5568 4.51631 26.1915 4.38477 25.8114 4.38477ZM20.5498 9.04719L4.38477 25.2122V30.6931H9.86567L26.0307 14.5281L20.5498 9.04719Z" fill="black"/>
+                                </svg>
+                            </button>
+                        </form>
+                        
+                    
+                    @endif
+                </div>
             </div>
             <div class="profile-info-title">
                 <h5>Shipping Adress</h5>

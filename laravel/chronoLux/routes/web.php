@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
@@ -38,10 +39,16 @@ Route::get('/auth', function () {
     return view('auth');
 });
 
-Route::get('/profile', function () {
-    return view('profile'); 
-})->name('profile')->middleware('auth');
+Route::get('/products/{category_name}', [ProductController::class, 'showByCategory'])->name('products.byCategory');
 
+
+//**** Protected Routes ****//
+// Route::get('/profile', function () {
+//     return view('profile'); 
+// })->name('profile')->middleware('auth');
+Route::get('/profile', [ProfileController::class, 'show'])
+    ->name('profile')
+    ->middleware('auth');
 
 Route::get('/profile/orders', function () {
     return view('orders');
@@ -51,9 +58,13 @@ Route::get('/profile/settings', function () {
     return view('settings');
 })->middleware('auth');
 
-Route::get('/products/{category_name}', [ProductController::class, 'showByCategory'])->name('products.byCategory');
+//**** Edit name Routes ****//
+Route::post('/profile/edit-name', [ProfileController::class, 'editName'])->middleware('auth')->name('profile.edit-name');
+Route::post('/profile/update-name', [ProfileController::class, 'updateName'])->middleware('auth');
+//****                  ****//
+//****                ****//
 
-// Authentication Routes
+//**** Authentication Routes ****//
 Route::get('/login', function () {
     return view('auth');
 })->name('login');
@@ -67,7 +78,8 @@ Route::get('/register', function () {
 Route::post('/register', [RegisteredUserController::class, 'store'])->name('register');
 Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login');
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
-//--//
+//****                       ****//
+
 
 Route::get('/products/{category_name?}', [ProductController::class, 'showByCategory'])->name('products.byCategory');
 Route::get('/product-detail/{id}', [ProductController::class, 'showProductDetail'])->name('product.detail');

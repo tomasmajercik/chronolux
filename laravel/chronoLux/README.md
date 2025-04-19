@@ -57,3 +57,8 @@ php artisan db:seed
 
 - tento trapny use chybal `use Illuminate\Http\RedirectResponse;`
 
+# seeder
+- php artisan make:seeder <name>
+- a pridas ho do databaseSeeder.php (to $this)
+- ifexists
+- php artisan db:seed
