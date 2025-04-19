@@ -6,21 +6,24 @@ function showSearch()
     input.focus();
 }
 
-const inputFind = document.getElementById("finder-input");
-
-inputFind.addEventListener('keydown', function(event) {
-    if (event.key === 'Enter') {
-        const query = inputFind.value.trim();
-
-        if (query !== '') {
-            const currentPath = window.location.pathname;
-            const params = new URLSearchParams(window.location.search);
-            params.set('search', query);
-
-            window.location.href = '/products?' + params.toString();
+function handleSearchInput(inputElement) {
+    inputElement.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            const query = inputElement.value.trim();
+            if (query !== '') {
+                const params = new URLSearchParams(window.location.search);
+                params.set('search', query);
+                window.location.href = '/products?' + params.toString();
+            }
         }
-    }
-});
+    });
+}
+
+const inputFindDesktop = document.getElementById("finder-input");
+const inputFindMobile = document.getElementById("finder-input-mobile");
+
+if (inputFindDesktop) handleSearchInput(inputFindDesktop);
+if (inputFindMobile) handleSearchInput(inputFindMobile);
 
 function clearSearch() {
     const params = new URLSearchParams(window.location.search);
