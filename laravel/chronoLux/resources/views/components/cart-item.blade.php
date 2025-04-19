@@ -27,9 +27,9 @@
     <div class="info-holder">
         <h4>{{ $size }}</h4>
         <div class="amount-holder">
-            <button>-</button>
-            <p class="ammount-indicator">{{ $amount }}</p>
-            <button>+</button>
+            <button class="decrease-btn">-</button>
+            <p class="amount-indicator">{{ $amount }}</p>
+            <button class="increase-btn">+</button>
         </div>
         <h4>{{ $price }}€</h4>
     </div>

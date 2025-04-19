@@ -10,11 +10,18 @@ class cartSummary extends Component
 {
     public $buttonMessage;
     public $buttonUrl;
+    public $totalProducts;
+    public $shipping;
+    public $total;
 
-    public function __construct($buttonMessage, $buttonUrl)
+
+    public function __construct($buttonMessage, $buttonUrl, $totalProducts, $shipping, $total)
     {
         $this->buttonMessage = $buttonMessage;
         $this->buttonUrl = $buttonUrl;
+        $this->totalProducts = $totalProducts;
+        $this->shipping = $shipping;
+        $this->total = $total;
     }
 
     /**
