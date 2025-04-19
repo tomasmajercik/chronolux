@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CartController;
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
@@ -51,7 +52,12 @@ Route::get('/profile/settings', function () {
     return view('settings');
 })->middleware('auth');
 
-Route::get('/products/{category_name}', [ProductController::class, 'showByCategory'])->name('products.byCategory');
+
+//Cart Routes
+Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+Route::get('/cart', [CartController::class, 'show'])->name('cart.show');
+Route::put('/cart/update/{order_item_id}', [CartController::class, 'update'])->name('cart.update');
+Route::delete('/cart/remove/{order_item_id}', [CartController::class, 'remove'])->name('cart.remove');
 
 // Authentication Routes
 Route::get('/login', function () {

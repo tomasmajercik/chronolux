@@ -6,15 +6,22 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class cartSummary extends Component
+class CartSummary extends Component
 {
     public $buttonMessage;
     public $buttonUrl;
+    public $totalProducts;
+    public $shipping;
+    public $total;
 
-    public function __construct($buttonMessage, $buttonUrl)
+
+    public function __construct($buttonMessage, $buttonUrl, $totalProducts, $shipping, $total)
     {
         $this->buttonMessage = $buttonMessage;
         $this->buttonUrl = $buttonUrl;
+        $this->totalProducts = $totalProducts;
+        $this->shipping = $shipping;
+        $this->total = $total;
     }
 
     /**

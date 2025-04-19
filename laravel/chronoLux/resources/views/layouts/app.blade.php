@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ asset('css/header.css') }}">
     <!-- Footer CSS -->
     <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/successModal.css') }}">
     <!-- Extra CSS pre konkrétne stránky -->
     @stack('styles')
 </head>

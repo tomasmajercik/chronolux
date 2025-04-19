@@ -84,3 +84,35 @@ function toggleLink() {
 }
 
 // end of code built with help of Chat GPT
+
+// Success Modal
+function closeSuccessModal() {
+  const modal = document.getElementById('success-modal');
+  if (modal) {
+      modal.style.display = 'none';
+  }
+}
+
+// Optional auto-close after 3 seconds
+setTimeout(() => {
+  closeSuccessModal();
+}, 3000);
+
+// Handle size selection
+document.querySelectorAll('.size-btn').forEach(button => {
+    button.addEventListener('click', function () {
+        // Remove active class from all
+        document.querySelectorAll('.size-btn').forEach(btn => btn.classList.remove('selected'));
+        // Add active class to clicked one
+        this.classList.add('selected');
+        // Update hidden input value
+        document.getElementById('selected-variant-id').value = this.dataset.id;
+    });
+});
+
+// Set default selected button (first one)
+const firstSizeBtn = document.querySelector('.size-btn');
+if (firstSizeBtn) {
+    firstSizeBtn.classList.add('selected');
+    document.getElementById('selected-variant-id').value = firstSizeBtn.dataset.id;
+} // This ensures that the first button is selected by default and also behaves like clicked

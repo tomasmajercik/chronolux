@@ -43,8 +43,12 @@
 
                 <div class="product-sizes">
                     <h5>Sizes</h5>
-                    @foreach($product->variants as $variant)
-                        <button>{{ $variant->size }}</button>
+                    @foreach($product->variants->sortBy('size') as $variant)
+                        <button type="button" 
+                                class="size-btn" 
+                                data-id="{{ $variant->id }}">
+                            {{ $variant->size }}
+                        </button>
                     @endforeach
                 </div>
 
@@ -65,7 +69,12 @@
                 </div>
 
                 <div class="product-buttons">
-                    <button>Add to Cart</button>
+                    <form action="{{ route('cart.add') }}" method="POST" id="add-to-cart-form">
+                        @csrf
+                        <input type="hidden" name="quantity" id="product-quantity" value="1">
+                        <input type="hidden" name="variant_id" id="selected-variant-id" value="{{ $product->variants->first()->id }}">
+                        <button type="submit">Add to Cart</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -77,6 +86,15 @@
             <span class="next" onclick="changeImage(1, event)">&#10095;</span>
         </div>
     </section>
+    @if (session('success'))
+        <div id="success-modal" class="modal-message">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeSuccessModal()">&times;</span>
+                <p>{{ session('success') }}</p>
+                <a href="{{ route('cart.show') }}" class="view-cart-btn">View Cart</a>
+            </div>
+        </div>
+    @endif
 </main>
 @endsection
 @push('scripts')
@@ -87,6 +105,7 @@
         quantity += amount;
         if (quantity < 1) quantity = 1;
         document.getElementById('quantity').textContent = quantity;
+        document.getElementById('product-quantity').value = quantity; // Update the hidden input
     }
 </script>
 <script src="{{ asset('js/imageModal.js') }}"></script>

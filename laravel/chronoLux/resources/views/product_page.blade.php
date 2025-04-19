@@ -4,6 +4,7 @@
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/product_page.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/product-detail-modal.css') }}">
 @endpush
 
 @section('header-slot')
@@ -36,6 +37,7 @@
         <!-- MODAL FOR SORT -->
         @include('partials.sort-modal')
 
+    
         <!-- Products -->
         <div class="product-grid">
             @if($productCount == 0)
@@ -48,6 +50,7 @@
                     :title="$product->name"
                     :reviews="'2k reviews'"
                     :price="$product->price"
+                    :product="$product"
                 />
             @endforeach
         </div>

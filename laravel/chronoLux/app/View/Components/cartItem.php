@@ -6,17 +6,18 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class cartItem extends Component
+class CartItem extends Component
 {
-    public $title, $price, $image, $size, $amount;
+    public $title, $price, $image, $size, $amount, $itemId;
 
-    public function __construct($title, $price, $image, $size, $amount)
+    public function __construct($title, $price, $image, $size, $amount, $itemId)
     {
         $this->title = $title;
         $this->price = $price;
         $this->image = $image;
         $this->size = $size;
         $this->amount = $amount;
+        $this->itemId = $itemId;
     }
 
     /**

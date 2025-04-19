@@ -4,18 +4,19 @@
     <div class="total-products">
         <div>
             <h5>Total products:</h5>
-            <p>8 610€</p>
+            <p>{{ number_format($totalProducts, 2, ',', ' ') }}€</p>
         </div>
         <div>
             <h5>Shipping:</h5>
-            <p>5.80€</p>
+            <p>{{ number_format($shipping, 2, ',', ' ') }}€</p>
         </div>
     </div>
 
     <div class="total-total-price">
         <h3>Total:</h3>
-        <p>8615.80€</p>
+        <p>{{ number_format($total, 2, ',', ' ') }}€</p>
     </div>
-    <button class="checkoutBTN" onclick="window.location.href='{{ $buttonUrl }}'"> {{ $buttonMessage }} </button>
-
+    <button class="checkoutBTN" onclick="window.location.href='{{ $buttonUrl }}'">
+        {{ $buttonMessage }}
+    </button>
 </div>

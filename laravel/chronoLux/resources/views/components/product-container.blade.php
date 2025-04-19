@@ -10,6 +10,6 @@
             <span class="review-count">{{ $reviews }}</span>
         </div>
         <span class="price">{{ number_format($price, 2) }}€</span>
-        <button class="add-to-cart">Add to cart</button>
+        <button class="add-to-cart" onclick="window.location.href='{{ $url }}'">View Product</button>
     </div>
 </div>
