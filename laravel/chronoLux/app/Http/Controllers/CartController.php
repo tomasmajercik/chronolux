@@ -53,7 +53,11 @@ class CartController extends Controller
     {
         if (Auth::check()) {
             $order = Order::where('user_id', Auth::id())->where('status', 'pending')->with('items.variant.product')->first();
-            $items = $order ? $order->items : collect();
+            if ($order) {
+                $items = $order->items->sortBy('id');  
+            } else {
+                $items = collect();
+            }
         } else {
             $cart = session('cart', []);
             $items = collect($cart)->map(function ($item) {

@@ -8,9 +8,9 @@ use Illuminate\View\Component;
 
 class CartItem extends Component
 {
-    public $title, $price, $image, $size, $amount, $itemId;
+    public $title, $price, $image, $size, $amount, $itemId, $productId;
 
-    public function __construct($title, $price, $image, $size, $amount, $itemId)
+    public function __construct($title, $price, $image, $size, $amount, $itemId, $productId)
     {
         $this->title = $title;
         $this->price = $price;
@@ -18,6 +18,7 @@ class CartItem extends Component
         $this->size = $size;
         $this->amount = $amount;
         $this->itemId = $itemId;
+        $this->productId = $productId;
     }
 
     /**
