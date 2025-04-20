@@ -11,7 +11,7 @@
 <main>
     <x-sidebar :active="'settings'" />
     <div class="settings">
-        <h1>Settings</h1>
+        <h1 class="settings-heading">Settings</h1>
         <div class="settings-container">
             <ul>
                 <li>

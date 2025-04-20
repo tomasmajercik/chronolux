@@ -141,12 +141,16 @@ ul li form
 /************************* MEDIA *************************/
 
 @media (max-width: 1000px) {
-    .settings h1{
-        margin: 18px 0 10px 75px;
-    }    
-
     main{
-        grid-template-columns: 1fr;
+        /* grid-template-columns: 1fr; */
+        height: 100px;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+    }
+    .settings
+    {
+        margin-top: 40px;
     }
 
 }
