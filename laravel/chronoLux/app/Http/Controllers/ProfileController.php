@@ -18,7 +18,7 @@ class ProfileController extends Controller
         $memberSince = $user->created_at->diffInMonths(now());
         $orderCount = $user->orders()->count();
         $lastOrder = $user->orders()->latest()->first();
-        $lastOrderDaysAgo = $lastOrder ? $lastOrder->created_at->diffInDays(now()) : null;
+        $lastOrderDaysAgo = optional($lastOrder?->created_at)->diffInDays(now());
         $moneySpent = $user->orders()->sum('total_price');
         // $orders = $user->orders()->with('orderItems')->latest()->get();
 
@@ -26,7 +26,7 @@ class ProfileController extends Controller
             'user' => $user,
             'memberSince' => floor($memberSince),
             'orderCount' => $orderCount,
-            'lastOrderDaysAgo' => floor($lastOrderDaysAgo),
+            'lastOrderDaysAgo' => $lastOrderDaysAgo !== null ? floor($lastOrderDaysAgo) : null,
             'moneySpent' => $moneySpent,
             'lastOrder' => $lastOrder,
             // 'orders' => $orders,

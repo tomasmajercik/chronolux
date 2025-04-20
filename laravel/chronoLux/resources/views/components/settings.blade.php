@@ -121,7 +121,7 @@
             },
             success: function(response) {
                 $('#password-success').text(response.message || 'Password successfully updated.');
-                {{-- $('#edit-password-form :input').prop('disabled', true); --}}
+                $('#edit-password-form :input').prop('disabled', true);
                 
                 let countdown = 6; // 5 seconds countdown
                 const interval = setInterval(() => {
