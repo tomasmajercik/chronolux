@@ -36,15 +36,3 @@
     </div>
 </main>
 @endsection
-
-@push('scripts')
-<script>
-    function showHidden(event) {
-        event.preventDefault();
-        const wrapper = event.currentTarget;
-        const hiddenDiv = wrapper.querySelector('.hidden-content');
-        hiddenDiv.classList.toggle('hidden');
-        wrapper.classList.toggle('active'); // rotate arrow
-    }
-</script>
-@endpush

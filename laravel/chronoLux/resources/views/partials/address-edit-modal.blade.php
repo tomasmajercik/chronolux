@@ -11,7 +11,7 @@
         <label for="postal_code">Postal Code:</label>
         <input type="text" name="postal_code" value="{{ $user->address->postal_code ?? '' }}" placeholder="{{ $user->address->postal_code ?? 'Postal Code' }}">
 
-        <button type="button" class="address-abort-edit" onclick="window.location.href='{{ route('profile') }}'">Zrušiť</button>
-        <button type="submit" class="address-apply-edit">Uložiť</button>
+        <button type="button" class="address-abort-edit" onclick="window.location.href='{{ route('profile') }}'">Cancel</button>
+        <button type="submit" class="address-apply-edit">Save</button>
     </form>
 </div>

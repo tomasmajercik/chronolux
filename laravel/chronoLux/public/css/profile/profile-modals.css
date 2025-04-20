@@ -37,7 +37,8 @@
 {
     margin-left: 10px;
 }
-.address-apply-edit, .address-abort-edit {
+.address-apply-edit, .address-abort-edit 
+{
     background-color: #3b6048;
     color: white;
     border: none;

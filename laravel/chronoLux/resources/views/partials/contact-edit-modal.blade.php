@@ -7,7 +7,7 @@
         <label for="email">Email:</label>
         <input type="text" name="email" value="{{ $user->email ?? '' }}" placeholder="{{ $user->email ?? 'Email' }}">
 
-        <button type="button" class="address-abort-edit" onclick="window.location.href='{{ route('profile') }}'">Zrušiť</button>
-        <button type="submit" class="address-apply-edit">Uložiť</button>
+        <button type="button" class="address-abort-edit" onclick="window.location.href='{{ route('profile') }}'">Cancel</button>
+        <button type="submit" class="address-apply-edit">Save</button>
     </form>
 </div>

@@ -52,8 +52,8 @@ Route::get('/profile/orders', function () {
 })->middleware('auth');
 
 Route::get('/profile/settings', function () {
-    return view('settings');
-})->middleware('auth');
+    return view('settings', ['user' => Auth::user()]);
+})->middleware('auth')->name('profile.settings');;
 //****                  ****//
 
 //**** Edit name Routes ****//
@@ -64,6 +64,11 @@ Route::post('/profile/update-name', [ProfileController::class, 'updateName'])->m
 Route::post('/profile/update-address', [ProfileController::class, 'updateAddress'])->middleware('auth')->name('profile.update-address');
 Route::post('/profile/update-contact', [ProfileController::class, 'updateContact'])->middleware('auth')->name('profile.update-contact');
 
+//**** Settings Routes ****//
+Route::middleware('auth')->group(function() {
+    Route::post('/profile/settings/update-email', [ProfileController::class, 'updateEmail'])->name('profile.update-email');
+    Route::post('/profile/settings/update-password', [ProfileController::class, 'updatePassword'])->name('profile.update-password');
+});
 
 //**** Authentication Routes ****//
 Route::get('/login', function () {

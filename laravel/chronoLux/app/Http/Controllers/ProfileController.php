@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 use App\Models\Address;
 
@@ -134,7 +135,52 @@ class ProfileController extends Controller
         } catch (\Exeption $e) {
             return redirect()->route('profile')->withErrors(['email' => 'An error occurred while updating contact information.']);
         }
-
-
     }   
+    public function updateEmail(Request $request)
+    {
+        $user = Auth::user();
+    
+        $validated = $request->validate([
+            'email' => 'required|string|max:255|email'
+        ]);
+    
+        try {
+            if ($user->email !== $validated['email']) 
+            {
+                if ($user::where('email', $validated['email'])->exists()) {
+                    return response()->json(['errors' => ['email' => ['This email is already taken.']]], 422);
+                }
+            }
+
+            $user->email = $validated['email'];
+            $user->save();
+
+            return response()->json(['message' => 'Email successfully updated.']);
+        } catch (\Exeption $e) {
+            return response()->json(['errors' => ['email' => ['An error occurred while updating email.']]], 500);
+        }
+    }
+    public function updatePassword(Request $request)
+    {
+        $user = Auth::user();
+
+        $validated = $request->validate([
+            'current_password' => 'required|string',
+            'new_password' => 'required|string|min:8|confirmed',
+        ]);
+
+        if (!Hash::check($validated['current_password'], $user->password)) {
+            return response()->json(['errors' => ['current_password' => ['The current password is incorrect.']]], 422);
+        }
+
+        try {
+            $user->password = Hash::make($validated['new_password']);
+            $user->save();
+
+            return response()->json(['message' => 'Password successfully updated.']);
+        } catch (\Exception $e) {
+            return response()->json(['errors' => ['password' => ['An error occurred while updating your password.']]], 500);
+        }
+
+    }
 }
