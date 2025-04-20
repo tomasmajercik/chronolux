@@ -22,6 +22,14 @@ class ProductController extends Controller
             $products = Product::query();
         }
 
+        if ($request->filled('search')) {
+            $search = trim($request->search);
+            $products->where(function ($query) use ($search) {
+                $query->whereRaw('LOWER(name) LIKE ?', ['%' . strtolower($search) . '%'])
+                      ->orWhereRaw('LOWER(description) LIKE ?', ['%' . strtolower($search) . '%']);
+            });
+        }
+
         // Filter by brand (if provided)
         if ($request->filled('brand') && $request->brand != 'all') {
             $products->whereHas('brand', function ($query) use ($request) {

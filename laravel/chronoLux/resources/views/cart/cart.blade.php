@@ -13,41 +13,40 @@
         <h1 class="title">My Cart</h1>
         <div class="cart-wrapper">
 
-            <!-- Cart header -->
-            <div class="cart-overview-container">
-                <div class="cart-header">
-                    <h3>Product</h3>
-                    <div class="inline">
-                        <h4>Size</h4>
-                        <h4>Amount</h4>
-                        <h4>Price</h4>
-                    </div>
+        <!-- Cart header -->
+        <div class="cart-overview-container">
+            @forelse ($items as $item)
+                @php
+                    $itemId = Auth::check() ? $item->id : $item->variant->id; //assign the item id based on the authentication status
+                @endphp
+                <x-cart-item
+                    title="{{ $item->variant->product->name }}"
+                    image="{{ asset($item->variant->product->coverImage->image_path) }}"
+                    price="{{ number_format($item->variant->product->price, 2) }}"
+                    size="{{ $item->variant->size }}"
+                    amount="{{ $item->quantity }}"
+                    itemId="{{ $itemId }}"
+                    productId="{{ $item->variant->product->id }}"
+                />
+            @empty
+                <div class="empty">
+                    <p>Your shopping cart is empty.</p>
+                    <a href="{{ route('products.byCategory') }}" class="button">Start Shopping</a>
                 </div>
-
-                <x-cart-item
-                    title="Tissot chrono XL"
-                    image="./IMGs/watch-tissot.jpg"
-                    price="1070.00"
-                    size="43mm"
-                    amount="1"
-                />
-                <x-cart-item
-                    title="OMEGA Seamaster"
-                    image="./IMGs/rolex-sm.jpg"
-                    price="7540.00"
-                    size="43mm"
-                    amount="1"
-                />
-
-            </div>
-            <!-- Summary -->
-            <x-cart-summary 
-                button-message="Checkout" 
-                button-url="/checkout" 
-            />
-
+            @endforelse
 
         </div>
+
+        <!-- Summary -->
+        @if (count($items) > 0)
+            <x-cart-summary 
+                button_message="Checkout" 
+                button_url="/checkout" 
+                :total_products="$totalProducts"
+                :shipping="$shipping"
+                :total="$total"
+            />
+        @endif
     </section>
 </main>
 @endsection

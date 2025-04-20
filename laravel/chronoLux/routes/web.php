@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CartController;
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
@@ -53,7 +54,7 @@ Route::get('/profile/orders', function () {
 
 Route::get('/profile/settings', function () {
     return view('settings', ['user' => Auth::user()]);
-})->middleware('auth')->name('profile.settings');;
+})->middleware('auth')->name('profile.settings');
 //****                  ****//
 
 //**** Edit name Routes ****//
@@ -69,6 +70,13 @@ Route::middleware('auth')->group(function() {
     Route::post('/profile/settings/update-email', [ProfileController::class, 'updateEmail'])->name('profile.update-email');
     Route::post('/profile/settings/update-password', [ProfileController::class, 'updatePassword'])->name('profile.update-password');
 });
+
+
+//Cart Routes
+Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+Route::get('/cart', [CartController::class, 'show'])->name('cart.show');
+Route::put('/cart/update/{order_item_id}', [CartController::class, 'update'])->name('cart.update');
+Route::delete('/cart/remove/{order_item_id}', [CartController::class, 'remove'])->name('cart.remove');
 
 //**** Authentication Routes ****//
 Route::get('/login', function () {

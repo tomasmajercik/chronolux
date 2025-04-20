@@ -197,6 +197,13 @@ main
     font-size: 35px;
 }
 
+/************************* Size Buttons *************************/
+.size-btn.selected {
+    background-color: #222;
+    color: #fff;
+    border: 2px solid #000;
+}
+
 /************************* MEDIA *************************/
 @media (max-width: 768px) {
     .product {

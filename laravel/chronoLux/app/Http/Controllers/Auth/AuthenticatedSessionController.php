@@ -7,6 +7,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\CartController;
 
 use Illuminate\Http\RedirectResponse;
 
@@ -24,6 +25,7 @@ class AuthenticatedSessionController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
+            (new CartController)->transferSessionCart();
             // Return success with redirection URL
             return response()->json(['success' => true, 'redirect' => route('profile')]);
         }

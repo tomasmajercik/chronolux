@@ -4,11 +4,18 @@
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/product_page.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/product-detail-modal.css') }}">
 @endpush
 
 @section('header-slot')
     <div class="lower-header">
         <h1 class="category-title">{{$category_name}}</h1>
+        @if(request()->has('search'))
+            <div class="search-query">
+                Results for "<strong>{{ request('search') }}</strong>"
+                <button onclick="clearSearch()" class="clear-search" title="Clear search">✕</button>
+            </div>
+        @endif
     </div>
 @endsection
 
@@ -30,6 +37,7 @@
         <!-- MODAL FOR SORT -->
         @include('partials.sort-modal')
 
+    
         <!-- Products -->
         <div class="product-grid">
             @if($productCount == 0)
@@ -42,6 +50,7 @@
                     :title="$product->name"
                     :reviews="'2k reviews'"
                     :price="$product->price"
+                    :product="$product"
                 />
             @endforeach
         </div>
