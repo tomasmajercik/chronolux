@@ -13,16 +13,16 @@ main {
 
 .settings-container ul li{
     list-style: none;
-    padding: 20px 0;
     border-bottom: 1px solid #d1d1d1;
 }
 
 .settings-container ul li a{
     display: flex;
-    text-decoration: none;
-    color: inherit;
     justify-content: space-between;
     align-items: center;
+
+    text-decoration: none;
+    color: inherit;
     margin-left: 5px;
     cursor: pointer;
 }
@@ -39,15 +39,118 @@ main {
     background-color: #f9f9f9;
 }
 
+
+ul li form
+{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/************************* edits *************************/
+.logout-wrapper
+{
+    padding: 20px 0;
+}
+.logout-wrapper a
+{
+    cursor: pointer;
+}
+.hidden
+{
+    display: none;
+    background-color: red;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+.setting-link
+{
+    padding: 20px 0;
+    cursor: pointer;
+}
+.arrow {
+    transition: transform 0.3s ease;
+}
+
+.setting-link.active .arrow {
+    transform: rotate(90deg);
+}
+
+/************************* Edit email *************************/
+.edit-form
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 300px;
+    gap: 10px;
+    background-color: #eee;
+    border-radius: 20px;
+    padding: 20px;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+.edit-form input
+{
+    grid-column: 1/3;
+    cursor: pointer;
+    width: 90%; 
+    height: 30px;
+    border: 1px solid rgb(188, 188, 188);
+    border-radius: 10px;
+    margin: 5px 0;
+    padding: 0 10px;
+    margin: 0 auto;
+}
+.apply-edit, .abort-edit {
+    background-color: #3b6048;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin: 5px 2px 0 2px;
+    padding: 15px 25px;
+    border-radius: 20px;
+}
+.abort-edit
+{
+    background-color: #f24f4f;
+}
+.error
+{
+    color: red;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+.success
+{
+    color: green;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+.note
+{
+    color: rgb(50, 50, 168);
+    margin-top: 10px;
+    margin-left: 20px;
+}
+#edit-password-form label
+{
+    grid-column: 1 / 3;
+}
+
 /************************* MEDIA *************************/
 
 @media (max-width: 1000px) {
-    .settings h1{
-        margin: 18px 0 10px 75px;
-    }    
-
     main{
-        grid-template-columns: 1fr;
+        /* grid-template-columns: 1fr; */
+        height: 100px;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+    }
+    .settings
+    {
+        margin-top: 40px;
     }
 
 }

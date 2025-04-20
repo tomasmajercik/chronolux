@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CartController;
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
@@ -39,18 +40,36 @@ Route::get('/auth', function () {
     return view('auth');
 });
 
-Route::get('/profile', function () {
-    return view('profile'); 
-})->name('profile')->middleware('auth');
+Route::get('/products/{category_name}', [ProductController::class, 'showByCategory'])->name('products.byCategory');
 
+
+//**** Protected Routes ****//
+Route::get('/profile', [ProfileController::class, 'show'])
+    ->name('profile')
+    ->middleware('auth');
 
 Route::get('/profile/orders', function () {
     return view('orders');
 })->middleware('auth');
 
 Route::get('/profile/settings', function () {
-    return view('settings');
-})->middleware('auth');
+    return view('settings', ['user' => Auth::user()]);
+})->middleware('auth')->name('profile.settings');
+//****                  ****//
+
+//**** Edit name Routes ****//
+Route::post('/profile/edit-name', [ProfileController::class, 'editName'])->middleware('auth')->name('profile.edit-name');
+Route::post('/profile/update-name', [ProfileController::class, 'updateName'])->middleware('auth');
+//****                ****//
+//**** Edit address Routes ****//
+Route::post('/profile/update-address', [ProfileController::class, 'updateAddress'])->middleware('auth')->name('profile.update-address');
+Route::post('/profile/update-contact', [ProfileController::class, 'updateContact'])->middleware('auth')->name('profile.update-contact');
+
+//**** Settings Routes ****//
+Route::middleware('auth')->group(function() {
+    Route::post('/profile/settings/update-email', [ProfileController::class, 'updateEmail'])->name('profile.update-email');
+    Route::post('/profile/settings/update-password', [ProfileController::class, 'updatePassword'])->name('profile.update-password');
+});
 
 
 //Cart Routes
@@ -59,7 +78,7 @@ Route::get('/cart', [CartController::class, 'show'])->name('cart.show');
 Route::put('/cart/update/{order_item_id}', [CartController::class, 'update'])->name('cart.update');
 Route::delete('/cart/remove/{order_item_id}', [CartController::class, 'remove'])->name('cart.remove');
 
-// Authentication Routes
+//**** Authentication Routes ****//
 Route::get('/login', function () {
     return view('auth');
 })->name('login');
@@ -73,7 +92,8 @@ Route::get('/register', function () {
 Route::post('/register', [RegisteredUserController::class, 'store'])->name('register');
 Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login');
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
-//--//
+//****                       ****//
+
 
 Route::get('/products/{category_name?}', [ProductController::class, 'showByCategory'])->name('products.byCategory');
 Route::get('/product-detail/{id}', [ProductController::class, 'showProductDetail'])->name('product.detail');
