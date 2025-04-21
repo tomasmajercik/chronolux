@@ -62,14 +62,14 @@
                         <h3>Delivery Method</h3>
 
                         <div class="delivery-inputs">
-                            <input type="radio" id="standard" name="delivery" value="Standard" checked>
-                            <label for="standard">Packeta</label><br>
+                            <input type="radio" id="packeta" name="delivery" value="Packeta" checked>
+                            <label for="packeta">Packeta</label><br>
 
-                            <input type="radio" id="express" name="delivery" value="Express">
-                            <label for="express">DPD</label><br>
+                            <input type="radio" id="dpd" name="delivery" value="DPD">
+                            <label for="dpd">DPD</label><br>
 
-                            <input type="radio" id="pickup" name="delivery" value="Pickup">
-                            <label for="pickup">Slovenská pošta</label><br>
+                            <input type="radio" id="posta" name="delivery" value="Slovenská pošta">
+                            <label for="posta">Slovenská pošta</label><br>
                         </div>
                     </div>
                     

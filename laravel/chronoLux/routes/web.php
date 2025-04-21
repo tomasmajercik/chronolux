@@ -76,17 +76,17 @@ Route::middleware('auth')->group(function() {
 
 
 //Cart Routes
+Route::get('/cart/proceed', function () {
+    return view('cart.proceed');
+})->name('cart.proceed');
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
 Route::get('/cart', [CartController::class, 'show'])->name('cart.show');
 Route::put('/cart/update/{order_item_id}', [CartController::class, 'update'])->name('cart.update');
 Route::delete('/cart/remove/{order_item_id}', [CartController::class, 'remove'])->name('cart.remove');
 Route::get('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
 Route::post('/cart/shipping', [CartController::class, 'add_shipping_info'])->name('cart.shipping');
-// Route::get('/cart/payment', [CartController::class, 'payment'])->name('cart.payment');
-
-Route::get('/cart/payment', function () {
-    return view('cart.payment');
-})->name('cart.payment');
+Route::get('/cart/payment', [CartController::class, 'payment'])->name('cart.payment');
+Route::post('/cart/pay_now', [CartController::class, 'pay_now'])->name('payment.store');
 
 //**** Authentication Routes ****//
 Route::get('/login', function () {

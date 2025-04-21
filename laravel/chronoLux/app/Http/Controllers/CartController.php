@@ -19,7 +19,7 @@ class CartController extends Controller
         if (Auth::check()) {
             $order = Order::firstOrCreate(
                 ['user_id' => Auth::id(), 'status' => 'pending'],
-                ['address_id' => null, 'email' => Auth::user()->email, 'total_price' => 0, 'delivery_price' => 0, 'delivery_method' => 'unknown']
+                ['address_id' => null, 'email' => Auth::user()->email, 'total_price' => 0, 'delivery_price' => 0, 'delivery_method' => 'unknown', 'created_at' => now(), 'updated_at' => now()]
             );
 
             $item = OrderItem::firstOrNew([
@@ -262,8 +262,59 @@ class CartController extends Controller
             'delivery_method' => $validatedData['delivery'],
         ]);
 
-        
-
         return redirect()->route('cart.payment')->with('success', 'Shipping info updated.');
+    }
+
+    public function payment() // need check it is redundant code 
+    {
+        if (Auth::check()) {
+            $order = Order::where('user_id', Auth::id())->where('status', 'pending')->with('items.variant.product')->first();
+            if ($order) {
+                $items = $order->items->sortBy('id');  
+            } else {
+                $items = collect();
+            }
+        } else {
+            $cart = session('cart', []);
+            $items = collect($cart)->map(function ($item) {
+                $variant = ProductVariant::with('product')->find($item['product_variant_id']);
+                return (object)[
+                    'variant' => $variant,
+                    'quantity' => $item['quantity'],
+                ];
+            });
+        }
+
+        $totalProducts = $items->sum(function ($item) {
+            return $item->variant->product->price * $item->quantity;
+        });
+
+        $shipping = 3.50; 
+        $total = $totalProducts + $shipping;
+
+        return view('cart.payment', compact('items', 'totalProducts', 'shipping', 'total'));
+    }
+
+    public function pay_now(Request $request)
+    {
+        if (Auth::check()) {
+            $order = Order::where('user_id', Auth::id())->where('status', 'pending')->first();
+            if ($order) {
+                $order->update([
+                    'status' => "Packing",
+                    'total_price' => $order->items->sum(function ($item) {
+                        return $item->variant->product->price * $item->quantity;
+                    }) + $order->delivery_price,
+                    'delivery_price' => 3.50,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                    'payment_method' => $request->payment_method,
+                ]);
+            }
+        } else {
+            return redirect()->route('cart.checkout')->with('error', 'You need to be logged in to pay.');
+        }
+
+        return redirect()->route('cart.proceed')->with('success', 'Payment successful. Thank you for your order!');
     }
 }
