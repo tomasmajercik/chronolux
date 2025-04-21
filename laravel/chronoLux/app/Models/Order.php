@@ -19,6 +19,7 @@ class Order extends Model
         'status',
         'created_at',
         'updated_at',
+        'payment_method',
     ];
     protected $casts = [
         'created_at' => 'datetime',
@@ -41,10 +42,4 @@ class Order extends Model
     {
         return $this->belongsTo(Address::class);
     }
-
-    public function payment()
-    {
-        return $this->belongsTo(Payment::class);
-    }
-
 }

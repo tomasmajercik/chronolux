@@ -25,11 +25,11 @@
                     </div>
 
                     <!-- First item in cart -->
+                    <form action="{{ route('payment.store') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="payment_method" id="payment_method" value="" required>
                     <div class="form-wrapper">
-                        <form action="{{ route('payment.store') }}" method="POST">
-                            @csrf
-                            <input type="hidden" name="payment_method" value="Apple Pay" />
-                            <button>
+                            <button type="button" class="payment-button" onclick="selectPayment(this, 'Apple Pay')">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="81" height="81" viewBox="0 0 81 81"
                                     fill="none">
                                     <path
@@ -37,11 +37,7 @@
                                         fill="black" />
                                 </svg>
                             </button>
-                        </form>
-                        <form action="{{ route('payment.store') }}" method="POST">
-                            @csrf
-                            <input type="hidden" name="payment_method" value="Google Pay" />
-                            <button>
+                            <button type="button" class="payment-button" onclick="selectPayment(this, 'Google Pay')">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="81" height="81" viewBox="0 0 51 20"
                                     fill="none">
                                     <g clip-path="url(#clip0_2196_780)">
@@ -68,11 +64,7 @@
                                     </defs>
                                 </svg>
                             </button>
-                        </form>
-                        <form action="{{ route('payment.store') }}" method="POST">
-                            @csrf
-                            <input type="hidden" name="payment_method" value="Card" />
-                            <button onclick="toggleCardInfo()">
+                            <button type="button"  class="payment-button" onclick="toggleCardInfo(); selectPayment(this, 'Card');">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="0 0 46 20"
                                     fill="none">
                                     <g clip-path="url(#clip0_2196_780)">
@@ -97,40 +89,52 @@
                                     </g>
                                 </svg>
                             </button>
+                            </div>
+                            <div class="card-info">
+                                <span class="input-field">
+                                    <label>Card Holder Name</label>
+                                    <input type="text" placeholder="Carrot Guy">
+                                </span>
+
+                                <span class="input-field">
+                                    <label>Card Number</label>
+                                    <input type="text" placeholder="4405 7767 1234 1234">
+                                </span>
+
+                                <span class="input-field">
+                                    <label>Expiry Date</label>
+                                    <input type="text" placeholder="06/25">
+                                </span>
+
+                                <span class="input-field">
+                                    <label>CVC</label>
+                                    <input type="text" placeholder="045">
+                                </span>
+                            </div>
                         </div>
-                        <div class="card-info">
-                            <span class="input-field">
-                                <label>Card Holder Name</label>
-                                <input type="text" placeholder="Carrot Guy">
-                            </span>
-
-                            <span class="input-field">
-                                <label>Card Number</label>
-                                <input type="text" placeholder="4405 7767 1234 1234">
-                            </span>
-
-                            <span class="input-field">
-                                <label>Expiry Date</label>
-                                <input type="text" placeholder="06/25">
-                            </span>
-
-                            <span class="input-field">
-                                <label>CVC</label>
-                                <input type="text" placeholder="045">
-                            </span>
-                        </div>
-                    </form>
-                </div>
-                @if (count($items) > 0)
-                    <x-cart-summary 
+                        @if (count($items) > 0)
+                        <x-cart-summary 
                         button_message="Pay Now" 
                         :button_url="null"
                         :total_products="$totalProducts"
                         :shipping="$shipping"
                         :total="$total"
-                    />
-                @endif
-            </div>
+                        />
+                        @endif
+                    </div>
+                </form>
         </section>
 </main>
 @endsection
+@push('scripts')
+<script>
+    function selectPayment(button, paymentMethod) {
+        document.getElementById('payment_method').value = paymentMethod;
+
+        document.querySelectorAll('.payment-button').forEach(btn => {
+            btn.classList.remove('selected');
+        });
+
+        button.classList.add('selected');
+    }
+</script>

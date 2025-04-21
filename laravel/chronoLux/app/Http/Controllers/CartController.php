@@ -297,19 +297,21 @@ class CartController extends Controller
 
     public function pay_now(Request $request)
     {
+        $delivery_price = 3.50; // Default delivery price
         if (Auth::check()) {
             $order = Order::where('user_id', Auth::id())->where('status', 'pending')->first();
             if ($order) {
                 $order->update([
                     'status' => "Packing",
-                    'total_price' => $order->items->sum(function ($item) {
+                    'total_price' => ($order->items->sum(function ($item) {
                         return $item->variant->product->price * $item->quantity;
-                    }) + $order->delivery_price,
-                    'delivery_price' => 3.50,
+                    }) + $delivery_price),
+                    'delivery_price' => $delivery_price,
                     'created_at' => now(),
                     'updated_at' => now(),
                     'payment_method' => $request->payment_method,
                 ]);
+
             }
         } else {
             return redirect()->route('cart.checkout')->with('error', 'You need to be logged in to pay.');

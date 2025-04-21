@@ -22,6 +22,7 @@ return new class extends Migration
             $table->double('total_price')->nullable();
             $table->double('delivery_price')->nullable();
             $table->string('delivery_method')->nullable();
+            $table->string('payment_method')->nullable();
             $table->string('status');
             $table->timestamps();
         });

@@ -240,6 +240,7 @@ label
 {
     display: flex;
     justify-content: space-evenly;
+    gap: 40px;
 }
 .form-wrapper button
 {
@@ -280,6 +281,10 @@ label
 .delivery-inputs input[type="radio"]
 {
     margin-bottom: 10px;
+}
+.payment-button.selected
+{
+    background-color: #3b60484c;
 }
 /************************* MEDIA *************************/
 @media only screen and (max-width: 1187px) 
