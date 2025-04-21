@@ -80,6 +80,7 @@ class ProfileController extends Controller
 
         return view('profile', [
             'user' => $user,
+            'isEditingName' => true,
             'memberSince' => floor($memberSince),
             'orderCount' => $orderCount,
             'lastOrderDaysAgo' => $lastOrderDaysAgo !== null ? floor($lastOrderDaysAgo) : null,
