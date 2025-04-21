@@ -93,6 +93,7 @@
         if (checkbox.checked) {
             @auth
                 document.getElementById('email').value = "{{ $prefill['email'] ?? '' }}";
+                document.getElementById('phone').value = "{{ $prefill['phone'] ?? '' }}";
                 document.getElementById('name').value = "{{ $prefill['name'] ?? '' }}";
                 document.getElementById('surname').value = "{{ $prefill['surname'] ?? '' }}";
                 document.getElementById('address').value = "{{ $prefill['address'] ?? '' }}";
@@ -102,6 +103,7 @@
             @endauth
         } else {
             document.getElementById('email').value = "";
+            document.getElementById('phone').value = "";
             document.getElementById('name').value = "";
             document.getElementById('surname').value = "";
             document.getElementById('address').value = "";

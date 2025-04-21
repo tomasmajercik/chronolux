@@ -177,7 +177,8 @@ class CartController extends Controller
             $fullName = $user->name ?? '';
             $nameParts = explode(' ', $fullName, 2);
             $prefill = [
-                'email' => $user->email,
+                'email' => $user->email ?? '',
+                'phone' => $user->phone_number ?? '',
                 'name' => $nameParts[0] ?? '',
                 'surname' => $nameParts[1] ?? '',
                 'address' => $user->address->address ?? '', 
