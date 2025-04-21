@@ -79,6 +79,7 @@ Route::get('/cart', [CartController::class, 'show'])->name('cart.show');
 Route::put('/cart/update/{order_item_id}', [CartController::class, 'update'])->name('cart.update');
 Route::delete('/cart/remove/{order_item_id}', [CartController::class, 'remove'])->name('cart.remove');
 Route::get('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
+Route::post('/cart/shipping', [CartController::class, 'add_shipping_info'])->name('cart.shipping');
 Route::get('/cart/payment', [CartController::class, 'payment'])->name('cart.payment');
 
 // Route::get('/cart/checkout', function () {

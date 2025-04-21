@@ -16,7 +16,13 @@
         <h3>Total:</h3>
         <p>{{ number_format($total, 2, ',', ' ') }}€</p>
     </div>
-    <button class="checkoutBTN" onclick="window.location.href='{{ $buttonUrl }}'">
-        {{ $buttonMessage }}
-    </button>
+    @if(is_null($buttonUrl))
+        <button class="checkoutBTN" type="submit">
+            {{ $buttonMessage }}
+        </button>
+    @else
+        <button class="checkoutBTN" onclick="window.location.href='{{ $buttonUrl }}'">
+            {{ $buttonMessage }}
+        </button>
+    @endif
 </div>

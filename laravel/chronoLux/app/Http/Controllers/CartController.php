@@ -207,4 +207,44 @@ class CartController extends Controller
 
         return view('cart.checkout', compact('totalProducts', 'shipping', 'total', 'items', 'prefill'));
     }
+
+    public function add_shipping_info(Request $request){
+        $validatedData = $request->validate([
+            'email' => 'required|email',
+            'name' => 'required|string',
+            'surname' => 'required|string',
+            'address' => 'required|string',
+            'phone_number' => 'required|string',
+            'postal_code' => 'required|string',
+            'city' => 'required|string',
+            'country' => 'required|string',
+            'delivery' => 'required|string',
+        ]);
+
+        // Získa aktuálneho prihláseného používateľa
+        $userId = Auth::id();
+
+        // Nájde jeho pending objednávku
+        $order = Order::where('user_id', $userId)
+                    ->where('status', 'pending')
+                    ->first();
+        
+        if (!$order) {
+            return redirect()->back()->with('error', 'No pending order found.');
+        }
+
+        $order->update([
+            'email' => $validatedData['email'],
+            'name' => $validatedData['name'],
+            'surname' => $validatedData['surname'],
+            // 'address' => $validatedData['address'],
+            'phone_number' => $validatedData['phone_number'],
+            // 'postal_code' => $validatedData['postal_code'],
+            // 'city' => $validatedData['city'],
+            // 'country' => $validatedData['country'],
+            'delivery_method' => $validatedData['delivery'],
+        ]);
+
+        return redirect()->route('cart.checkout')->with('success', 'Shipping info updated.');
+    }
 }
