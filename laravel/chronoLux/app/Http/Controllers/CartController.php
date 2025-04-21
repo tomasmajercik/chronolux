@@ -163,4 +163,34 @@ class CartController extends Controller
 
         session()->forget('cart');
     }
+
+    public function checkout()
+    {
+        if (Auth::check()) {
+            $order = Order::where('user_id', Auth::id())->where('status', 'pending')->with('items.variant.product')->first();
+            if ($order) {
+                $items = $order->items;
+            } else {
+                $items = collect();
+            }
+        } else {
+            $cart = session('cart', []);
+            $items = collect($cart)->map(function ($item) {
+                $variant = ProductVariant::with('product')->find($item['product_variant_id']);
+                return (object)[
+                    'variant' => $variant,
+                    'quantity' => $item['quantity'],
+                ];
+            });
+        }
+
+        $totalProducts = $items->sum(function ($item) {
+            return $item->variant->product->price * $item->quantity;
+        });
+
+        $shipping = 3.50;
+        $total = $totalProducts + $shipping;
+
+        return view('cart.checkout', compact('totalProducts', 'shipping', 'total', 'items'));
+    }
 }

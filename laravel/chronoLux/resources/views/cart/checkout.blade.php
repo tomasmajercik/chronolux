@@ -23,7 +23,11 @@
                 </div>
 
                 <div class="form-wrapper">
-                    <span class="input-holder">
+                    <div class="email-holder">
+                        <label>Email</label>
+                        <input type="text" placeholder="Email" required>
+                    </div>
+                    <div class="input-holder">
                         <label>Name</label>
                         <input type="text" placeholder="John" required>
 
@@ -32,8 +36,8 @@
 
                         <label>Address</label>
                         <input type="text" placeholder="Orange 123/45" required>
-                    </span>
-                    <span class="input-holder">
+                    </div>
+                    <div class="input-holder">
                         <label>Postal Code</label>
                         <input type="text" placeholder="010 10" required>
 
@@ -42,7 +46,7 @@
 
                         <label>State</label>
                         <input type="text" placeholder="Carroty" required>
-                    </span>
+                    </div>
                 </div>
                 <div class="delivery-method-holder">
                     <h3>Delivery Method</h3>
@@ -61,10 +65,15 @@
 
 
             </div>
-            <x-cart-summary 
-                button-message="Payment" 
-                button-url="/payment" 
-            />
+            @if (count($items) > 0)
+                <x-cart-summary 
+                    button_message="Checkout" 
+                    button_url="{{ route('cart.payment') }}" 
+                    :total_products="$totalProducts"
+                    :shipping="$shipping"
+                    :total="$total"
+                />
+            @endif
 
         </div>
     </section>
