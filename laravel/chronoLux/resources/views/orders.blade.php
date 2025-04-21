@@ -12,8 +12,18 @@
     <x-sidebar :active="'orders'" />
     <div class="orders">
         <h1>Orders</h1>
-        <x-order/>  
-        <x-order/>  
+
+        @foreach($orders as $order)
+           <x-order
+                :orderDate="$order['date']"
+                :orderNumber="$order['id']"
+                :total="$order['price']"
+                :address="$order['address']"
+                :images="$order['images']"
+            />
+        @endforeach
+
+
     </div>
 </main>
 @endsection
