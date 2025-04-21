@@ -1,35 +1,36 @@
+@props(['orderDate', 'orderNumber', 'total', 'address', 'images'])
 <div class="order-container">
     <div class="top">
         <div class="left">
             <div class="order-date">
                 <h3>Order Placed</h3>
-                <span class="text">12.12.2021</span>
+                <span class="text"> {{ $orderDate }} </span>
             </div>
             <div class="total">
                 <h3>Total</h3>
-                <span class="text">1 200.00€</span>
+                <span class="text">{{ $total }}</span>
             </div>
             <div class="ship-to">
                 <h3>Ship to</h3>
-                <span class="text">Ilkovičova 2, Bratislava 841 04</span>
+                <span class="text">{{ $address }}</span>
             </div>
         </div>
         <div class="order-number">
             <div>
                 <h3>Order Number</h3>
-                <span class="text">48283489243978</span>
+                <span class="text">{{ $orderNumber }}</span>
             </div>
             <button class="manage mobile"
-                onclick='window.location.href="./order_detail.html"'>Manage</button>
+                onclick='window.location.href="./orders"'>Manage</button>
         </div>
     </div>
     <div class="order-info">
         <div class="img-container">
-            <img src="../IMGs/tissot-3-sm.jpg" alt="">
-            <img src="../IMGs/breitling-sm.jpg" alt="">
-            <img src="../IMGs/rolex-sm.jpg" alt="">
+             @foreach($images as $image)
+                <img src="{{ asset($image) }}" alt="">
+            @endforeach
         </div>
-        <button class="manage" onclick="location.href='order_detail.html'">Manage</button>
+        <button class="manage" onclick="location.href='orders'">Manage</button>
     </div>
     <div class="bottom">
         <div class="order-estimation">

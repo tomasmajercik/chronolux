@@ -22,7 +22,7 @@ class ProfileController extends Controller
         $moneySpent = $user->orders()->sum('total_price');
 
         $orders = $user->orders()
-            ->with('orderItems.productVariant.product.coverImage') // nie 'images'
+            ->with('orderItems.productVariant.product.coverImage') 
             ->latest()
             ->get()
             ->map(function ($order) {
@@ -30,10 +30,11 @@ class ProfileController extends Controller
                     'date' => $order->created_at->format('Y-m-d'),
                     'images' => $order->orderItems->map(function ($item) {
                         return $item->productVariant?->product?->coverImage?->image_path;
-                    })->filter()->unique()->take(3)->values()->toArray(), // max 3 obrázky, bez nullov
+                    })->filter()->unique()->take(3)->values()->toArray(), // max 3 imgs
                     'status' => $order->status,
                     'price' => $order->total_price,
-                    'link' => route('orders.show', $order->id),
+                    // 'link' => route('orders.show', $order->id), // later 
+                    'link' => route('profile.orders')
                 ];
             });
 
@@ -58,18 +59,32 @@ class ProfileController extends Controller
         $lastOrder = $user->orders()->latest()->first();
         $lastOrderDaysAgo = $lastOrder ? $lastOrder->created_at->diffInDays(now()) : null;
         $moneySpent = $user->orders()->sum('total_price');
-        // $orders = $user->orders()->with('orderItems')->latest()->get();
+        
+        $orders = $user->orders()
+            ->with('orderItems.productVariant.product.coverImage') 
+            ->latest()
+            ->get()
+            ->map(function ($order) {
+                return [
+                    'date' => $order->created_at->format('Y-m-d'),
+                    'images' => $order->orderItems->map(function ($item) {
+                        return $item->productVariant?->product?->coverImage?->image_path;
+                    })->filter()->unique()->take(3)->values()->toArray(), // max 3 imgs
+                    'status' => $order->status,
+                    'price' => $order->total_price,
+                    // 'link' => route('orders.show', $order->id), // later 
+                    'link' => route('profile.orders')
+                ];
+            });
 
 
         return view('profile', [
-            'user' => $user, 
-            'isEditingName' => true,
+            'user' => $user,
             'memberSince' => floor($memberSince),
             'orderCount' => $orderCount,
-            'lastOrder' => $lastOrder,
             'lastOrderDaysAgo' => $lastOrderDaysAgo !== null ? floor($lastOrderDaysAgo) : null,
             'moneySpent' => $moneySpent,
-            // 'orders' => $orders
+            'orders' => $orders,
         ]);
     }
     public function updateName(Request $request)
