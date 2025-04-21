@@ -167,12 +167,24 @@ class CartController extends Controller
     public function checkout()
     {
         if (Auth::check()) {
+            $user = Auth::user();
             $order = Order::where('user_id', Auth::id())->where('status', 'pending')->with('items.variant.product')->first();
             if ($order) {
                 $items = $order->items;
             } else {
                 $items = collect();
             }
+            $fullName = $user->name ?? '';
+            $nameParts = explode(' ', $fullName, 2);
+            $prefill = [
+                'email' => $user->email,
+                'name' => $nameParts[0] ?? '',
+                'surname' => $nameParts[1] ?? '',
+                'address' => $user->address->address ?? '', 
+                'postal_code' => $user->address->postal_code ?? '',
+                'city' => $user->address->city ?? '',
+                'state' => $user->address->country ?? '',
+            ];
         } else {
             $cart = session('cart', []);
             $items = collect($cart)->map(function ($item) {
@@ -182,6 +194,7 @@ class CartController extends Controller
                     'quantity' => $item['quantity'],
                 ];
             });
+            $prefill = []; // Empty for guests
         }
 
         $totalProducts = $items->sum(function ($item) {
@@ -191,6 +204,6 @@ class CartController extends Controller
         $shipping = 3.50;
         $total = $totalProducts + $shipping;
 
-        return view('cart.checkout', compact('totalProducts', 'shipping', 'total', 'items'));
+        return view('cart.checkout', compact('totalProducts', 'shipping', 'total', 'items', 'prefill'));
     }
 }

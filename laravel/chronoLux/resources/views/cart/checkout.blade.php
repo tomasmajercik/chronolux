@@ -23,29 +23,37 @@
                 </div>
 
                 <div class="form-wrapper">
-                    <div class="email-holder">
+                    @auth
+                        <div class="prefill">
+                            <input type="checkbox" id="prefill" name="prefill" onchange="prefillUserInfo(this)">
+                            <label for="prefill">Use information from your account</label>
+                        </div>
+                    @endauth
+                    <div class="input-holder">
                         <label>Email</label>
-                        <input type="text" placeholder="Email" required>
-                    </div>
-                    <div class="input-holder">
+                        <input type="text" id="email" placeholder="example@email.com" required>
+
                         <label>Name</label>
-                        <input type="text" placeholder="John" required>
-
+                        <input type="text" id="name" placeholder="John" required>
+                    
                         <label>Surname</label>
-                        <input type="text" placeholder="Carrot" required>
-
+                        <input type="text" id="surname" placeholder="Carrot" required>
+                    
                         <label>Address</label>
-                        <input type="text" placeholder="Orange 123/45" required>
+                        <input type="text" id="address" placeholder="Orange 123/45" required>
                     </div>
                     <div class="input-holder">
+                        <label>Phone</label>
+                        <input type="text" id="phone" placeholder="0912 345 679" required>
+
                         <label>Postal Code</label>
-                        <input type="text" placeholder="010 10" required>
-
+                        <input type="text" id="postal_code" placeholder="010 10" required>
+                    
                         <label>City</label>
-                        <input type="text" placeholder="Carrot City" required>
-
-                        <label>State</label>
-                        <input type="text" placeholder="Carroty" required>
+                        <input type="text" id="city" placeholder="Carrot City" required>
+                    
+                        <label>Country</label>
+                        <input type="text" id="country" placeholder="Carroty" required>
                     </div>
                 </div>
                 <div class="delivery-method-holder">
@@ -67,7 +75,7 @@
             </div>
             @if (count($items) > 0)
                 <x-cart-summary 
-                    button_message="Checkout" 
+                    button_message="Payment" 
                     button_url="{{ route('cart.payment') }}" 
                     :total_products="$totalProducts"
                     :shipping="$shipping"
@@ -79,3 +87,28 @@
     </section>
 </main>
 @endsection
+@push('scripts')
+<script>
+    function prefillUserInfo(checkbox) {
+        if (checkbox.checked) {
+            @auth
+                document.getElementById('email').value = "{{ $prefill['email'] ?? '' }}";
+                document.getElementById('name').value = "{{ $prefill['name'] ?? '' }}";
+                document.getElementById('surname').value = "{{ $prefill['surname'] ?? '' }}";
+                document.getElementById('address').value = "{{ $prefill['address'] ?? '' }}";
+                document.getElementById('postal_code').value = "{{ $prefill['postal_code'] ?? '' }}";
+                document.getElementById('city').value = "{{ $prefill['city'] ?? '' }}";
+                document.getElementById('country').value = "{{ $prefill['state'] ?? '' }}";
+            @endauth
+        } else {
+            document.getElementById('email').value = "";
+            document.getElementById('name').value = "";
+            document.getElementById('surname').value = "";
+            document.getElementById('address').value = "";
+            document.getElementById('postal_code').value = "";
+            document.getElementById('city').value = "";
+            document.getElementById('country').value = "";
+        }
+    }
+</script>
+@endpush

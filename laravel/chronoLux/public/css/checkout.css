@@ -240,14 +240,6 @@ label
     width: 80%;
     justify-self: center;
 }
-.email-holder {
-    grid-column: span 2;
-    width: 90%;
-    justify-self: center;
-    display: grid;
-    grid-template-columns: 1fr;
-}
-
 
 .delivery-method-holder
 {
@@ -261,6 +253,23 @@ label
 .delivery-inputs input[type="radio"]
 {
     margin-bottom: 10px;
+}
+
+.prefill{
+    grid-column: span 2;
+    justify-self: center;
+    width: 90%;
+    margin: 20px 0;
+    background-color: #eee;
+    padding: 20px;
+    border-radius: 10px;
+}
+.prefill input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    cursor: pointer;
+    margin-right: 10px;
 }
 /************************* MEDIA *************************/
 @media only screen and (max-width: 1187px) 
@@ -288,21 +297,23 @@ label
     {
         width: 100%;
     }
-    .email-holder {
+    .prefill {
         grid-column: span 1;
+        font-size: 13px;
+        width: 100%;
+    }
+    .prefill input[type="checkbox"] {
+        width: 14px;
+        height: 14px;
     }
     .input-holder
     {
-        width: 90%;
+        width: 100%;
         margin: 0 auto;
     }
     .form-wrapper
     {
         grid-template-columns: 1fr;
-        width: 90%;
-        margin: 0 auto;
-    }
-    .email-holder {
         width: 90%;
         margin: 0 auto;
     }
