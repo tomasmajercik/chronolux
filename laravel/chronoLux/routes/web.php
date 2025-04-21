@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\OrderController;
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
@@ -49,15 +50,16 @@ Route::get('/profile', [ProfileController::class, 'show'])
     ->name('profile')
     ->middleware('auth');
 
-Route::get('/profile/orders', function () {
-    return view('orders');
-})->middleware('auth');
+// Route::get('/profile/orders', function () {
+//     return view('orders');
+// })->middleware('auth')->name('profile.orders');
+Route::get('/profile/orders', [OrderController::class, 'index'])->name('profile.orders');
 
 Route::get('/profile/settings', function () {
     return view('settings', ['user' => Auth::user()]);
 })->middleware('auth')->name('profile.settings');
 //****                  ****//
-
+// Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show');
 //**** Edit name Routes ****//
 Route::post('/profile/edit-name', [ProfileController::class, 'editName'])->middleware('auth')->name('profile.edit-name');
 Route::post('/profile/update-name', [ProfileController::class, 'updateName'])->middleware('auth');
@@ -80,11 +82,11 @@ Route::put('/cart/update/{order_item_id}', [CartController::class, 'update'])->n
 Route::delete('/cart/remove/{order_item_id}', [CartController::class, 'remove'])->name('cart.remove');
 Route::get('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
 Route::post('/cart/shipping', [CartController::class, 'add_shipping_info'])->name('cart.shipping');
-Route::get('/cart/payment', [CartController::class, 'payment'])->name('cart.payment');
+// Route::get('/cart/payment', [CartController::class, 'payment'])->name('cart.payment');
 
-// Route::get('/cart/checkout', function () {
-//     return view('cart.checkout');
-// })->name('cart.checkout');
+Route::get('/cart/payment', function () {
+    return view('cart.payment');
+})->name('cart.payment');
 
 //**** Authentication Routes ****//
 Route::get('/login', function () {

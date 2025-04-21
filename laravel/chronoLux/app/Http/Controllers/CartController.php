@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\ProductVariant;
 use App\Models\OrderItem;
+use App\Models\Address;
 use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
@@ -233,18 +234,36 @@ class CartController extends Controller
             return redirect()->back()->with('error', 'No pending order found.');
         }
 
+        $existingAddress = Address::where('city', $validatedData['city'])
+        ->where('country', $validatedData['country'])
+        ->where('address', $validatedData['address'])
+        ->where('postal_code', $validatedData['postal_code'])
+        ->first();
+
+        if ($existingAddress) {
+            $address = $existingAddress->id;
+        } 
+        else { // Create a new address if it doesn't exist
+            $newAddress = new Address();
+            $newAddress->city = $validatedData['city'];
+            $newAddress->country = $validatedData['country'];
+            $newAddress->address = $validatedData['address'];
+            $newAddress->postal_code = $validatedData['postal_code'];
+            $newAddress->save();
+            $address = $newAddress->id;
+        }
+
         $order->update([
             'email' => $validatedData['email'],
             'name' => $validatedData['name'],
             'surname' => $validatedData['surname'],
-            // 'address' => $validatedData['address'],
+            'address_id' => $address,
             'phone_number' => $validatedData['phone_number'],
-            // 'postal_code' => $validatedData['postal_code'],
-            // 'city' => $validatedData['city'],
-            // 'country' => $validatedData['country'],
             'delivery_method' => $validatedData['delivery'],
         ]);
 
-        return redirect()->route('cart.checkout')->with('success', 'Shipping info updated.');
+        
+
+        return redirect()->route('cart.payment')->with('success', 'Shipping info updated.');
     }
 }

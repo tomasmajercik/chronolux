@@ -10,7 +10,7 @@
 @section('title', 'Profile')
 
 @php
-    $orders = [
+    $oorders = [
         [
             'date' => '21th December 2024',
             'images' => [
@@ -133,13 +133,15 @@
                 <div class="box">Last order <strong>{{ $lastOrderDaysAgo ?? '0' }} days ago</strong></div>
                 <div class="box">Money spent <strong>{{ $moneySpent . "€" ?? '0' }}</strong></div>
             </div>
-
             <div class="last-orders-title">
                 <h3>Last Orders</h3>
                 <a href="/profile/orders">View all</a>
             </div>
 
             <div class="orders">
+                @if($orders->isEmpty())
+                    <p class="note">You will see your orders here.</p>
+                @endif
                 @foreach ($orders as $order)
                 <x-last-order
                     :orderDate="$order['date']"

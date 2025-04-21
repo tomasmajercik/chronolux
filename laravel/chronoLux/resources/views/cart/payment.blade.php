@@ -112,10 +112,10 @@
 
                 </div>
                 <!-- Summary -->
-                <x-cart-summary 
+                {{-- <x-cart-summary 
                     button-message="Pay Now" 
                     button-url="/proceed" 
-                />
+                /> --}}
             </div>
         </section>
 </main>
