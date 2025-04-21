@@ -56,7 +56,7 @@ Route::get('/profile/settings', function () {
     return view('settings', ['user' => Auth::user()]);
 })->middleware('auth')->name('profile.settings');
 //****                  ****//
-
+Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show');
 //**** Edit name Routes ****//
 Route::post('/profile/edit-name', [ProfileController::class, 'editName'])->middleware('auth')->name('profile.edit-name');
 Route::post('/profile/update-name', [ProfileController::class, 'updateName'])->middleware('auth');

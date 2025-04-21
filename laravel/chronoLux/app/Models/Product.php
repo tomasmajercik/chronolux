@@ -10,7 +10,7 @@ class Product extends Model
     {
         return $this->hasOne(ProductImage::class)->where('is_cover', true);
     }
-        public function images()
+    public function images()
     {
         return $this->hasMany(ProductImage::class)->where('is_cover', false);
     }
@@ -26,4 +26,5 @@ class Product extends Model
     {
         return $this->belongsTo(Brand::class);
     }
+
 }

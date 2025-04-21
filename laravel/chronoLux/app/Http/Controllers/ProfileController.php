@@ -18,9 +18,26 @@ class ProfileController extends Controller
         $memberSince = $user->created_at->diffInMonths(now());
         $orderCount = $user->orders()->count();
         $lastOrder = $user->orders()->latest()->first();
-        $lastOrderDaysAgo = optional($lastOrder?->created_at)->diffInDays(now());
+        $lastOrderDaysAgo = $lastOrder ? $lastOrder->created_at->diffInDays(now()) : null;
         $moneySpent = $user->orders()->sum('total_price');
-        // $orders = $user->orders()->with('orderItems')->latest()->get();
+
+        $orders = $user->orders()
+            ->with('orderItems.productVariant.product.coverImage') // nie 'images'
+            ->latest()
+            ->get()
+            ->map(function ($order) {
+                return [
+                    'date' => $order->created_at->format('Y-m-d'),
+                    'images' => $order->orderItems->map(function ($item) {
+                        return $item->productVariant?->product?->coverImage?->image_path;
+                    })->filter()->unique()->take(3)->values()->toArray(), // max 3 obrázky, bez nullov
+                    'status' => $order->status,
+                    'price' => $order->total_price,
+                    'link' => route('orders.show', $order->id),
+                ];
+            });
+
+    
 
         return view('profile', [
             'user' => $user,
@@ -28,8 +45,7 @@ class ProfileController extends Controller
             'orderCount' => $orderCount,
             'lastOrderDaysAgo' => $lastOrderDaysAgo !== null ? floor($lastOrderDaysAgo) : null,
             'moneySpent' => $moneySpent,
-            'lastOrder' => $lastOrder,
-            // 'orders' => $orders,
+            'orders' => $orders,
         ]);
     }
 
@@ -51,7 +67,7 @@ class ProfileController extends Controller
             'memberSince' => floor($memberSince),
             'orderCount' => $orderCount,
             'lastOrder' => $lastOrder,
-            'lastOrderDaysAgo' => floor($lastOrderDaysAgo),
+            'lastOrderDaysAgo' => $lastOrderDaysAgo !== null ? floor($lastOrderDaysAgo) : null,
             'moneySpent' => $moneySpent,
             // 'orders' => $orders
         ]);
