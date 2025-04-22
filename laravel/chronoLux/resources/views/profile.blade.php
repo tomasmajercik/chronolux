@@ -9,41 +9,6 @@
 
 @section('title', 'Profile')
 
-@php
-    $oorders = [
-        [
-            'date' => '21th December 2024',
-            'images' => [
-                'IMGs/tissot-3-sm.jpg',
-                'IMGs/tissot-prx-sm.jpg',
-                'IMGs/rolex-2-sm.jpg'
-            ],
-            'status' => 'Packing',
-            'price' => '1 899.72',
-            'link' => 'profile/order_detail.html'
-        ],
-        [
-            'date' => '12th July 2024',
-            'images' => [
-                'IMGs/tissot-sm.jpg'
-            ],
-            'status' => 'Delivered',
-            'price' => '1 899.72',
-            'link' => 'profile/order_detail.html'
-        ],
-        [
-            'date' => '22th November 2024',
-            'images' => [
-                'IMGs/tudor-sm.jpg',
-                'IMGs/rolex-sm.jpg'
-            ],
-            'status' => 'Delivered',
-            'price' => '1 899.72',
-            'link' => 'profile/order_detail.html'
-        ]
-    ];
-@endphp
-
 @section('content')
 <main>
     <!-- Sidebar -->
@@ -58,7 +23,7 @@
                     @if (isset($isEditingName) && $isEditingName)
                         <form action="/profile/update-name" method="POST" class="edit-name-form">
                             @csrf
-                            <input type="text" name="name" class="name-input" value="{{ $user->name ?? '' }}" placeholder="{{ $user->name ?? 'Name Surname' }}">
+                            <input type="text" name="name" class="name-input" value="{{ $user->name ?? '' }}" placeholder="{{ $user->name ?? 'Name Surname' }}" autofocus>
                             <button type="button" class="abort-edit" onclick="window.location.href='{{ route('profile') }}'">Zrušiť</button>
                             <button type="submit" class="apply-edit">Uložiť</button>
                         </form>
@@ -97,6 +62,16 @@
             @else
                 <p>Address not set: tap edit to set default address</p>
             @endif
+           @if ($errors->address->any())
+                <div class="error-box">
+                    <ul>
+                        @foreach ($errors->address->all() as $error)
+                            <li class="error">{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             
 
             @include('partials.contact-edit-modal')
@@ -120,6 +95,16 @@
             @if($errors->has('email'))
                 <p class="error"> {{ $errors->first('email') }} </p>
             @endif
+            @if ($errors->contact->any())
+                <div class="error-box">
+                    <ul>
+                        @foreach ($errors->contact->all() as $error)
+                            <li class="error">{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
 
             </div>
 
@@ -148,7 +133,7 @@
                     :imageSrcs="$order['images']"
                     :status="$order['status']"
                     :price="$order['price']"
-                    :detailLink="$order['link']"
+                    :detailLink="route('profile.orders.detail', ['id' => $order['id']])"
                 />
                 @endforeach
             </div>
@@ -158,4 +143,9 @@
 @endsection
 @push('scripts')
     <script src="{{ asset('js/editingModals.js') }}"></script>
+    <script>
+        function showModal(){
+            input.focus();
+        }
+    </script>
 @endpush

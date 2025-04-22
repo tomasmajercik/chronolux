@@ -64,9 +64,9 @@ class ProductController extends Controller
         }
         
         if ($request->has('sort_name')) {
-            if ($request->sort_name === 'a-z') {
+            if ($request->sort_name === 'a_z') {
                 $products->orderBy('name', 'asc');
-            } elseif ($request->sort_name === 'z-a') {
+            } elseif ($request->sort_name === 'z_a') {
                 $products->orderBy('name', 'desc');
             }
         }

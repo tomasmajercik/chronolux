@@ -12,6 +12,7 @@ class OrderController extends Controller
         $user = Auth::user();
 
         $orders = $user->orders()
+        ->whereNotIn('status', ['pending'])
         ->with('orderItems.product.coverImage', 'address')
         ->latest()
         ->get()
@@ -23,15 +24,11 @@ class OrderController extends Controller
                 'address' => optional($order->address)->full_address ?? '',
                 'images' => $order->orderItems->map(function ($item) {
                         return $item->productVariant?->product?->coverImage?->image_path;
-                    })->filter()->unique()->values()->toArray(),
+                    })->filter()->values()->toArray(),
             ];
         });
 
         return view('orders', compact('orders'));
-        // return view('orders', [
-        //     'user' => $user,
-        //     'orders' => $orders,
-        // ]);
     }
 
 }

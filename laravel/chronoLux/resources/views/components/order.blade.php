@@ -1,4 +1,3 @@
-@props(['orderDate', 'orderNumber', 'total', 'address', 'images'])
 <div class="order-container">
     <div class="top">
         <div class="left">
@@ -21,7 +20,7 @@
                 <span class="text">{{ $orderNumber }}</span>
             </div>
             <button class="manage mobile"
-                onclick='window.location.href="./orders"'>Manage</button>
+                onclick='window.location.href="{{ $url }}"'>More info</button>
         </div>
     </div>
     <div class="order-info">
@@ -30,12 +29,12 @@
                 <img src="{{ asset($image) }}" alt="">
             @endforeach
         </div>
-        <button class="manage" onclick="location.href='orders'">Manage</button>
+        <button class="manage" onclick="location.href='{{ $url }}'">More info</button>
     </div>
     <div class="bottom">
         <div class="order-estimation">
-            <h3>Estimated Delivery</h3>
-            <span class="text">15.12.2021</span>
+            <h3>Delivery</h3>
+            <span class="text"> {{ date('d.m.Y', strtotime($orderDate . ' +7 days')) }} </span>
         </div>
     </div>
 </div>
