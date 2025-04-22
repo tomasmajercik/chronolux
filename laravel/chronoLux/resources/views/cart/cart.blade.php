@@ -41,7 +41,7 @@
         @if (count($items) > 0)
             <x-cart-summary 
                 button_message="Checkout" 
-                button_url="/checkout" 
+                button_url="{{ route('cart.checkout') }}" 
                 :total_products="$totalProducts"
                 :shipping="$shipping"
                 :total="$total"

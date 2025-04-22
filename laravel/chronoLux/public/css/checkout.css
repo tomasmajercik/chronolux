@@ -210,7 +210,7 @@ main{
     text-decoration: underline;
     color: #666;
 }
-input[type="text"] {
+input[type="text"], input[type="email"] {
     width: 100%;
     padding: 10px;
     font-size: 16px;
@@ -220,7 +220,7 @@ input[type="text"] {
     outline: none;
 }
 
-input[type="text"]:focus {
+input[type="text"]:focus, input[type="email"]:focus {
     border-color: #007bff;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);;
 }
@@ -230,14 +230,15 @@ label
 }
 .form-wrapper
 {
-    display: flex;
-    justify-content: space-evenly;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 .input-holder
 {
-    display: flex;
-    flex-direction: column;
-    width: 40%;
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 80%;
+    justify-self: center;
 }
 
 .delivery-method-holder
@@ -252,6 +253,23 @@ label
 .delivery-inputs input[type="radio"]
 {
     margin-bottom: 10px;
+}
+
+.prefill{
+    grid-column: span 2;
+    justify-self: center;
+    width: 90%;
+    margin: 20px 0;
+    background-color: #eee;
+    padding: 20px;
+    border-radius: 10px;
+}
+.prefill input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    cursor: pointer;
+    margin-right: 10px;
 }
 /************************* MEDIA *************************/
 @media only screen and (max-width: 1187px) 
@@ -273,51 +291,31 @@ label
         margin: 30px auto;
     }
 }
-@media only screen and (max-width: 780px) 
-{
-    .cart-header span
-    {
-        display: none;
-    }
-    .cart-item
-    {
-        flex-direction: column;
-    }
-    .info-holder
-    {
-        margin: 0 auto;
-        width: 250px;
-    }
-}
 @media only screen and (max-width: 451px) 
 {
-    .name-remove-fav button
-    {
-        font-size: 10px;
-    }
-    .name-remove-fav h2
-    {
-        font-size: 20px;
-    }
-    .cart-item-img
-    {
-        width: 75px;
-        height: 75px;
-    }
     .cart-summary-container
     {
         width: 100%;
     }
-    .form-wrapper
-    {
-        flex-direction: column;
+    .prefill {
+        grid-column: span 1;
+        font-size: 13px;
+        width: 100%;
+    }
+    .prefill input[type="checkbox"] {
+        width: 14px;
+        height: 14px;
     }
     .input-holder
     {
+        width: 100%;
+        margin: 0 auto;
+    }
+    .form-wrapper
+    {
+        grid-template-columns: 1fr;
         width: 90%;
         margin: 0 auto;
     }
-
-    
 }
 

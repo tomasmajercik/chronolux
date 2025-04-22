@@ -6,7 +6,21 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    protected $fillable = ['user_id', 'address_id', 'email', 'total_price', 'delivery_price', 'delivery_method', 'status'];
+    protected $fillable = [
+        'user_id',
+        'address_id',
+        'email',
+        'name',
+        'phone_number',            
+        'surname',       
+        'total_price',
+        'delivery_price',
+        'delivery_method',
+        'status',
+        'created_at',
+        'updated_at',
+        'payment_method',
+    ];
     protected $casts = [
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
@@ -28,5 +42,4 @@ class Order extends Model
     {
         return $this->belongsTo(Address::class);
     }
-
 }
