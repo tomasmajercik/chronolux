@@ -1,6 +1,6 @@
 <div class="cart-item">
     <div class="item-name-info">
-    <img class="cart-item-img" src="{{ asset($image) }}" alt="{{ $title }}" width="100" height="100">
+    <img class="cart-item-img" src="{{ asset($image) }}" alt="{{ $title }}" width="100" height="100" onclick="window.location.href='{{ route('product.detail', ['id' => $productId]) }}'">
         <div class="name-remove-fav">
             <h2> 
                 <a href="{{ route('product.detail', ['id' => $productId]) }}">

@@ -20,9 +20,10 @@
                     <h4>Price</h4>
                 </div>
             </div>
-
+            
             @foreach($items as $item)
                 <x-order-detail-item
+                    :id="$item->variant->product->id"
                     :title="$item->variant->product->name"
                     image="{{ asset($item->variant->product->coverImage->image_path) }}"
                     :size="$item->variant->size"

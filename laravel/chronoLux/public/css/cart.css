@@ -136,6 +136,7 @@ main{
     height: 100px;
     object-fit: cover;
     border-radius: 20px; 
+    cursor: pointer;
 }
 
 .empty{

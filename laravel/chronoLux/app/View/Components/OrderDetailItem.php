@@ -13,15 +13,18 @@ class OrderDetailItem extends Component
     public $size;
     public $amount;
     public $price;
+    public $id;
 
-    public function __construct($title, $image, $size, $amount, $price)
+    public function __construct($title, $image, $size, $amount, $price, $id)
     {
         $this->title = $title;
         $this->image = $image;
         $this->size = $size;
         $this->amount = $amount;
         $this->price = $price;
+        $this->id = $id;
     }
+
 
 
     /**
