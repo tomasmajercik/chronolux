@@ -222,45 +222,51 @@ class CartController extends Controller
             'delivery' => 'required|string',
         ]);
 
-        // Získa aktuálneho prihláseného používateľa
-        $userId = Auth::id();
+        if (Auth::check()) {
+            // Získa aktuálneho prihláseného používateľa
+            $userId = Auth::id();
 
-        // Nájde jeho pending objednávku
-        $order = Order::where('user_id', $userId)
-                    ->where('status', 'pending')
-                    ->first();
-        
-        if (!$order) {
-            return redirect()->back()->with('error', 'No pending order found.');
+            // Nájde jeho pending objednávku
+            $order = Order::where('user_id', $userId)
+                        ->where('status', 'pending')
+                        ->first();
+            
+            if (!$order) {
+                return redirect()->back()->with('error', 'No pending order found.');
+            }
+
+            $existingAddress = Address::where('city', $validatedData['city'])
+            ->where('country', $validatedData['country'])
+            ->where('address', $validatedData['address'])
+            ->where('postal_code', $validatedData['postal_code'])
+            ->first();
+
+            if ($existingAddress) {
+                $address = $existingAddress->id;
+            } 
+            else { // Create a new address if it doesn't exist
+                $newAddress = new Address();
+                $newAddress->city = $validatedData['city'];
+                $newAddress->country = $validatedData['country'];
+                $newAddress->address = $validatedData['address'];
+                $newAddress->postal_code = $validatedData['postal_code'];
+                $newAddress->save();
+                $address = $newAddress->id;
+            }
+
+            $order->update([
+                'email' => $validatedData['email'],
+                'name' => $validatedData['name'],
+                'surname' => $validatedData['surname'],
+                'address_id' => $address,
+                'phone_number' => $validatedData['phone_number'],
+                'delivery_method' => $validatedData['delivery'],
+            ]);
         }
-
-        $existingAddress = Address::where('city', $validatedData['city'])
-        ->where('country', $validatedData['country'])
-        ->where('address', $validatedData['address'])
-        ->where('postal_code', $validatedData['postal_code'])
-        ->first();
-
-        if ($existingAddress) {
-            $address = $existingAddress->id;
-        } 
-        else { // Create a new address if it doesn't exist
-            $newAddress = new Address();
-            $newAddress->city = $validatedData['city'];
-            $newAddress->country = $validatedData['country'];
-            $newAddress->address = $validatedData['address'];
-            $newAddress->postal_code = $validatedData['postal_code'];
-            $newAddress->save();
-            $address = $newAddress->id;
+        else {
+            // Nepřihlásený používateľ – uloženie do session
+            session(['shipping_info' => $validatedData]);
         }
-
-        $order->update([
-            'email' => $validatedData['email'],
-            'name' => $validatedData['name'],
-            'surname' => $validatedData['surname'],
-            'address_id' => $address,
-            'phone_number' => $validatedData['phone_number'],
-            'delivery_method' => $validatedData['delivery'],
-        ]);
 
         return redirect()->route('cart.payment')->with('success', 'Shipping info updated.');
     }
@@ -314,7 +320,69 @@ class CartController extends Controller
 
             }
         } else {
-            return redirect()->route('cart.checkout')->with('error', 'You need to be logged in to pay.');
+            // Nepřihlásený používateľ – vytvorenie objednávky zo session
+            $shippingInfo = session('shipping_info');
+            $cartItems = session('cart');
+
+            if (!$shippingInfo || !$cartItems) {
+                return redirect()->back()->with('error', 'Missing shipping or cart information.');
+            }
+
+            // Najprv nájdeme alebo vytvoríme adresu
+            $existingAddress = Address::where('city', $shippingInfo['city'])
+                ->where('country', $shippingInfo['country'])
+                ->where('address', $shippingInfo['address'])
+                ->where('postal_code', $shippingInfo['postal_code'])
+                ->first();
+
+            if ($existingAddress) {
+                $addressId = $existingAddress->id;
+            } else {
+                $newAddress = new Address();
+                $newAddress->city = $shippingInfo['city'];
+                $newAddress->country = $shippingInfo['country'];
+                $newAddress->address = $shippingInfo['address'];
+                $newAddress->postal_code = $shippingInfo['postal_code'];
+                $newAddress->save();
+                $addressId = $newAddress->id;
+            }
+
+            // Vytvorenie novej objednávky
+            $order = new Order();
+            $order->email = $shippingInfo['email'];
+            $order->name = $shippingInfo['name'];
+            $order->surname = $shippingInfo['surname'];
+            $order->address_id = $addressId;
+            $order->phone_number = $shippingInfo['phone_number'];
+            $order->delivery_method = $shippingInfo['delivery'];
+            $order->delivery_price = $delivery_price;
+            $order->payment_method = $request->payment_method;
+            $order->status = "Packing";
+            $order->created_at = now();
+            $order->updated_at = now();
+            $order->save();
+
+            $total = 0;
+
+            // Pridanie položiek do objednávky
+            foreach ($cartItems as $item) {
+                $variantId = $item['product_variant_id'];
+                $quantity = $item['quantity'];
+                $product = ProductVariant::find($variantId)->product;
+
+                $order->items()->create([
+                    'product_variant_id' => $variantId,
+                    'quantity' => $quantity,
+                ]);
+
+                $total += $product->price * $quantity;
+            }
+
+            $order->update([
+                'total_price' => $total + $delivery_price,
+            ]);
+
+            session()->forget(['cart', 'shipping_info']);
         }
 
         return redirect()->route('cart.proceed')->with('success', 'Payment successful. Thank you for your order!');

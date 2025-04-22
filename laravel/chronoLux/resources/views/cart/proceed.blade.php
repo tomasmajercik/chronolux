@@ -24,11 +24,13 @@
                 </h4>
             </div>
         </div>
-        <div id="profile-redirect" class="profile-redirect">
-            <p>
-                You can now check your order in your profile. Go to your profile and select 'orders', or press <a
-                    class="nice-a" href="./profile/orders.html">here</a>.
-            </p>
-        </div>
+        @auth
+            <div id="profile-redirect" class="profile-redirect">
+                <p>
+                    You can now check your order in your profile. Go to your profile and select 'orders', or press <a
+                        class="nice-a" href="{{ route('profile.orders') }}">here</a>.
+                </p>
+            </div>
+        @endauth
     </main>
 @endsection
