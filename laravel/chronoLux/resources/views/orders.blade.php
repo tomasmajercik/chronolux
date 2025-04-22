@@ -13,6 +13,9 @@
     <div class="orders">
         <h1>Orders</h1>
 
+        @if($orders->isEmpty())
+            <p class="note">You will see your orders here.</p>
+        @endif
         @foreach($orders as $order)
            <x-order
                 :orderDate="$order['date']"

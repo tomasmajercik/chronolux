@@ -12,6 +12,7 @@ class OrderController extends Controller
         $user = Auth::user();
 
         $orders = $user->orders()
+        ->whereNotIn('status', ['pending'])
         ->with('orderItems.product.coverImage', 'address')
         ->latest()
         ->get()

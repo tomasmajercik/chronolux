@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 use App\Models\Address;
 
@@ -17,14 +18,16 @@ class ProfileController extends Controller
         $user = Auth::user();
 
         $memberSince = $user->created_at->diffInMonths(now());
-        $orderCount = $user->orders()->count();
-        $lastOrder = $user->orders()->latest()->first();
+        $orderCount = $user->orders()->whereNotIn('status', ['pending'])->count();
+        $lastOrder = $user->orders()->whereNotIn('status', ['pending'])->latest()->first();
         $lastOrderDaysAgo = $lastOrder ? $lastOrder->created_at->diffInDays(now()) : null;
-        $moneySpent = $user->orders()->sum('total_price');
+        $moneySpent = $user->orders()->whereNotIn('status', ['pending'])->sum('total_price');
 
         $orders = $user->orders()
+            ->whereNotIn('status', ['pending'])
             ->with('orderItems.productVariant.product.coverImage') 
             ->latest()
+            ->take(3)
             ->get()
             ->map(function ($order) {
                 return [
@@ -62,6 +65,7 @@ class ProfileController extends Controller
         $moneySpent = $user->orders()->sum('total_price');
         
         $orders = $user->orders()
+            ->whereNotIn('status', ['pending'])
             ->with('orderItems.productVariant.product.coverImage') 
             ->latest()
             ->get()
@@ -111,12 +115,20 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
 
-        $validated = $request->validate([
+        // $validated = $request->validate([
+        //     'city' => 'required|string|max:255',
+        //     'country' => 'required|string|max:255',
+        //     'address' => 'required|string|max:255',
+        //     'postal_code' => 'required|string|max:20',
+        // ])->validateWithBag('address');
+
+        $validated = Validator::make($request->all(), [
             'city' => 'required|string|max:255',
             'country' => 'required|string|max:255',
             'address' => 'required|string|max:255',
             'postal_code' => 'required|string|max:20',
-        ]);
+        ])->validateWithBag('address');
+        
 
         $existingAddress = Address::where('city', $validated['city'])
         ->where('country', $validated['country'])
@@ -147,10 +159,15 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
 
-        $validated = $request->validate([
+        // $validated = $request->validate([
+        //     'phone-number' => 'nullable|string|max:255',
+        //     'email' => 'required|string|max:255|email'
+        // ]);
+        $validated = Validator::make($request->all(), [
             'phone-number' => 'nullable|string|max:255',
-            'email' => 'required|string|max:255|email'
-        ]);
+            'email' => 'required|string|max:255|email',
+        ])->validateWithBag('contact');
+        
 
         try {
             if ($user->email !== $validated['email']) 

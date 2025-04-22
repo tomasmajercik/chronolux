@@ -1,10 +1,18 @@
 function openAddressEditModal()
 {
-    document.getElementById('address-edit-modal').style.display = 'flex';
+    const modal = document.getElementById('address-edit-modal');
+    modal.style.display = 'flex';
+    
+    const input = modal.querySelector('input[name="city"]');
+    input.focus()
 }
 function openContactEditModal()
 {
-    document.getElementById('contact-edit-modal').style.display = 'flex';
+    const modal = document.getElementById('contact-edit-modal');
+    modal.style.display = 'flex';
+
+    const input = modal.querySelector('input[name="phone-number"]');
+    input.focus()
 }
 document.addEventListener('DOMContentLoaded', function() { // to close the modal when clicking outside of it 
     const modal = document.getElementById('address-edit-modal');

@@ -12,7 +12,7 @@
             <nav class="categorization">
                 <ul>
                     <li><a href="/cart">My Cart</a></li>
-                    <li><a href="/checkout">Shipping</a></li>
+                    <li><a href="{{ route('cart.checkout') }}">Shipping</a></li>
                     <li><a href="#">Payment</a></li>
                 </ul>
             </nav>
