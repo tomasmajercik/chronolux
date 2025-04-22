@@ -34,11 +34,10 @@ class ProfileController extends Controller
                     'date' => $order->created_at->format('Y-m-d'),
                     'images' => $order->orderItems->map(function ($item) {
                         return $item->productVariant?->product?->coverImage?->image_path;
-                    })->filter()->unique()->take(3)->values()->toArray(), // max 3 imgs
+                    })->filter()->take(3)->values()->toArray(), // max 3 imgs
                     'status' => $order->status,
                     'price' => $order->total_price,
-                    // 'link' => route('orders.show', $order->id), // later 
-                    'link' => route('profile.orders')
+                    'id' => $order->id,
                 ];
             });
 
@@ -74,11 +73,10 @@ class ProfileController extends Controller
                     'date' => $order->created_at->format('Y-m-d'),
                     'images' => $order->orderItems->map(function ($item) {
                         return $item->productVariant?->product?->coverImage?->image_path;
-                    })->filter()->unique()->take(3)->values()->toArray(), // max 3 imgs
+                    })->filter()->take(3)->values()->toArray(), // max 3 imgs
                     'status' => $order->status,
                     'price' => $order->total_price,
-                    // 'link' => route('orders.show', $order->id), // later 
-                    'link' => route('profile.orders')
+                    'id' => $order->id
                 ];
             });
 

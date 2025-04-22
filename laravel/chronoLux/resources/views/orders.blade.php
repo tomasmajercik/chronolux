@@ -18,6 +18,7 @@
         @endif
         @foreach($orders as $order)
            <x-order
+                :url="route('profile.orders.detail', ['id' => $order['id']])"
                 :orderDate="$order['date']"
                 :orderNumber="$order['id']"
                 :total="$order['price']"

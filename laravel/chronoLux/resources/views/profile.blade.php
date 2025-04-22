@@ -133,7 +133,7 @@
                     :imageSrcs="$order['images']"
                     :status="$order['status']"
                     :price="$order['price']"
-                    :detailLink="$order['link']"
+                    :detailLink="route('profile.orders.detail', ['id' => $order['id']])"
                 />
                 @endforeach
             </div>

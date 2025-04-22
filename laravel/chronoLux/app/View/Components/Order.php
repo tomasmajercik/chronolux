@@ -8,6 +8,7 @@ use Illuminate\View\Component;
 
 class Order extends Component
 {
+    public $url;
     public $orderDate;
     public $orderNumber;
     public $total;
@@ -15,12 +16,14 @@ class Order extends Component
     public $images;
 
     public function __construct(
+        $url,
         $orderDate,
         $orderNumber,
         $total,
         $address,
         $images = []
     ) {
+        $this->url = $url;
         $this->orderDate = $orderDate;
         $this->orderNumber = $orderNumber;
         $this->total = $total;

@@ -20,7 +20,7 @@
                 <span class="text">{{ $orderNumber }}</span>
             </div>
             <button class="manage mobile"
-                onclick='window.location.href="./orders"'>More info</button>
+                onclick='window.location.href="{{ $url }}"'>More info</button>
         </div>
     </div>
     <div class="order-info">
@@ -29,7 +29,7 @@
                 <img src="{{ asset($image) }}" alt="">
             @endforeach
         </div>
-        <button class="manage" onclick="location.href='orders'">More info</button>
+        <button class="manage" onclick="location.href='{{ $url }}'">More info</button>
     </div>
     <div class="bottom">
         <div class="order-estimation">
