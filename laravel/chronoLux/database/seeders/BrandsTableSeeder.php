@@ -16,6 +16,11 @@ class BrandsTableSeeder extends Seeder
             ['name' => 'Rolex'],
             ['name' => 'Fossil'],
             ['name' => 'Mauron Musy'],
+            ['name' => 'Seiko'],
+            ['name' => 'Casio'],
+            ['name' => 'Omega'],
+            ['name' => 'Citizen'],
+            ['name' => 'Hamilton'],
         ];
 
         foreach ($brands as $brand) {
