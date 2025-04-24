@@ -38,7 +38,7 @@
         @method('PUT')
         <h4>{{ $size }}</h4>
         <div class="amount-holder">
-            <button type="submit" name="action" value="decrease" class="decrease-btn">-</button>
+            <button type="submit" name="action" value="decrease" class="decrease-btn" {{ $amount == 1 ? 'disabled' : '' }}>-</button>
             <p class="amount-indicator">{{ $amount }}</p>
             <button type="submit" name="action" value="increase" class="increase-btn">+</button>
         </div>

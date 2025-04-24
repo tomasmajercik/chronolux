@@ -73,13 +73,37 @@
 
                 {{-- Page numbers --}}
                 <div class="page-numbering">
-                    @for ($i = 1; $i <= $products->lastPage(); $i++)
+                    @php
+                        $start = max(1, $products->currentPage() - 1);
+                        $end = min($products->lastPage(), $products->currentPage() + 2);
+                    @endphp
+
+                    <!-- Always show first page -->
+                    @if ($start > 1)
+                        <a href="{{ $products->appends(request()->query())->url(1) }}">
+                            <button class="{{ $products->currentPage() == 1 ? 'active' : '' }}">1</button>
+                        </a>
+                        @if ($start > 2)
+                            <span class="dots">...</span>
+                        @endif
+                    @endif
+
+                    <!-- Page range -->
+                    @for ($i = $start; $i <= $end; $i++)
                         <a href="{{ $products->appends(request()->query())->url($i) }}">
-                            <button class="{{ $products->currentPage() == $i ? 'active' : '' }}">
-                                {{ $i }}
-                            </button>
+                            <button class="{{ $products->currentPage() == $i ? 'active' : '' }}">{{ $i }}</button>
                         </a>
                     @endfor
+
+                    <!-- Always show last page -->
+                    @if ($end < $products->lastPage())
+                        @if ($end < $products->lastPage() - 1)
+                            <span class="dots">...</span>
+                        @endif
+                        <a href="{{ $products->appends(request()->query())->url($products->lastPage()) }}">
+                            <button class="{{ $products->currentPage() == $products->lastPage() ? 'active' : '' }}">{{ $products->lastPage() }}</button>
+                        </a>
+                    @endif
                 </div>
 
                 {{-- Next --}}

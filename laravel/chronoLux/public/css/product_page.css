@@ -465,6 +465,12 @@ select{
     color: gray;
 }
 
+.dots {
+    color: #aaa;
+    font-weight: bold;
+    vertical-align: bottom;
+    line-height: 40px;
+}
 
 /************************* MEDIA *************************/
 @media (max-width: 1200px) {
@@ -489,14 +495,17 @@ select{
     }
 }
 
-@media (max-width: 710px) {
-    .product-grid {
-        grid-template-columns: 1fr;
-    }
+@media (max-width: 750px) {
     .page-numbering{
         display: none;
     }
+}
 
+
+@media (max-width: 720px) {
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 670px) {

@@ -2,119 +2,74 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
+use Faker\Factory as Faker;
 
 class ProductsTableSeeder extends Seeder
 {
     public function run(): void
     {
-        $products = [
-            [
-                'name' => 'Tissot Tradition Silver',
-                'description' => 'Elegantné hodinky Tissot Tradition s klasickým vzhľadom.',
-                'category_id' => 1,
-                'brand_id' => 1,
-                'price' => 250.00,  
-                'images' => [
-                    ['path' => 'IMGs/tissot-sm.jpg', 'is_cover' => true],
-                ]
-            ],
-            [
-                'name' => 'Tissot PRX',
-                'description' => 'Moderný dizajn a vysoká presnosť, ideálne pre každodenné nosenie.',
-                'category_id' => 1,
-                'brand_id' => 1,
-                'price' => 350.00,  
-                'images' => [
-                    ['path' => 'IMGs/tissot-prx-sm.jpg', 'is_cover' => true],
-                    ['path' => 'IMGs/tissot-prx1-sm.jpg', 'is_cover' => false],
-                    ['path' => 'IMGs/tissot-prx2-sm.jpg', 'is_cover' => false],
-                ]
-            ],
-            [
-                'name' => 'Tissot PRX Powermatic 80',
-                'description' => 'Automatické hodinky s výdržou až 80 hodín.',
-                'category_id' => 1,
-                'brand_id' => 1,
-                'price' => 500.00,  
-                'images' => [
-                    ['path' => 'IMGs/tissot-3-sm.jpg', 'is_cover' => true],
-                ]
-            ],
-            [
-                'name' => 'Breitling Navitimer Automatic 41',
-                'description' => 'Luxusné pilotné hodinky s ikonickým dizajnom.',
-                'category_id' => 1,
-                'brand_id' => 2,
-                'price' => 6200.00,  
-                'images' => [
-                    ['path' => 'IMGs/breitling-sm.jpg', 'is_cover' => true],
-                ]
-            ],
-            [
-                'name' => 'Rolex Submariner',
-                'description' => 'Ikona medzi potápačskými hodinkami.',
-                'category_id' => 1,
-                'brand_id' => 3,
-                'price' => 8800.00,  
-                'images' => [
-                    ['path' => 'IMGs/rolex-2-sm.jpg', 'is_cover' => true],
-                ]
-            ],
-            [
-                'name' => 'Fossil CH2882',
-                'description' => 'Štýlové a dostupné hodinky s chronografom.',
-                'category_id' => 1,
-                'brand_id' => 4,
-                'price' => 150.00,  
-                'images' => [
-                    ['path' => 'IMGs/fossil-sm.jpg', 'is_cover' => true],
-                ]
-            ],
-            [
-                'name' => 'Mauron Musy MU03 Armor',
-                'description' => 'Exkluzívny švajčiarsky model s patentovaným tesniacim systémom.',
-                'category_id' => 1,
-                'brand_id' => 5,
-                'price' => 12000.00,  
-                'images' => [
-                    ['path' => 'IMGs/mauron-sm.jpg', 'is_cover' => true],
-                ]
-            ],
+        $brands = [
+            ['id' => 1, 'name' => 'Tissot'],
+            ['id' => 2, 'name' => 'Breitling'],
+            ['id' => 3, 'name' => 'Rolex'],
+            ['id' => 4, 'name' => 'Fossil'],
+            ['id' => 5, 'name' => 'Mauron Musy'],
+            ['id' => 6, 'name' => 'Seiko'],
+            ['id' => 7, 'name' => 'Casio'],
+            ['id' => 8, 'name' => 'Omega'],
+            ['id' => 9, 'name' => 'Citizen'],
+            ['id' => 10, 'name' => 'Hamilton'],
         ];
 
-        foreach ($products as $product) {
-            $existingProduct = DB::table('products')->where('name', $product['name'])->first();
-        
-            if ($existingProduct) {
-                $productId = $existingProduct->id;
-            } else {
-                $productId = DB::table('products')->insertGetId([
-                    'name' => $product['name'],
-                    'description' => $product['description'],
-                    'category_id' => $product['category_id'],
-                    'brand_id' => $product['brand_id'],
-                    'price' => $product['price'],
-                    'created_at' => now(),
+        $imagePool = [
+            'IMGs/breitling-sm.jpg',
+            'IMGs/carrera-sm.jpg',
+            'IMGs/festina-sm.jpg',
+            'IMGs/fossil-sm.jpg',
+            'IMGs/iwc-sm.jpg',
+            'IMGs/mauron-sm.jpg',
+            'IMGs/oozoo-sm.jpg',
+            'IMGs/rolex-2-sm.jpg',
+            'IMGs/rolex-sm.jpg',
+            'IMGs/tissot-3-sm.jpg',
+            'IMGs/tissot-4-sm.jpg',
+            'IMGs/tissot-prx-sm.jpg',
+            'IMGs/tissot-prx1-sm.jpg',
+            'IMGs/tissot-prx2-sm.jpg',
+            'IMGs/tudor-sm.jpg',
+            'IMGs/watch-sm.jpg',
+        ];
+        $faker = \Faker\Factory::create();
+        for ($i = 0; $i < 5000; $i++) {
+            $brand = $brands[array_rand($brands)];
+            $name = $brand['name'] . ' ' . strtoupper(Str::random(4)) . rand(100, 999);
+            $description = $faker->sentence(12);
+            $price = rand(100, 20000) / 1.0;
+            $categoryId = rand(1, 3);
+
+            $productId = DB::table('products')->insertGetId([
+                'name' => $name,
+                'description' => $description,
+                'category_id' => $categoryId,
+                'brand_id' => $brand['id'],
+                'price' => $price,
+                'created_at' => now(),
+            ]);
+
+            $imageCount = rand(1, 3);
+            $usedImages = array_rand($imagePool, $imageCount);
+            if (!is_array($usedImages)) $usedImages = [$usedImages];
+
+            foreach ($usedImages as $j => $index) {
+                DB::table('products_images')->insert([
+                    'product_id' => $productId,
+                    'image_path' => $imagePool[$index],
+                    'is_cover' => $j === 0, // prvý obrázok je cover
                 ]);
             }
-        
-            foreach ($product['images'] as $image) {
-                $exists = DB::table('products_images')
-                    ->where('product_id', $productId)
-                    ->where('image_path', $image['path'])
-                    ->exists();
-        
-                if (!$exists) {
-                    DB::table('products_images')->insert([
-                        'product_id' => $productId,
-                        'image_path' => $image['path'],
-                        'is_cover' => $image['is_cover'],
-                    ]);
-                }
-            }
         }
-    }   
+    }
 }
