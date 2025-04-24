@@ -82,6 +82,8 @@ function applyFilter() {
         params.delete('price_max');
     }
 
+    params.set('page', 1);
+
     // Update the URL with the new filters
     if (params.toString()) {
         url += '?' + params.toString();  // Append the query string to the URL
