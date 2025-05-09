@@ -104,13 +104,25 @@ Route::post('/register', [RegisteredUserController::class, 'store'])->name('regi
 Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login');
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/admin/dashboard', function () {
-        return view('admin.dashboard');
+
+//****        Admin routes          ****//
+Route::middleware(['auth', 'is_admin'])->prefix('admin')->group(function () {
+    Route::get('/dashboard', function () {
+        return view('admin.dashboard', ['active' => 'dashboard']);
     })->name('admin.dashboard');
+
+    Route::get('/add-product', function () {
+        return view('admin.addProduct', ['active' => 'addProduct']);
+    })->name('admin.addProduct');
+
+    Route::get('/edit-product', function () {
+        return view('admin.editProduct', ['active' => 'editProduct']);
+    })->name('admin.editProduct');
 });
 
-//****                       ****//
+
+
+
 
 
 Route::get('/products/{category_name?}', [ProductController::class, 'showByCategory'])->name('products.byCategory');

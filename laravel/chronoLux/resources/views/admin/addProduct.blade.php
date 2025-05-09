@@ -9,8 +9,9 @@
 
 @section('content')
 <main>
-    <x-adminSidebar :active="'statistics'" />
-    <h1>HAUUU</h1>
+    <x-adminSidebar :active="'addProduct'" />
+    <h1>MNAUU</h1>
+
 </main>
 @endsection
 @push('scripts')
