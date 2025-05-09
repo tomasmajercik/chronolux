@@ -34,6 +34,16 @@ class UsersTableSeeder extends Seeder
                 'role' => 'customer',
                 'default_address' => 2,
             ],
+            [
+                'name' => 'Ľuďo Malina Kopačka',
+                'email' => 'admin@admin.com',
+                'password' => bcrypt('1234567890'),
+                'created_at' => now(),
+                'updated_at' => now(),
+                'phone_number' => '+421 999 888 777',
+                'role' => 'admin',
+                'default_address' => null,
+            ],
         ]);
     }
 }

@@ -26,8 +26,12 @@ class AuthenticatedSessionController extends Controller
             $request->session()->regenerate();
 
             (new CartController)->transferSessionCart();
+
+            // distinguish admin from user
+            $redirectUrl = $user->role === 'admin' ? route('admin.dashboard') : route('profile');
+
             // Return success with redirection URL
-            return response()->json(['success' => true, 'redirect' => route('profile')]);
+            return response()->json(['success' => true, 'redirect' => route($redirectUrl)]);
         }
 
         // if unsuccessful login

@@ -103,6 +103,13 @@ Route::get('/register', function () {
 Route::post('/register', [RegisteredUserController::class, 'store'])->name('register');
 Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login');
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin/dashboard', function () {
+        return view('admin.dashboard');
+    })->name('admin.dashboard');
+});
+
 //****                       ****//
 
 
