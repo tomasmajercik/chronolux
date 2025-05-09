@@ -62,3 +62,6 @@ php artisan db:seed
 - a pridas ho do databaseSeeder.php (to $this)
 - ifexists
 - php artisan db:seed
+
+# admin cast
+- pridal som admin usera, spusti si `php artisan migrate:fresh --seed` :D

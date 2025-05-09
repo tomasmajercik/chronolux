@@ -21,23 +21,22 @@ class AuthenticatedSessionController extends Controller
             'password' => ['required'],
         ]);
 
-        // if successful login
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
+            $user = Auth::user();
+
             (new CartController)->transferSessionCart();
-            // Return success with redirection URL
-            return response()->json(['success' => true, 'redirect' => route('profile')]);
+
+            // distinguish admin from user
+            $redirectUrl = $user->role === 'admin' ? route('admin.dashboard') : route('profile');
+
+            return response()->json(['success' => true, 'redirect' => $redirectUrl]);
         }
 
-        // if unsuccessful login
-        // return back()->withErrors([
-        //     'loginFailed' => 'Email or password are incorrect.'
-        // ]);
-
-        // If login fails, return an error message
         return response()->json(['success' => false, 'message' => 'Email or password are incorrect.'], 422);
     }
+
 
 
     /**
