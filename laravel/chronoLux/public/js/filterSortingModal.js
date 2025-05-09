@@ -62,6 +62,7 @@ function applyFilter() {
 
     // Add the selected sizes as an array in the query string (sizes[])
     if (sizes.length > 0) {
+        // params.delete('sizes[]');
         sizes.forEach(function(size) {
             params.append('sizes[]', size); // Append each size as a separate 'sizes[]' parameter
         });
@@ -115,6 +116,8 @@ function applySort() {
     } else {
         params.delete('sort_name');
     }
+
+    params.set('page', 1);
 
     // Go to new URL with params
     window.location.search = params.toString();

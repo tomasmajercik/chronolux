@@ -27,9 +27,9 @@
                     <!-- First item in cart -->
                     <form action="{{ route('payment.store') }}" method="POST">
                         @csrf
-                        <input type="hidden" name="payment_method" id="payment_method" value="" required>
+                        <input type="hidden" name="payment_method" id="payment_method" value="Apple Pay" required>
                     <div class="form-wrapper">
-                            <button type="button" class="payment-button" onclick="selectPayment(this, 'Apple Pay')">
+                            <button type="button" class="payment-button selected" onclick="selectPayment(this, 'Apple Pay')">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="81" height="81" viewBox="0 0 81 81"
                                     fill="none">
                                     <path
