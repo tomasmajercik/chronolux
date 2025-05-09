@@ -92,4 +92,61 @@ class ProductController extends Controller
         $product = Product::with('coverImage')->findOrFail($id);
         return view('product_detail', compact('product'));
     }
+
+   public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'price' => 'required|numeric',
+            'description' => 'required|string',
+            'category_id' => 'required|exists:categories,id',
+            'brand_id' => 'required|exists:brands,id',
+            'sizes' => 'nullable|array',
+            'sizes.*' => 'string|max:10',
+            'images' => 'nullable|array',
+            'images.*' => 'image|max:2048',
+        ]);
+
+        $product = Product::create([
+            'name' => $validated['name'],
+            'price' => $validated['price'],
+            'description' => $validated['description'],
+            'category_id' => $validated['category_id'],
+            'brand_id' => $validated['brand_id'],
+        ]);
+
+        // Store sizes
+        if (!empty($validated['sizes'])) {
+            foreach ($validated['sizes'] as $size) {
+                $product->variants()->create(['size' => $size]);
+            }
+        }
+
+        // Store images
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $path = $image->store('product_images', 'public');
+
+                $product->images()->create([
+                    'image_path' => $path,
+                ]);
+            }
+        }
+
+        return redirect()->back()->with('success', 'Product uploaded successfully!');
+    }
+    
+    public function create()
+    {
+        $categories = Category::all();
+        $brands = Brand::all();
+
+        return view('admin.addProduct', [
+            'categories' => $categories,
+            'brands' => $brands,
+            'active' => 'addProduct',
+        ]);
+    }
+
+
 }

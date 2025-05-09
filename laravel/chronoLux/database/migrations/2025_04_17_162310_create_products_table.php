@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('description');
             $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete();
             $table->foreignId('brand_id')->constrained('brands')->cascadeOnDelete();
-            $table->timestamp('created_at')->useCurrent();
+            $table->timestamps();
         });;
     }
 
