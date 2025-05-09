@@ -11,6 +11,7 @@ use App\Http\Controllers\OrderDetailItemController;
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\AdminDashboardController;
 
 
 Route::get('/', [HomeController::class, 'index']);
@@ -107,17 +108,16 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name
 
 //****        Admin routes          ****//
 Route::middleware(['auth', 'is_admin'])->prefix('admin')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('admin.dashboard', ['active' => 'dashboard']);
-    })->name('admin.dashboard');
+    Route::get('/dashboard', [AdminDashboardController::class, 'adminStats'])
+        ->name('admin.dashboard');
 
-    Route::get('/add-product', function () {
-        return view('admin.addProduct', ['active' => 'addProduct']);
-    })->name('admin.addProduct');
+    Route::get('/add-product', [ProductController::class, 'create'])->name('admin.addProduct');
 
     Route::get('/edit-product', function () {
         return view('admin.editProduct', ['active' => 'editProduct']);
     })->name('admin.editProduct');
+
+    Route::post('/products', [ProductController::class, 'store'])->name('admin.products.store');
 });
 
 

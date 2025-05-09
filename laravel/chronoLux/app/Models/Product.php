@@ -6,6 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+    protected $fillable = [
+        'name',
+        'price',
+        'description',
+        'category_id',
+        'brand_id',
+    ];
+
+    protected $with = ['coverImage', 'category', 'brand'];
+
     public function coverImage()
     {
         return $this->hasOne(ProductImage::class)->where('is_cover', true);
