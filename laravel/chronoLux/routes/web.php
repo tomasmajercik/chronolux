@@ -46,28 +46,28 @@ Route::get('/auth', function () {
 Route::get('/products/{category_name}', [ProductController::class, 'showByCategory'])->name('products.byCategory');
 
 
-//**** Protected Routes ****//
+//**** Protected Routes ****//a
 Route::get('/profile', [ProfileController::class, 'show'])
-    ->name('profile')
-    ->middleware('auth');
+    ->middleware(['auth', 'not_admin'])
+    ->name('profile');
 
 
-Route::get('/profile/orders', [OrderController::class, 'index'])->name('profile.orders');
-Route::get('/profile/orders/detail/{id}', [OrderDetailItemController::class, 'showOrderDetail'])->middleware('auth')->name('profile.orders.detail');
+Route::get('/profile/orders', [OrderController::class, 'index'])->middleware(['auth', 'not_admin'])->name('profile.orders');
+Route::get('/profile/orders/detail/{id}', [OrderDetailItemController::class, 'showOrderDetail'])->middleware(['auth', 'not_admin'])->name('profile.orders.detail');
 
 
 Route::get('/profile/settings', function () {
     return view('settings', ['user' => Auth::user()]);
-})->middleware('auth')->name('profile.settings');
+})->middleware(['auth', 'not_admin'])->name('profile.settings');
 //****                  ****//
 
 //**** Edit name Routes ****//
-Route::post('/profile/edit-name', [ProfileController::class, 'editName'])->middleware('auth')->name('profile.edit-name');
-Route::post('/profile/update-name', [ProfileController::class, 'updateName'])->middleware('auth');
+Route::post('/profile/edit-name', [ProfileController::class, 'editName'])->middleware(['auth', 'not_admin'])->name('profile.edit-name');
+Route::post('/profile/update-name', [ProfileController::class, 'updateName'])->middleware(['auth', 'not_admin']);
 //****                ****//
 //**** Edit address Routes ****//
-Route::post('/profile/update-address', [ProfileController::class, 'updateAddress'])->middleware('auth')->name('profile.update-address');
-Route::post('/profile/update-contact', [ProfileController::class, 'updateContact'])->middleware('auth')->name('profile.update-contact');
+Route::post('/profile/update-address', [ProfileController::class, 'updateAddress'])->middleware(['auth', 'not_admin'])->name('profile.update-address');
+Route::post('/profile/update-contact', [ProfileController::class, 'updateContact'])->middleware(['auth', 'not_admin'])->name('profile.update-contact');
 
 //**** Settings Routes ****//
 Route::middleware('auth')->group(function() {
