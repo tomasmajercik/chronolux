@@ -186,26 +186,29 @@ class ProductController extends Controller
 
         // Vymaž všetky obrázky (okrem tých, ktoré sú zdieľané)
         foreach ($product->images as $image) {
-            $path = $image->image_path;
+            $originalPath = $image->image_path;
+            $path = str_replace('storage/', '', $originalPath); // odstráň 'storage/' prefix
 
             if ($path) {
-                $count = ProductImage::where('image_path', $path)->count();
+                $count = ProductImage::where('image_path', $originalPath)->count();
 
                 if ($count <= 1 && Storage::disk('public')->exists($path)) {
                     Storage::disk('public')->delete($path);
                 }
             }
 
-            $image->delete(); // záznam z DB vždy zmažeme
+            $image->delete();
         }
+
 
         // Cover image
         if ($product->coverImage) {
             $cover = $product->coverImage;
-            $path = $cover->image_path;
+            $originalPath = $cover->image_path;
+            $path = str_replace('storage/', '', $originalPath);
 
             if ($path) {
-                $count = ProductImage::where('image_path', $path)->count();
+                $count = ProductImage::where('image_path', $originalPath)->count();
 
                 if ($count <= 1 && Storage::disk('public')->exists($path)) {
                     Storage::disk('public')->delete($path);
@@ -214,6 +217,7 @@ class ProductController extends Controller
 
             $cover->delete();
         }
+
 
         // Zmaž produkt
         $product->delete();
