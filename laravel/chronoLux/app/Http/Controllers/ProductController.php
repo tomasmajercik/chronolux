@@ -7,6 +7,11 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Brand;
 
+// delete
+use Illuminate\Support\Facades\Storage;
+use App\Models\ProductImage;
+
+
 class ProductController extends Controller
 {
     public function showByCategory(Request $request, $category_name = null)
@@ -93,7 +98,7 @@ class ProductController extends Controller
         return view('product_detail', compact('product'));
     }
 
-   public function store(Request $request)
+    public function store(Request $request)
     {
         try {
             $validated = $request->validate([
@@ -174,6 +179,167 @@ class ProductController extends Controller
             'active' => 'addProduct',
         ]);
     }
+
+    public function destroy($id)
+    {
+        $product = Product::with(['images', 'coverImage'])->findOrFail($id);
+
+        // Vymaž všetky obrázky (okrem tých, ktoré sú zdieľané)
+        foreach ($product->images as $image) {
+            $originalPath = $image->image_path;
+            $path = str_replace('storage/', '', $originalPath); // odstráň 'storage/' prefix
+
+            if ($path) {
+                $count = ProductImage::where('image_path', $originalPath)->count();
+
+                if ($count <= 1 && Storage::disk('public')->exists($path)) {
+                    Storage::disk('public')->delete($path);
+                }
+            }
+
+            $image->delete();
+        }
+
+
+        // Cover image
+        if ($product->coverImage) {
+            $cover = $product->coverImage;
+            $originalPath = $cover->image_path;
+            $path = str_replace('storage/', '', $originalPath);
+
+            if ($path) {
+                $count = ProductImage::where('image_path', $originalPath)->count();
+
+                if ($count <= 1 && Storage::disk('public')->exists($path)) {
+                    Storage::disk('public')->delete($path);
+                }
+            }
+
+            $cover->delete();
+        }
+
+
+        // Zmaž produkt
+        $product->delete();
+
+        return redirect()->route('admin.editProduct')->with('success', 'Product and images deleted.');
+    }
+
+    // Obrázok sa fyzicky zmaže iba ak: 
+//        - sa v DB vyskytuje len raz (count() <= 1),
+//        - a súbor existuje na disku (Storage::exists()).
+
+
+    public function edit($id)
+    {
+        $product = Product::with(['variants', 'coverImage', 'images'])->findOrFail($id);
+        $categories = Category::all();
+        $brands = Brand::all();
+
+        return view('admin.editSingleProduct', compact('product', 'categories', 'brands'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        try {
+            $product = Product::with(['variants', 'images', 'coverImage'])->findOrFail($id);
+
+            $validated = $request->validate([
+                'name' => 'required|string|max:255|unique:products,name,' . $product->id,
+                'price' => 'required|numeric',
+                'description' => 'required|string',
+                'category_id' => 'required|exists:categories,id',
+                'brand_id' => 'required',
+                'new_brand' => $request->brand_id === '__new__' ? 'required|string|max:255' : 'nullable|string|max:255',
+                'sizes' => 'required|array',
+                'sizes.*' => 'string|max:10',
+                'images' => 'required|array',
+                'images.*' => 'image',
+            ]);
+
+            // BRAND
+            if ($validated['brand_id'] === '__new__') {
+                $existingBrand = Brand::whereRaw('LOWER(brand_name) = ?', [strtolower($validated['new_brand'])])->first();
+                $brandId = $existingBrand ? $existingBrand->id : Brand::create(['brand_name' => $validated['new_brand']])->id;
+            } else {
+                $brandId = $validated['brand_id'];
+            }
+
+            // UPDATE PRODUCT FIELDS
+            $product->update([
+                'name' => $validated['name'],
+                'price' => $validated['price'],
+                'description' => $validated['description'],
+                'category_id' => $validated['category_id'],
+                'brand_id' => $brandId
+            ]);
+
+            // SIZES
+            $product->variants()->delete();
+            foreach ($validated['sizes'] as $size) {
+                $product->variants()->create(['size' => $size]);
+            }
+
+            // DELETE OLD IMAGES THAT WON'T BE REUSED
+            foreach ($product->images as $image) {
+                $path = str_replace('storage/', '', $image->image_path);
+                $uses = \App\Models\ProductImage::where('image_path', $image->image_path)->count();
+
+                if ($uses <= 1 && Storage::disk('public')->exists($path)) {
+                    Storage::disk('public')->delete($path);
+                }
+
+                $image->delete();
+            }
+
+            if ($product->coverImage) {
+                $path = str_replace('storage/', '', $product->coverImage->image_path);
+                $uses = \App\Models\ProductImage::where('image_path', $product->coverImage->image_path)->count();
+
+                if ($uses <= 1 && Storage::disk('public')->exists($path)) {
+                    Storage::disk('public')->delete($path);
+                }
+
+                $product->coverImage->delete();
+            }
+
+            // UPLOAD NEW IMAGES
+            if ($request->hasFile('images')) {
+                foreach ($request->file('images') as $index => $image) {
+                    $path = $image->store('/product_images', 'public');
+                    $product->images()->create([
+                        'image_path' => 'storage/' . $path,
+                        'is_cover' => $index === 0,
+                    ]);
+                }
+            }
+
+            if ($request->expectsJson()) {
+                return response()->json([
+                    'message' => 'Product updated successfully!',
+                    'redirect_to' => route('product.detail', $product->id),
+                ], 200);
+            }
+
+            // if ($request->expectsJson()) {
+            //     // return response()->json(['message' => 'Product updated successfully!'], 200);
+            //     return response()->json(['message' => 'Product updated successfully!'], 200);
+            // }
+
+            // return redirect()->back()->with('success', 'Product updated successfully!');
+            return redirect()->route('product.detail', $product->id)->with('success', 'Product updated successfully!');
+
+
+        } catch (\Exception $e) {
+            if ($request->expectsJson()) {
+                return response()->json(['message' => 'Error: ' . $e->getMessage()], 500);
+            }
+
+            return redirect()->back()->with('error', 'Error: ' . $e->getMessage());
+        }
+    }
+
+
 
 
 }

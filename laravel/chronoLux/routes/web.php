@@ -12,6 +12,8 @@ use App\Http\Controllers\OrderDetailItemController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\AdminProductController;
+
 
 
 Route::get('/', [HomeController::class, 'index']);
@@ -34,10 +36,6 @@ Route::get('/product-page', function () {
 
 Route::get('/proceed', function () {
     return view('/cart/proceed');
-});
-
-Route::get('/product-detail', function () {
-    return view('product_detail');
 });
 
 Route::get('/auth', function () {
@@ -113,11 +111,17 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin')->group(function () {
 
     Route::get('/add-product', [ProductController::class, 'create'])->name('admin.addProduct');
 
-    Route::get('/edit-product', function () {
-        return view('admin.editProduct', ['active' => 'editProduct']);
-    })->name('admin.editProduct');
+    Route::get('/edit-product', [AdminProductController::class, 'index'])->name('admin.editProduct');
 
     Route::post('/products', [ProductController::class, 'store'])->name('admin.products.store');
+
+    // Route::delete('/products/{product}', [AdminProductController::class, 'destroy'])
+    // ->name('admin.products.destroy');
+
+    Route::delete('/admin/products/{id}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
+
+    Route::get('/product/{id}/edit', [ProductController::class, 'edit'])->name('admin.product.edit');
+    Route::put('/product/{id}', [ProductController::class, 'update'])->name('admin.product.update');
 });
 
 

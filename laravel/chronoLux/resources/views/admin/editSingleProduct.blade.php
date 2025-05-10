@@ -9,33 +9,39 @@
 
 @section('content')
 <main>
-    <x-adminSidebar :active="'addProduct'" />
+    <x-adminSidebar :active="'editProduct'" />
     <div class="profile-content">
             <div class="profile-info">
                 <!-- MAIN CONTENT -->
                 <div class="main-content">
                     <h2>Add product</h2>
-                    <form id="product-form" action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data" class="product-form">
+                    <form id="product-form" action="{{ route('admin.product.update', $product->id) }}" method="POST" enctype="multipart/form-data" class="product-form">
+                        @method('PUT')
                         @csrf
 
                         <div class="product-text-info">
                             <div class="row">
                                 <label for="product-name">Product name</label>
-                                <input type="text" id="product-name" name="name" placeholder="Watch name and type" required>
+                                <input type="text" id="product-name" name="name" value="{{ old('name', $product->name) }}" placeholder="Watch name and type" required>
                             </div>
 
                             <div class="row">
                                 <label for="product-price">Price</label>
-                                <input type="number" step="0.01" id="product-price" name="price" placeholder="5799.98" required>
+                                <input type="number" step="0.01" id="product-price" name="price" value="{{ old('price', $product->price) }}" placeholder="5799.98" required>
                             </div>
                         </div>
 
                         <div class="product-sizes">
                             <h4>Sizes</h4>
                             <div class="product-sizes-container">
+                                @php
+                                    $variantSizes = $product->variants->pluck('size')->toArray();
+                                @endphp
+
                                 @foreach(['42mm', '43mm', '44mm', '45mm', '46mm'] as $size)
                                     <label class="custom-checkbox">
-                                        <input type="checkbox" name="sizes[]" value="{{ $size }}">
+                                        <input type="checkbox" name="sizes[]" value="{{ $size }}"
+                                            {{ in_array($size, old('sizes', $variantSizes)) ? 'checked' : '' }}>
                                         <span class="checkmark"></span>
                                         {{ $size }}
                                     </label>
@@ -48,7 +54,10 @@
                             <select id="watch-category" name="category_id" class="dropdown" required>
                                 <option value="" disabled selected>Choose category</option>
                                 @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                                    <option value="{{ $category->id }}"
+                                        {{ old('category_id', $product->category_id) == $category->id ? 'selected' : '' }}>
+                                        {{ $category->category_name }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
@@ -59,7 +68,10 @@
                             <select id="watch-brand" name="brand_id" class="dropdown" required>
                                 <option value="" disabled selected>Choose brand</option>
                                 @foreach ($brands as $brand)
-                                    <option value="{{ $brand->id }}">{{ $brand->brand_name }}</option>
+                                    <option value="{{ $brand->id }}"
+                                        {{ old('brand_id', $product->brand_id) == $brand->id ? 'selected' : '' }}>
+                                        {{ $brand->brand_name }}
+                                    </option>
                                 @endforeach
                                 <option value="__new__">+ Add new brand...</option>
                             </select>
@@ -81,14 +93,16 @@
                         </div>
 
 
+
+
                         <div class="product-description">
                             <h4>Product description</h4>
                             <textarea id="text-area" name="description" class="text-input"
-                                placeholder="Lorem ipsum dolor sit amet..." required></textarea>
+                                placeholder="Lorem ipsum dolor sit amet..." required>{{ old('description', $product->description) }}</textarea>
                         </div>
                         
                         <div class="button-area">
-                            <button class="upload-button" type="submit">Upload Product</button>
+                            <button class="upload-button" type="submit">Confirm edit</button>
                         </div>
                     </form>
 
@@ -100,9 +114,38 @@
 @push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
 <script>
+    const existingImageIds = @json(
+        collect([
+            $product->coverImage?->id,
+            ...$product->images->pluck('id')->toArray()
+        ])->filter()->values()
+    );
+
     const uploadInput = document.getElementById('image-upload');
     const previewContainer = document.getElementById('preview-container');
     let selectedFiles = [];
+
+    window.addEventListener('DOMContentLoaded', async () => {
+        const existingImagePaths = @json(
+            collect([
+                $product->coverImage?->image_path,
+                ...$product->images->pluck('image_path')->toArray()
+            ])->filter()->map(fn($path) => asset($path))->values()
+        );
+
+        for (const url of existingImagePaths) {
+            const response = await fetch(url);
+            const blob = await response.blob();
+            const filename = url.split('/').pop();
+            const file = new File([blob], filename, { type: blob.type });
+            selectedFiles.push(file);
+        }
+
+        renderPreviews();
+        updateUploadStatus();
+    });
+
+
 
     function renderPreviews() {
         previewContainer.querySelectorAll('.product-img').forEach(el => el.remove());
@@ -212,12 +255,18 @@
 
             const result = await response.json();
 
+            // if (response.ok) {
+            //     alert(result.message || "Product uploaded successfully!");
+            //     form.reset();
+            //     selectedFiles = [];
+            //     document.querySelectorAll('.product-img').forEach(el => el.remove());
+            // }
             if (response.ok) {
-                alert(result.message || "Product uploaded successfully!");
-                form.reset();
-                selectedFiles = [];
-                document.querySelectorAll('.product-img').forEach(el => el.remove());
-            } else {
+                const redirectTo = '/admin/edit-product'; // fallback
+                window.location.href = redirectTo;
+            }
+ 
+            else {
                 alert(result.message || "Something went wrong.");
             }
         } catch (error) {
