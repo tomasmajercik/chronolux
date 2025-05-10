@@ -97,7 +97,7 @@ class ProductController extends Controller
     {
         try {
             $validated = $request->validate([
-                'name' => 'required|string|max:255',
+                'name' => 'required|string|max:255|unique:products,name',
                 'price' => 'required|numeric',
                 'description' => 'required|string',
                 'category_id' => 'required|exists:categories,id',
@@ -110,11 +110,18 @@ class ProductController extends Controller
             ]);
 
             if ($validated['brand_id'] === '__new__') {
-                $newBrand = Brand::create(['brand_name' => $validated['new_brand']]);
-                $brandId = $newBrand->id;
+                $existingBrand = Brand::whereRaw('LOWER(brand_name) = ?', [strtolower($validated['new_brand'])])->first();
+
+                if ($existingBrand) {
+                    $brandId = $existingBrand->id;
+                } else {
+                    $newBrand = Brand::create(['brand_name' => $validated['new_brand']]);
+                    $brandId = $newBrand->id;
+                }
             } else {
                 $brandId = $validated['brand_id'];
             }
+
 
             $product = Product::create([
                 'name' => $validated['name'],

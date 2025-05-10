@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Checkout')
+@section('title', 'Thank you!')
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/proceed.css') }}">

@@ -127,6 +127,7 @@ input[type="text"], input[type="number"]
     border-radius: 10px;
     border: 1px solid #ccc;
     background-color: #eee;
+    object-fit: cover;
 }
 .upload-images .add-img
 {
@@ -147,6 +148,15 @@ input[type="text"], input[type="number"]
     align-items: center;
     
     font-size: 25px;
+}
+.hidden
+{
+    display: none;
+}
+.upload-images .add-img:hover
+{
+    background-color: #ccc;
+    cursor: pointer;
 }
 .trash-can 
 {
@@ -257,6 +267,14 @@ input[type="text"], input[type="number"]
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.product-img img {
+    cursor: grab;
+}
+
+.product-img img:active {
+    cursor: grabbing;
 }
 
 .logout-svg

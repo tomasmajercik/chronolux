@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{{ asset('css/admin/dashboard.css') }}">
 @endpush
 
-@section('title', 'Profile')
+@section('title', 'Dashboard')
 
 @section('content')
 <main>
