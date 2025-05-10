@@ -39,7 +39,7 @@ class ProductController extends Controller
 
         // Filter by size (if provided)
         if ($request->filled('sizes')) {
-            $sizes = $request->input('sizes'); // Toto je pole veľkostí
+            $sizes = $request->input('sizes');
         
             $products->whereHas('variants', function ($query) use ($sizes) {
                 $query->whereIn('size', $sizes);
@@ -95,46 +95,73 @@ class ProductController extends Controller
 
    public function store(Request $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'price' => 'required|numeric',
-            'description' => 'required|string',
-            'category_id' => 'required|exists:categories,id',
-            'brand_id' => 'required|exists:brands,id',
-            'sizes' => 'nullable|array',
-            'sizes.*' => 'string|max:10',
-            'images' => 'nullable|array',
-            'images.*' => 'image|max:2048',
-        ]);
+        try {
+            $validated = $request->validate([
+                'name' => 'required|string|max:255|unique:products,name',
+                'price' => 'required|numeric',
+                'description' => 'required|string',
+                'category_id' => 'required|exists:categories,id',
+                'brand_id' => 'required',
+                'new_brand' => $request->brand_id === '__new__' ? 'required|string|max:255' : 'nullable|string|max:255',
+                'sizes' => 'required|array',
+                'sizes.*' => 'string|max:10',
+                'images' => 'required|array',
+                'images.*' => 'image',
+            ]);
 
-        $product = Product::create([
-            'name' => $validated['name'],
-            'price' => $validated['price'],
-            'description' => $validated['description'],
-            'category_id' => $validated['category_id'],
-            'brand_id' => $validated['brand_id'],
-        ]);
+            if ($validated['brand_id'] === '__new__') {
+                $existingBrand = Brand::whereRaw('LOWER(brand_name) = ?', [strtolower($validated['new_brand'])])->first();
 
-        // Store sizes
-        if (!empty($validated['sizes'])) {
+                if ($existingBrand) {
+                    $brandId = $existingBrand->id;
+                } else {
+                    $newBrand = Brand::create(['brand_name' => $validated['new_brand']]);
+                    $brandId = $newBrand->id;
+                }
+            } else {
+                $brandId = $validated['brand_id'];
+            }
+
+
+            $product = Product::create([
+                'name' => $validated['name'],
+                'price' => $validated['price'],
+                'description' => $validated['description'],
+                'category_id' => $validated['category_id'],
+                'brand_id' => $brandId
+            ]);
+
             foreach ($validated['sizes'] as $size) {
                 $product->variants()->create(['size' => $size]);
             }
-        }
 
-        // Store images
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $image) {
-                $path = $image->store('product_images', 'public');
-
-                $product->images()->create([
-                    'image_path' => $path,
-                ]);
+            if ($request->hasFile('images')) {
+                foreach ($request->file('images') as $index => $image) {
+                    $path = $image->store('/product_images', 'public');
+                    $product->images()->create([
+                        'image_path' => 'storage/' . $path,
+                        'is_cover' => $index === 0,
+                    ]);
+                }
             }
-        }
 
-        return redirect()->back()->with('success', 'Product uploaded successfully!');
+            // Detect if it's AJAX or standard request
+            if ($request->expectsJson()) {
+                return response()->json(['message' => 'Product uploaded successfully!'], 200);
+            }
+
+            return redirect()->back()->with('success', 'Product uploaded successfully!');
+
+        } catch (\Exception $e) {
+            if ($request->expectsJson()) {
+                return response()->json(['message' => 'Error: ' . $e->getMessage()], 500);
+            }
+
+            return redirect()->back()->with('error', 'Error: ' . $e->getMessage());
+        }
     }
+
+
     
     public function create()
     {

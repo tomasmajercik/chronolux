@@ -44,13 +44,18 @@ main {
 {
     margin-bottom: 5px;
 }
+.product-form
+{
+    width: 90%;
+    margin: 0 auto;
+}
 .product-text-info
 {
     display: grid;
     width: 90%;
     margin: 0 auto;
     gap: 3px 10px;
-    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
 }
 input[type="text"], input[type="number"] 
 {
@@ -122,6 +127,7 @@ input[type="text"], input[type="number"]
     border-radius: 10px;
     border: 1px solid #ccc;
     background-color: #eee;
+    object-fit: cover;
 }
 .upload-images .add-img
 {
@@ -142,6 +148,15 @@ input[type="text"], input[type="number"]
     align-items: center;
     
     font-size: 25px;
+}
+.hidden
+{
+    display: none;
+}
+.upload-images .add-img:hover
+{
+    background-color: #ccc;
+    cursor: pointer;
 }
 .trash-can 
 {
@@ -227,6 +242,14 @@ input[type="text"], input[type="number"]
     margin-right: 8px; 
     position: relative;
 }
+#new-brand-input{
+    display:none; 
+    margin-top: 10px; 
+    width: 100%; 
+    padding: 10px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px;
+}
 
 /* Štýl pre zaškrtnutý stav */
 .custom-checkbox input:checked + .checkmark 
@@ -244,6 +267,14 @@ input[type="text"], input[type="number"]
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.product-img img {
+    cursor: grab;
+}
+
+.product-img img:active {
+    cursor: grabbing;
 }
 
 .logout-svg
@@ -265,14 +296,9 @@ input[type="text"], input[type="number"]
 {
     .product-text-info
     {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
         
     }
-    .row1
-    {
-        grid-column: span 2;
-    }
-    
     .product-sizes-container
     {
         width: 100%;
