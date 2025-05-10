@@ -25,22 +25,22 @@ class ProductsTableSeeder extends Seeder
         ];
 
         $imagePool = [
-            'IMGs/breitling-sm.jpg',
-            'IMGs/carrera-sm.jpg',
-            'IMGs/festina-sm.jpg',
-            'IMGs/fossil-sm.jpg',
-            'IMGs/iwc-sm.jpg',
-            'IMGs/mauron-sm.jpg',
-            'IMGs/oozoo-sm.jpg',
-            'IMGs/rolex-2-sm.jpg',
-            'IMGs/rolex-sm.jpg',
-            'IMGs/tissot-3-sm.jpg',
-            'IMGs/tissot-4-sm.jpg',
-            'IMGs/tissot-prx-sm.jpg',
-            'IMGs/tissot-prx1-sm.jpg',
-            'IMGs/tissot-prx2-sm.jpg',
-            'IMGs/tudor-sm.jpg',
-            'IMGs/watch-sm.jpg',
+            'storage/product_images/breitling-sm.jpg',
+            'storage/product_images/carrera-sm.jpg',
+            'storage/product_images/festina-sm.jpg',
+            'storage/product_images/fossil-sm.jpg',
+            'storage/product_images/iwc-sm.jpg',
+            'storage/product_images/mauron-sm.jpg',
+            'storage/product_images/oozoo-sm.jpg',
+            'storage/product_images/rolex-2-sm.jpg',
+            'storage/product_images/rolex-sm.jpg',
+            'storage/product_images/tissot-3-sm.jpg',
+            'storage/product_images/tissot-4-sm.jpg',
+            'storage/product_images/tissot-prx-sm.jpg',
+            'storage/product_images/tissot-prx1-sm.jpg',
+            'storage/product_images/tissot-prx2-sm.jpg',
+            'storage/product_images/tudor-sm.jpg',
+            'storage/product_images/watch-sm.jpg',
         ];
         $faker = \Faker\Factory::create();
         for ($i = 0; $i < 5000; $i++) {

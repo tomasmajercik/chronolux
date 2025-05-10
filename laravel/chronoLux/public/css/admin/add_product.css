@@ -44,13 +44,18 @@ main {
 {
     margin-bottom: 5px;
 }
+.product-form
+{
+    width: 90%;
+    margin: 0 auto;
+}
 .product-text-info
 {
     display: grid;
     width: 90%;
     margin: 0 auto;
     gap: 3px 10px;
-    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
 }
 input[type="text"], input[type="number"] 
 {
@@ -227,6 +232,14 @@ input[type="text"], input[type="number"]
     margin-right: 8px; 
     position: relative;
 }
+#new-brand-input{
+    display:none; 
+    margin-top: 10px; 
+    width: 100%; 
+    padding: 10px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px;
+}
 
 /* Štýl pre zaškrtnutý stav */
 .custom-checkbox input:checked + .checkmark 
@@ -265,14 +278,9 @@ input[type="text"], input[type="number"]
 {
     .product-text-info
     {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
         
     }
-    .row1
-    {
-        grid-column: span 2;
-    }
-    
     .product-sizes-container
     {
         width: 100%;

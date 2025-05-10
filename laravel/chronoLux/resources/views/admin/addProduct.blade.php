@@ -21,11 +21,11 @@
                 <!-- MAIN CONTENT -->
                 <div class="main-content">
                     <h2>Add product</h2>
-                    <form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
+                    <form id="product-form" action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data" class="product-form">
                         @csrf
 
                         <div class="product-text-info">
-                            <div class="row row1">
+                            <div class="row">
                                 <label for="product-name">Product name</label>
                                 <input type="text" id="product-name" name="name" placeholder="Watch name and type" required>
                             </div>
@@ -67,7 +67,10 @@
                                 @foreach ($brands as $brand)
                                     <option value="{{ $brand->id }}">{{ $brand->brand_name }}</option>
                                 @endforeach
+                                <option value="__new__">+ Add new brand...</option>
                             </select>
+
+                            <input type="text" id="new-brand-input" name="new_brand" placeholder="Enter new brand name"/>
                         </div>
 
 
@@ -88,7 +91,7 @@
                             <textarea id="text-area" name="description" class="text-input"
                                 placeholder="Lorem ipsum dolor sit amet..." required></textarea>
                         </div>
-
+                        
                         <div class="button-area">
                             <button class="upload-button" type="submit">Upload Product</button>
                         </div>
@@ -101,6 +104,12 @@
 @endsection
 @push('scripts')
 <script>
+    @if (session('success'))
+        alert("{{ session('success') }}");
+    @endif
+    @if (session('error'))
+        alert("{{ session('error') }}");
+    @endif
     const uploadInput = document.getElementById('image-upload');
     const previewContainer = document.getElementById('preview-container');
 
@@ -119,7 +128,7 @@
                 div.classList.add('product-img');
                 div.innerHTML = `
                     <img src="${e.target.result}" alt="img-preview">
-                    <button type="button" class="trash-can" onclick="this.parentElement.remove();">
+                    <button type="button" class="trash-can" onclick="this.closest('.product-img').remove();">
                         <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 9 9" fill="none">
                             <path d="M1.96875 1.96875L2.32031 7.59375C2.33701 7.91877 2.57344 8.15625 2.88281 8.15625H6.11719C6.42779 8.15625 6.65982 7.91877 6.67969 7.59375L7.03125 1.96875"
                                 stroke="black" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" />
@@ -136,10 +145,50 @@
             };
             reader.readAsDataURL(file);
         });
-
-        // Reset input to allow re-uploading same files
-        uploadInput.value = '';
     });
+
+    // Prevent form submission if there are no sizes selected
+    document.getElementById('product-form').addEventListener('submit', function (e) {
+        const checkedSizes = document.querySelectorAll('input[name="sizes[]"]:checked');
+        if (checkedSizes.length === 0) {
+            e.preventDefault();
+            alert("Please select at least one size.");
+        }
+    });
+
+    // Prevent form submission if less than 2 images are selected
+    document.getElementById('product-form').addEventListener('submit', function (e) {
+        const checkedSizes = document.querySelectorAll('input[name="sizes[]"]:checked');
+        const uploadedImages = document.querySelectorAll('.product-img img');
+
+        if (checkedSizes.length === 0) {
+            e.preventDefault();
+            alert("Please select at least one size.");
+            return;
+        }
+
+        if (uploadedImages.length < 2) {
+            e.preventDefault();
+            alert("Please upload at least two images.");
+            return;
+        }
+    });
+
+    const brandSelect = document.getElementById('watch-brand');
+    const newBrandInput = document.getElementById('new-brand-input');
+
+    brandSelect.addEventListener('change', function () {
+        if (this.value === '__new__') {
+            newBrandInput.style.display = 'block';
+            newBrandInput.required = true;
+            brandSelect.required = false;
+        } else {
+            newBrandInput.style.display = 'none';
+            newBrandInput.required = false;
+            brandSelect.required = true;
+        }
+    });
+
 </script>
 @endpush
 

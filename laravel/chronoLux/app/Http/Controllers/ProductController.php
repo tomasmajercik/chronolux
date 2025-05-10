@@ -39,7 +39,7 @@ class ProductController extends Controller
 
         // Filter by size (if provided)
         if ($request->filled('sizes')) {
-            $sizes = $request->input('sizes'); // Toto je pole veľkostí
+            $sizes = $request->input('sizes');
         
             $products->whereHas('variants', function ($query) use ($sizes) {
                 $query->whereIn('size', $sizes);
@@ -95,46 +95,55 @@ class ProductController extends Controller
 
    public function store(Request $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'price' => 'required|numeric',
-            'description' => 'required|string',
-            'category_id' => 'required|exists:categories,id',
-            'brand_id' => 'required|exists:brands,id',
-            'sizes' => 'nullable|array',
-            'sizes.*' => 'string|max:10',
-            'images' => 'nullable|array',
-            'images.*' => 'image|max:2048',
-        ]);
+        try {
+            $validated = $request->validate([
+                'name' => 'required|string|max:255',
+                'price' => 'required|numeric',
+                'description' => 'required|string',
+                'category_id' => 'required|exists:categories,id',
+                'brand_id' => 'required',
+                'new_brand' => $request->brand_id === '__new__' ? 'required|string|max:255' : 'nullable|string|max:255',
+                'sizes' => 'required|array',
+                'sizes.*' => 'string|max:10',
+                'images' => 'required|array',
+                'images.*' => 'image',
+            ]);
 
-        $product = Product::create([
-            'name' => $validated['name'],
-            'price' => $validated['price'],
-            'description' => $validated['description'],
-            'category_id' => $validated['category_id'],
-            'brand_id' => $validated['brand_id'],
-        ]);
+            if ($validated['brand_id'] === '__new__') {
+                $newBrand = Brand::create(['brand_name' => $validated['new_brand']]);
+                $brandId = $newBrand->id;
+            } else {
+                $brandId = $validated['brand_id'];
+            }
 
-        // Store sizes
-        if (!empty($validated['sizes'])) {
+            $product = Product::create([
+                'name' => $validated['name'],
+                'price' => $validated['price'],
+                'description' => $validated['description'],
+                'category_id' => $validated['category_id'],
+                'brand_id' => $brandId
+            ]);
+
             foreach ($validated['sizes'] as $size) {
                 $product->variants()->create(['size' => $size]);
             }
-        }
 
-        // Store images
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $image) {
-                $path = $image->store('product_images', 'public');
-
+            if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $index => $image) {
+                $path = $image->store('/product_images', 'public');
                 $product->images()->create([
-                    'image_path' => $path,
+                    'image_path' => 'storage/' . $path,
+                    'is_cover' => $index === 0, // mark first image as cover
                 ]);
             }
         }
 
-        return redirect()->back()->with('success', 'Product uploaded successfully!');
+            return redirect()->back()->with('success', 'Product uploaded successfully!');
+        } catch (\Exception $e) {
+            return redirect()->back()->withError('error', $e->getMessage());
+        }
     }
+
     
     public function create()
     {
