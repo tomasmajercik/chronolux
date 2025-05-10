@@ -68,7 +68,7 @@
                         </div>
 
 
-                       <div class="upload-images">
+                        <div class="upload-images">
                             <h4>Upload images</h4>
                             <div class="upload-images-container" id="preview-container">
                                 <!-- Image previews will appear here -->

@@ -98,7 +98,7 @@ class ProductController extends Controller
         return view('product_detail', compact('product'));
     }
 
-   public function store(Request $request)
+    public function store(Request $request)
     {
         try {
             $validated = $request->validate([
@@ -241,22 +241,67 @@ class ProductController extends Controller
 
     public function update(Request $request, $id)
     {
-        // $product = Product::findOrFail($id);
+        try {
+            $product = Product::with(['variants', 'images', 'coverImage'])->findOrFail($id);
 
-        // $validated = $request->validate([
-        //     'name' => 'required|string|max:255',
-        //     'price' => 'required|numeric',
-        //     'description' => 'required|string',
-        //     'category_id' => 'required|exists:categories,id',
-        //     'brand_id' => 'required',
-        //     // ďalšie validácie podľa potreby
-        // ]);
+            $validated = $request->validate([
+                'name' => 'required|string|max:255|unique:products,name,' . $product->id,
+                'price' => 'required|numeric',
+                'description' => 'required|string',
+                'category_id' => 'required|exists:categories,id',
+                'brand_id' => 'required',
+                'new_brand' => $request->brand_id === '__new__' ? 'required|string|max:255' : 'nullable|string|max:255',
+                'sizes' => 'required|array',
+                'sizes.*' => 'string|max:10',
+                'images.*' => 'image', // optional, not required
+            ]);
 
-        // $product->update($validated);
+            // Handle brand
+            if ($validated['brand_id'] === '__new__') {
+                $existingBrand = Brand::whereRaw('LOWER(brand_name) = ?', [strtolower($validated['new_brand'])])->first();
+                $brandId = $existingBrand ? $existingBrand->id : Brand::create(['brand_name' => $validated['new_brand']])->id;
+            } else {
+                $brandId = $validated['brand_id'];
+            }
 
-        // // Môžeš tu spraviť update variants, obrázkov atď.
+            // Update product info
+            $product->update([
+                'name' => $validated['name'],
+                'price' => $validated['price'],
+                'description' => $validated['description'],
+                'category_id' => $validated['category_id'],
+                'brand_id' => $brandId
+            ]);
 
-        return redirect()->route('admin.editProduct')->with('success', 'Product updated successfully.');
+            // Update sizes
+            $product->variants()->delete();
+            foreach ($validated['sizes'] as $size) {
+                $product->variants()->create(['size' => $size]);
+            }
+
+            // Handle new images if uploaded
+            if ($request->hasFile('images')) {
+                // Delete current images (DB only)
+                $product->images()->delete();
+                if ($product->coverImage) {
+                    $product->coverImage()->delete();
+                }
+
+                foreach ($request->file('images') as $index => $image) {
+                    $path = $image->store('/product_images', 'public');
+                    $product->images()->create([
+                        'image_path' => 'storage/' . $path,
+                        'is_cover' => $index === 0,
+                    ]);
+                }
+            }
+
+            return redirect()->route('admin.editProduct')->with('success', 'Product updated successfully.');
+
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Error: ' . $e->getMessage());
+        }
     }
+
 
 }
