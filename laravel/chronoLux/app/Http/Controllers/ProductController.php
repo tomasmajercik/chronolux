@@ -253,10 +253,11 @@ class ProductController extends Controller
                 'new_brand' => $request->brand_id === '__new__' ? 'required|string|max:255' : 'nullable|string|max:255',
                 'sizes' => 'required|array',
                 'sizes.*' => 'string|max:10',
-                'images.*' => 'image', // optional, not required
+                'images' => 'required|array',
+                'images.*' => 'image',
             ]);
 
-            // Handle brand
+            // BRAND
             if ($validated['brand_id'] === '__new__') {
                 $existingBrand = Brand::whereRaw('LOWER(brand_name) = ?', [strtolower($validated['new_brand'])])->first();
                 $brandId = $existingBrand ? $existingBrand->id : Brand::create(['brand_name' => $validated['new_brand']])->id;
@@ -264,7 +265,7 @@ class ProductController extends Controller
                 $brandId = $validated['brand_id'];
             }
 
-            // Update product info
+            // UPDATE PRODUCT FIELDS
             $product->update([
                 'name' => $validated['name'],
                 'price' => $validated['price'],
@@ -273,20 +274,37 @@ class ProductController extends Controller
                 'brand_id' => $brandId
             ]);
 
-            // Update sizes
+            // SIZES
             $product->variants()->delete();
             foreach ($validated['sizes'] as $size) {
                 $product->variants()->create(['size' => $size]);
             }
 
-            // Handle new images if uploaded
-            if ($request->hasFile('images')) {
-                // Delete current images (DB only)
-                $product->images()->delete();
-                if ($product->coverImage) {
-                    $product->coverImage()->delete();
+            // DELETE OLD IMAGES THAT WON'T BE REUSED
+            foreach ($product->images as $image) {
+                $path = str_replace('storage/', '', $image->image_path);
+                $uses = \App\Models\ProductImage::where('image_path', $image->image_path)->count();
+
+                if ($uses <= 1 && Storage::disk('public')->exists($path)) {
+                    Storage::disk('public')->delete($path);
                 }
 
+                $image->delete();
+            }
+
+            if ($product->coverImage) {
+                $path = str_replace('storage/', '', $product->coverImage->image_path);
+                $uses = \App\Models\ProductImage::where('image_path', $product->coverImage->image_path)->count();
+
+                if ($uses <= 1 && Storage::disk('public')->exists($path)) {
+                    Storage::disk('public')->delete($path);
+                }
+
+                $product->coverImage->delete();
+            }
+
+            // UPLOAD NEW IMAGES
+            if ($request->hasFile('images')) {
                 foreach ($request->file('images') as $index => $image) {
                     $path = $image->store('/product_images', 'public');
                     $product->images()->create([
@@ -296,12 +314,32 @@ class ProductController extends Controller
                 }
             }
 
-            return redirect()->route('admin.editProduct')->with('success', 'Product updated successfully.');
+            if ($request->expectsJson()) {
+                return response()->json([
+                    'message' => 'Product updated successfully!',
+                    'redirect_to' => route('product.detail', $product->id),
+                ], 200);
+            }
+
+            // if ($request->expectsJson()) {
+            //     // return response()->json(['message' => 'Product updated successfully!'], 200);
+            //     return response()->json(['message' => 'Product updated successfully!'], 200);
+            // }
+
+            // return redirect()->back()->with('success', 'Product updated successfully!');
+            return redirect()->route('product.detail', $product->id)->with('success', 'Product updated successfully!');
+
 
         } catch (\Exception $e) {
+            if ($request->expectsJson()) {
+                return response()->json(['message' => 'Error: ' . $e->getMessage()], 500);
+            }
+
             return redirect()->back()->with('error', 'Error: ' . $e->getMessage());
         }
     }
+
+
 
 
 }

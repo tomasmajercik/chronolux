@@ -9,7 +9,7 @@
 
 @section('content')
 <main>
-    <x-adminSidebar :active="'addProduct'" />
+    <x-adminSidebar :active="'editProduct'" />
     <div class="profile-content">
             <div class="profile-info">
                 <!-- MAIN CONTENT -->
@@ -80,17 +80,6 @@
                         </div>
 
 
-                        {{-- <div class="upload-images">
-                            <h4>Upload images</h4>
-                            <div class="upload-images-container" id="preview-container">
-                                <!-- Image previews will appear here -->
-                                <label class="add-img" for="image-upload">
-                                    <p>+</p>
-                                </label>
-                                <input type="file" id="image-upload" accept="image/*" multiple class="hidden">
-                            </div>
-                            <p id="upload-status" style="margin-top: 8px; font-size: 14px; color: #555;"></p> <!-- status line -->
-                        </div> --}}
                         <div class="upload-images">
                             <h4>Upload images</h4>
                             <div class="upload-images-container" id="preview-container">
@@ -125,6 +114,13 @@
 @push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
 <script>
+    const existingImageIds = @json(
+        collect([
+            $product->coverImage?->id,
+            ...$product->images->pluck('id')->toArray()
+        ])->filter()->values()
+    );
+
     const uploadInput = document.getElementById('image-upload');
     const previewContainer = document.getElementById('preview-container');
     let selectedFiles = [];
@@ -259,12 +255,18 @@
 
             const result = await response.json();
 
+            // if (response.ok) {
+            //     alert(result.message || "Product uploaded successfully!");
+            //     form.reset();
+            //     selectedFiles = [];
+            //     document.querySelectorAll('.product-img').forEach(el => el.remove());
+            // }
             if (response.ok) {
-                alert(result.message || "Product uploaded successfully!");
-                form.reset();
-                selectedFiles = [];
-                document.querySelectorAll('.product-img').forEach(el => el.remove());
-            } else {
+                const redirectTo = '/admin/edit-product'; // fallback
+                window.location.href = redirectTo;
+            }
+ 
+            else {
                 alert(result.message || "Something went wrong.");
             }
         } catch (error) {
