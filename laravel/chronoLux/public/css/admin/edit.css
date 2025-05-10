@@ -1,0 +1,62 @@
+/************************* Layout *************************/
+main {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 6fr;
+}
+
+
+
+
+
+
+/************************* MEDIA sidebar *************************/
+@media only screen and (max-width: 1000px) 
+{
+    main
+    {
+        grid-template-columns: 1fr ;
+    }
+}
+
+
+/************************* MEDIA main content *************************/
+@media only screen and (max-width: 675px) 
+{
+    .main-content
+    {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media only screen and (max-width: 450px) 
+{
+    .main-content
+    {
+        grid-template-columns: 1fr;
+    }
+}
+@media only screen and (min-width: 1150px) 
+{
+    .statistic-element
+    {
+        font-size: 18px;
+        width: 250px;
+        height: 100px;
+    }
+}
+@media only screen and (min-width: 1600px) 
+{
+    .statistic-element
+    {
+        font-size: 20px;
+        width: 350px;
+        height: 150px;
+    }
+}
+@media only screen and (min-width: 1700px) 
+{
+    .statistic-element
+    {
+        font-size: 25px;
+    }
+}
