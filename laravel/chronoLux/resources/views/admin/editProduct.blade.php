@@ -55,7 +55,8 @@
                                     <td>
                                         {{-- eye --}}
                                         <button class="action-btn"
-                                            onclick='window.location.href="{{ route('product.detail', $product->id) }}"'>
+                                            onclick='window.location.href="{{ route('product.detail', $product->id) }}"'
+                                        >
                                             <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19"
                                                 viewBox="0 0 19 19" fill="none">
                                                 <path
@@ -64,7 +65,9 @@
                                             </svg>
                                         </button>
                                         {{-- edit icon --}}
-                                        <button class="action-btn">
+                                        <button class="action-btn"
+                                            onclick='window.location.href="{{ route('admin.product.edit', $product->id) }}"'
+                                        >
                                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
                                                 viewBox="0 0 30 30" fill="none">
                                                 <path

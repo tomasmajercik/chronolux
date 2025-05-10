@@ -228,4 +228,35 @@ class ProductController extends Controller
     // Obrázok sa fyzicky zmaže iba ak: 
 //        - sa v DB vyskytuje len raz (count() <= 1),
 //        - a súbor existuje na disku (Storage::exists()).
+
+
+    public function edit($id)
+    {
+        $product = Product::with(['variants', 'coverImage', 'images'])->findOrFail($id);
+        $categories = Category::all();
+        $brands = Brand::all();
+
+        return view('admin.editSingleProduct', compact('product', 'categories', 'brands'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        // $product = Product::findOrFail($id);
+
+        // $validated = $request->validate([
+        //     'name' => 'required|string|max:255',
+        //     'price' => 'required|numeric',
+        //     'description' => 'required|string',
+        //     'category_id' => 'required|exists:categories,id',
+        //     'brand_id' => 'required',
+        //     // ďalšie validácie podľa potreby
+        // ]);
+
+        // $product->update($validated);
+
+        // // Môžeš tu spraviť update variants, obrázkov atď.
+
+        return redirect()->route('admin.editProduct')->with('success', 'Product updated successfully.');
+    }
+
 }
