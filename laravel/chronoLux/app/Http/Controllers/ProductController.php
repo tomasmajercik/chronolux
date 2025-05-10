@@ -7,6 +7,11 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Brand;
 
+// delete
+use Illuminate\Support\Facades\Storage;
+use App\Models\ProductImage;
+
+
 class ProductController extends Controller
 {
     public function showByCategory(Request $request, $category_name = null)
@@ -175,5 +180,48 @@ class ProductController extends Controller
         ]);
     }
 
+    public function destroy($id)
+    {
+        $product = Product::with(['images', 'coverImage'])->findOrFail($id);
 
+        // Vymaž všetky obrázky (okrem tých, ktoré sú zdieľané)
+        foreach ($product->images as $image) {
+            $path = $image->image_path;
+
+            if ($path) {
+                $count = ProductImage::where('image_path', $path)->count();
+
+                if ($count <= 1 && Storage::disk('public')->exists($path)) {
+                    Storage::disk('public')->delete($path);
+                }
+            }
+
+            $image->delete(); // záznam z DB vždy zmažeme
+        }
+
+        // Cover image
+        if ($product->coverImage) {
+            $cover = $product->coverImage;
+            $path = $cover->image_path;
+
+            if ($path) {
+                $count = ProductImage::where('image_path', $path)->count();
+
+                if ($count <= 1 && Storage::disk('public')->exists($path)) {
+                    Storage::disk('public')->delete($path);
+                }
+            }
+
+            $cover->delete();
+        }
+
+        // Zmaž produkt
+        $product->delete();
+
+        return redirect()->route('admin.editProduct')->with('success', 'Product and images deleted.');
+    }
+
+    // Obrázok sa fyzicky zmaže iba ak: 
+//        - sa v DB vyskytuje len raz (count() <= 1),
+//        - a súbor existuje na disku (Storage::exists()).
 }

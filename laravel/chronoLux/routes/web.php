@@ -115,8 +115,10 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin')->group(function () {
 
     Route::post('/products', [ProductController::class, 'store'])->name('admin.products.store');
 
-    Route::delete('/products/{product}', [AdminProductController::class, 'destroy'])
-    ->name('admin.products.destroy');
+    // Route::delete('/products/{product}', [AdminProductController::class, 'destroy'])
+    // ->name('admin.products.destroy');
+
+    Route::delete('/admin/products/{id}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
 
 });
 
