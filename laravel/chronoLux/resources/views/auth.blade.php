@@ -4,6 +4,8 @@
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 @endpush
 
+@section('title', 'Authentication')
+
 @section('content')
     <main>
         <section id="sign-in-section">

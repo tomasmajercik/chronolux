@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{{ asset('css/admin/edit.css') }}">
 @endpush
 
-@section('title', 'Profile')
+@section('title', 'Edit Product')
 
 @section('content')
 <main>

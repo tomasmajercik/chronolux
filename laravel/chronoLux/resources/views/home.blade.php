@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Ultra Luxury')
+@section('title', 'ChronoLux - Home')
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
