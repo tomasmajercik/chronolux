@@ -116,6 +116,32 @@
     const previewContainer = document.getElementById('preview-container');
     let selectedFiles = [];
 
+    const existingImages = @json($product->images->map(fn($img) => asset($img->image_path)));
+    existingImages.unshift(@json($product->coverImage ? asset($product->coverImage->image_path) : null));
+
+    existingImages.forEach((src, index) => {
+        if (!src) return;
+        const div = document.createElement('div');
+        div.classList.add('product-img');
+        div.innerHTML = `
+            <img src="${src}" alt="existing-image">
+            <button type="button" class="trash-can" data-existing="true" data-index="${index}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 9 9" fill="none">
+                    <path d="M1.96875 1.96875L2.32031 7.59375C2.33701 7.91877 2.57344 8.15625 2.88281 8.15625H6.11719C6.42779 8.15625 6.65982 7.91877 6.67969 7.59375L7.03125 1.96875"
+                        stroke="black" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M1.40625 1.96875H7.59375" stroke="black" stroke-width="0.75"
+                        stroke-linecap="round" />
+                    <path d="M3.375 1.96875V1.26563C3.375 0.96875 3.625 0.75 3.79688 0.75H5.20312C5.375 0.75 5.625 0.96875 5.625 1.26563V1.96875"
+                        stroke="black" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M4.5 3.09375V7.03125M3.23438 3.09375L3.375 7.03125M5.76562 3.09375L5.625 7.03125"
+                        stroke="black" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </button>
+        `;
+        previewContainer.insertBefore(div, previewContainer.querySelector('.add-img'));
+    });
+
+
     function renderPreviews() {
         previewContainer.querySelectorAll('.product-img').forEach(el => el.remove());
 
