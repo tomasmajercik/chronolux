@@ -12,11 +12,6 @@
     <x-adminSidebar :active="'addProduct'" />
     <div class="profile-content">
             <div class="profile-info">
-                <div class="center">
-                    <img src="../IMGs/person.jpeg" alt="Profile Picture" class="profile-pic">
-                    <h3 class="profile-name">František Hraško</h3>
-                    <h6>Administrator</h6>
-                </div>
 
                 <!-- MAIN CONTENT -->
                 <div class="main-content">
@@ -81,7 +76,7 @@
                                 <label class="add-img" for="image-upload">
                                     <p>+</p>
                                 </label>
-                                <input type="file" id="image-upload" name="images[]" accept="image/*" multiple style="display: none;">
+                                <input type="file" id="image-upload" accept="image/*" multiple style="display: none;">
                             </div>
                         </div>
 
@@ -104,23 +99,15 @@
 @endsection
 @push('scripts')
 <script>
-    @if (session('success'))
-        alert("{{ session('success') }}");
-    @endif
-    @if (session('error'))
-        alert("{{ session('error') }}");
-    @endif
     const uploadInput = document.getElementById('image-upload');
     const previewContainer = document.getElementById('preview-container');
-
-    // Store selected files in this array
     let selectedFiles = [];
 
     uploadInput.addEventListener('change', function () {
         const newFiles = Array.from(uploadInput.files);
 
         newFiles.forEach(file => {
-            selectedFiles.push(file); // Add to our array
+            selectedFiles.push(file);
 
             const reader = new FileReader();
             reader.onload = function (e) {
@@ -147,30 +134,53 @@
         });
     });
 
-    // Prevent form submission if there are no sizes selected
-    document.getElementById('product-form').addEventListener('submit', function (e) {
-        const checkedSizes = document.querySelectorAll('input[name="sizes[]"]:checked');
-        if (checkedSizes.length === 0) {
-            e.preventDefault();
-            alert("Please select at least one size.");
-        }
-    });
+    const form = document.getElementById('product-form');
+    form.addEventListener('submit', async function (e) {
+        e.preventDefault();
 
-    // Prevent form submission if less than 2 images are selected
-    document.getElementById('product-form').addEventListener('submit', function (e) {
         const checkedSizes = document.querySelectorAll('input[name="sizes[]"]:checked');
         const uploadedImages = document.querySelectorAll('.product-img img');
 
         if (checkedSizes.length === 0) {
-            e.preventDefault();
             alert("Please select at least one size.");
             return;
         }
 
         if (uploadedImages.length < 2) {
-            e.preventDefault();
             alert("Please upload at least two images.");
             return;
+        }
+
+        const formData = new FormData(form);
+
+        // Append image files manually
+        for (const file of selectedFiles) {
+            formData.append('images[]', file);
+        }
+
+        try {
+            const response = await fetch(form.action, {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value,
+                    'Accept': 'application/json'
+                },
+                body: formData
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                alert(result.message || "Product uploaded successfully!");
+                form.reset();
+                selectedFiles = [];
+                document.querySelectorAll('.product-img').forEach(el => el.remove());
+            } else {
+                alert(result.message || "Something went wrong.");
+            }
+        } catch (error) {
+            alert("Upload failed. Please try again.");
+            console.error(error);
         }
     });
 
@@ -188,7 +198,6 @@
             brandSelect.required = true;
         }
     });
-
 </script>
 @endpush
 

@@ -129,20 +129,31 @@ class ProductController extends Controller
             }
 
             if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $index => $image) {
-                $path = $image->store('/product_images', 'public');
-                $product->images()->create([
-                    'image_path' => 'storage/' . $path,
-                    'is_cover' => $index === 0, // mark first image as cover
-                ]);
+                foreach ($request->file('images') as $index => $image) {
+                    $path = $image->store('/product_images', 'public');
+                    $product->images()->create([
+                        'image_path' => 'storage/' . $path,
+                        'is_cover' => $index === 0,
+                    ]);
+                }
             }
-        }
+
+            // Detect if it's AJAX or standard request
+            if ($request->expectsJson()) {
+                return response()->json(['message' => 'Product uploaded successfully!'], 200);
+            }
 
             return redirect()->back()->with('success', 'Product uploaded successfully!');
+
         } catch (\Exception $e) {
-            return redirect()->back()->withError('error', $e->getMessage());
+            if ($request->expectsJson()) {
+                return response()->json(['message' => 'Error: ' . $e->getMessage()], 500);
+            }
+
+            return redirect()->back()->with('error', 'Error: ' . $e->getMessage());
         }
     }
+
 
     
     public function create()
