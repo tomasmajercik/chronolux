@@ -114,6 +114,10 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin')->group(function () {
     Route::get('/edit-product', [AdminProductController::class, 'index'])->name('admin.editProduct');
 
     Route::post('/products', [ProductController::class, 'store'])->name('admin.products.store');
+
+    Route::delete('/products/{product}', [AdminProductController::class, 'destroy'])
+    ->name('admin.products.destroy');
+
 });
 
 
