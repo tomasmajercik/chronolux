@@ -84,7 +84,7 @@ class CartController extends Controller
         if (Auth::check()) {
             $item = OrderItem::findOrFail($order_item_id);
 
-            // Uistíme sa, že položka patrí aktuálnemu používateľovi
+            // Check if the item belongs to the current user
             if ($item->order->user_id !== Auth::id()) {
                 abort(403, 'Unauthorized action.');
             }
@@ -120,7 +120,7 @@ class CartController extends Controller
         if (Auth::check()) {
             $item = OrderItem::findOrFail($order_item_id);
 
-            // Overenie, či položka patrí aktuálnemu používateľovi
+            // Check if the item belongs to the current user
             if ($item->order->user_id !== Auth::id()) {
                 abort(403, 'Unauthorized action.');
             }
@@ -132,7 +132,7 @@ class CartController extends Controller
             $cart = array_filter($cart, function ($item) use ($order_item_id) {
                 return $item['product_variant_id'] != $order_item_id;
             });
-            session(['cart' => array_values($cart)]); // reset indexov
+            session(['cart' => array_values($cart)]); // reset index
 
             return back()->with('success', 'The product has been removed.');
         }
@@ -209,50 +209,47 @@ class CartController extends Controller
         return view('cart.checkout', compact('totalProducts', 'shipping', 'total', 'items', 'prefill'));
     }
 
-    public function add_shipping_info(Request $request){
+    public function add_shipping_info(Request $request)
+    {
         $validatedData = $request->validate([
-            'email' => 'required|email',
+            'email' => [
+                'required',
+                'regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|org|net|sk|cz|eu)$/'
+            ],
             'name' => 'required|string',
             'surname' => 'required|string',
             'address' => 'required|string',
-            'phone_number' => 'required|string',
-            'postal_code' => 'required|string',
+            'phone_number' => [
+                'required',
+                'regex:/^(?:\+421\s?\d{3}|\d{4})\s?\d{3}\s?\d{3}$/'
+            ],
+            'postal_code' => [
+                'required',
+                'regex:/^\d{3}\s?\d{2}$/'
+            ],
             'city' => 'required|string',
             'country' => 'required|string',
             'delivery' => 'required|string',
         ]);
 
         if (Auth::check()) {
-            // Získa aktuálneho prihláseného používateľa
             $userId = Auth::id();
+            $order = Order::where('user_id', $userId)->where('status', 'pending')->first();
 
-            // Nájde jeho pending objednávku
-            $order = Order::where('user_id', $userId)
-                        ->where('status', 'pending')
-                        ->first();
-            
             if (!$order) {
+                if ($request->expectsJson()) {
+                    return response()->json(['error' => 'No pending order found.'], 422);
+                }
                 return redirect()->back()->with('error', 'No pending order found.');
             }
 
             $existingAddress = Address::where('city', $validatedData['city'])
-            ->where('country', $validatedData['country'])
-            ->where('address', $validatedData['address'])
-            ->where('postal_code', $validatedData['postal_code'])
-            ->first();
+                ->where('country', $validatedData['country'])
+                ->where('address', $validatedData['address'])
+                ->where('postal_code', $validatedData['postal_code'])
+                ->first();
 
-            if ($existingAddress) {
-                $address = $existingAddress->id;
-            } 
-            else { // Create a new address if it doesn't exist
-                $newAddress = new Address();
-                $newAddress->city = $validatedData['city'];
-                $newAddress->country = $validatedData['country'];
-                $newAddress->address = $validatedData['address'];
-                $newAddress->postal_code = $validatedData['postal_code'];
-                $newAddress->save();
-                $address = $newAddress->id;
-            }
+            $address = $existingAddress?->id ?? Address::create($validatedData)->id;
 
             $order->update([
                 'email' => $validatedData['email'],
@@ -262,16 +259,22 @@ class CartController extends Controller
                 'phone_number' => $validatedData['phone_number'],
                 'delivery_method' => $validatedData['delivery'],
             ]);
-        }
-        else {
-            // Nepřihlásený používateľ – uloženie do session
+        } else {
             session(['shipping_info' => $validatedData]);
+        }
+
+        if ($request->expectsJson()) {
+            return response()->json([
+                'success' => 'Shipping info updated.',
+                'redirect' => route('cart.payment')
+            ]);
         }
 
         return redirect()->route('cart.payment')->with('success', 'Shipping info updated.');
     }
 
-    public function payment() // need check it is redundant code 
+
+    public function payment()
     {
         if (Auth::check()) {
             $order = Order::where('user_id', Auth::id())->where('status', 'pending')->with('items.variant.product')->first();
@@ -320,7 +323,7 @@ class CartController extends Controller
 
             }
         } else {
-            // Nepřihlásený používateľ – vytvorenie objednávky zo session
+            // For guests, we need to handle the session data
             $shippingInfo = session('shipping_info');
             $cartItems = session('cart');
 
@@ -328,7 +331,7 @@ class CartController extends Controller
                 return redirect()->back()->with('error', 'Missing shipping or cart information.');
             }
 
-            // Najprv nájdeme alebo vytvoríme adresu
+            // First, check if the address already exists
             $existingAddress = Address::where('city', $shippingInfo['city'])
                 ->where('country', $shippingInfo['country'])
                 ->where('address', $shippingInfo['address'])
@@ -347,7 +350,7 @@ class CartController extends Controller
                 $addressId = $newAddress->id;
             }
 
-            // Vytvorenie novej objednávky
+            // Create a new order
             $order = new Order();
             $order->email = $shippingInfo['email'];
             $order->name = $shippingInfo['name'];
@@ -364,7 +367,7 @@ class CartController extends Controller
 
             $total = 0;
 
-            // Pridanie položiek do objednávky
+            // Add items to the order
             foreach ($cartItems as $item) {
                 $variantId = $item['product_variant_id'];
                 $quantity = $item['quantity'];

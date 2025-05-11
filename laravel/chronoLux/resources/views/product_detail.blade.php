@@ -73,7 +73,15 @@
                         @csrf
                         <input type="hidden" name="quantity" id="product-quantity" value="1">
                         <input type="hidden" name="variant_id" id="selected-variant-id" value="{{ $product->variants->first()->id }}">
-                        <button type="submit">Add to Cart</button>
+                        @auth
+                            @if (Auth::user()->isAdmin())
+                                <button type="button" disabled style="cursor: not-allowed; opacity: 0.6;">Add to Cart (Admin)</button>
+                            @else
+                                <button type="submit">Add to Cart</button>
+                            @endif
+                        @else
+                            <button type="submit">Add to Cart</button>
+                        @endauth
                     </form>
                 </div>
             </div>

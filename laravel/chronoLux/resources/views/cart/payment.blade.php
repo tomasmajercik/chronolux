@@ -93,22 +93,30 @@
                             <div class="card-info">
                                 <span class="input-field">
                                     <label>Card Holder Name</label>
-                                    <input type="text" placeholder="Carrot Guy">
+                                    <input type="text" placeholder="Carrot Guy"
+                                        pattern="^[A-Za-z\s\-\.]{2,50}$"
+                                        title="Please enter a valid name (letters, spaces, hyphens only)">
                                 </span>
 
                                 <span class="input-field">
                                     <label>Card Number</label>
-                                    <input type="text" placeholder="4405 7767 1234 1234">
+                                   <input type="text" placeholder="4405 7767 1234 1234"
+                                        pattern="^\d{4} ?\d{4} ?\d{4} ?\d{4}$"
+                                        title="Enter a valid 16-digit card number">
                                 </span>
 
                                 <span class="input-field">
                                     <label>Expiry Date</label>
-                                    <input type="text" placeholder="06/25">
+                                    <input type="text" placeholder="06/25"
+                                        pattern="^(0[1-9]|1[0-2])\/\d{2}$"
+                                        title="Enter expiry date in MM/YY format">
                                 </span>
 
                                 <span class="input-field">
                                     <label>CVC</label>
-                                    <input type="text" placeholder="045">
+                                   <input type="text" placeholder="045"
+                                        pattern="^\d{3,4}$"
+                                        title="Enter a valid 3 or 4 digit CVC code">
                                 </span>
                             </div>
                         </div>
@@ -136,5 +144,25 @@
         });
 
         button.classList.add('selected');
+
+        const cardFields = document.querySelectorAll('.card-info input');
+        const isCard = paymentMethod === 'Card';
+
+        cardFields.forEach(input => {
+            input.required = isCard;
+        });
     }
+
+    // Prevent form submission if no payment method is selected
+    document.addEventListener('DOMContentLoaded', function () {
+    const form = document.querySelector('form');
+    const paymentInput = document.getElementById('payment_method');
+
+    form.addEventListener('submit', function (event) {
+        if (paymentInput.value === "") {
+            event.preventDefault();
+            alert('Please select a payment method before submitting.');
+        }
+    });
+});
 </script>
