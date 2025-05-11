@@ -22,21 +22,9 @@ Route::get('/cart', function () {
     return view('/cart/cart');
 })->middleware(['not_admin']);
 
-Route::get('/checkout', function () {
-    return view('/cart/checkout');
-})->middleware(['not_admin']);
-
-Route::get('/payment', function () {
-    return view('/cart/payment');
-})->middleware(['not_admin']);
-
 Route::get('/product-page', function () {
     return view('/product_page');
 });
-
-Route::get('/proceed', function () {
-    return view('/cart/proceed');
-})->middleware(['not_admin']);
 
 Route::get('/auth', function () {
     return view('auth');
@@ -77,14 +65,22 @@ Route::middleware(['auth', 'not_admin'])->group(function() {
 //Cart Routes
 Route::get('/cart/proceed', function () {
     return view('cart.proceed');
-})->middleware(['not_admin'])->name('cart.proceed');
+})->middleware(['not_admin', 'cameFromPage'])->name('cart.proceed');
+
 Route::post('/cart/add', [CartController::class, 'add'])->middleware(['not_admin'])->name('cart.add');
 Route::get('/cart', [CartController::class, 'show'])->middleware(['not_admin'])->name('cart.show');
 Route::put('/cart/update/{order_item_id}', [CartController::class, 'update'])->middleware(['not_admin'])->name('cart.update');
 Route::delete('/cart/remove/{order_item_id}', [CartController::class, 'remove'])->middleware(['not_admin'])->name('cart.remove');
-Route::get('/cart/checkout', [CartController::class, 'checkout'])->middleware(['not_admin'])->name('cart.checkout');
+
+Route::get('/cart/checkout', [CartController::class, 'checkout'])->middleware(['not_admin', 'cameFromPage'])->name('cart.checkout');
+Route::post('/cart/start-checkout', [CartController::class, 'startCheckout'])->name('cart.startCheckout');
+
+Route::get('/cart/payment', [CartController::class, 'payment'])->middleware(['not_admin', 'cameFromPage'])->name('cart.payment');
+Route::get('/cart/start-payment', [CartController::class, 'startPayment'])->name('cart.startPayment');
+
+Route::get('/cart/start-proceed', [CartController::class, 'startProceed'])->name('cart.startProceed');
+
 Route::post('/cart/shipping', [CartController::class, 'add_shipping_info'])->middleware(['not_admin'])->name('cart.shipping');
-Route::get('/cart/payment', [CartController::class, 'payment'])->middleware(['not_admin'])->name('cart.payment');
 Route::post('/cart/pay_now', [CartController::class, 'pay_now'])->middleware(['not_admin'])->name('payment.store');
 
 //**** Authentication Routes ****//
@@ -113,9 +109,6 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin')->group(function () {
     Route::get('/edit-product', [AdminProductController::class, 'index'])->name('admin.editProduct');
 
     Route::post('/products', [ProductController::class, 'store'])->name('admin.products.store');
-
-    // Route::delete('/products/{product}', [AdminProductController::class, 'destroy'])
-    // ->name('admin.products.destroy');
 
     Route::delete('/admin/products/{id}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
 

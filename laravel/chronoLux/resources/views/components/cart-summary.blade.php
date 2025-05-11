@@ -21,8 +21,12 @@
             {{ $buttonMessage }}
         </button>
     @else
-        <button class="checkoutBTN" onclick="window.location.href='{{ $buttonUrl }}'">
-            {{ $buttonMessage }}
-        </button>
+        <form method="POST" action="{{ $buttonUrl }}">
+            @csrf
+            <button class="checkoutBTN" type="submit">
+                {{ $buttonMessage }}
+            </button>
+        </form>
+
     @endif
 </div>

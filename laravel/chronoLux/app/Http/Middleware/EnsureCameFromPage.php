@@ -13,8 +13,14 @@ class EnsureCameFromPage
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle($request, Closure $next)
     {
+        if (!session('proceed_from_cart')) {
+            return redirect('/cart');
+        }
+
+        session()->forget('proceed_from_cart');
         return $next($request);
     }
+
 }

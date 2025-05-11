@@ -20,6 +20,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'verified' => \App\Http\Middleware\EnsureEmailIsVerified::class,
             'not_admin' => \App\Http\Middleware\NotAdminMiddleware::class,
             'is_admin' => \App\Http\Middleware\IsAdminMiddleware::class,
+            'cameFromPage' => \App\Http\Middleware\EnsureCameFromPage::class,
         ]);
 
         //
