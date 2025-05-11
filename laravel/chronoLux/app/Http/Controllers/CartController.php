@@ -266,11 +266,11 @@ class CartController extends Controller
         if ($request->expectsJson()) {
             return response()->json([
                 'success' => 'Shipping info updated.',
-                'redirect' => route('cart.payment')
+                'redirect' => route('cart.startPayment')
             ]);
         }
 
-        return redirect()->route('cart.payment')->with('success', 'Shipping info updated.');
+        return redirect()->route('cart.startPayment')->with('success', 'Shipping info updated.');
     }
 
 
@@ -388,6 +388,23 @@ class CartController extends Controller
             session()->forget(['cart', 'shipping_info']);
         }
 
-        return redirect()->route('cart.proceed')->with('success', 'Payment successful. Thank you for your order!');
+        return redirect()->route('cart.startProceed')->with('success', 'Payment successful. Thank you for your order!');
     }
+
+    public function startCheckout(Request $request)
+    {
+        session(['proceed_from_cart' => true]);
+        return redirect()->route('cart.checkout');
+    }
+    public function startPayment(Request $request)
+    {
+        session(['proceed_from_cart' => true]);
+        return redirect()->route('cart.payment');
+    }
+    public function startProceed(Request $request)
+    {
+        session(['proceed_from_cart' => true]);
+        return redirect()->route('cart.proceed');
+    }
+
 }
