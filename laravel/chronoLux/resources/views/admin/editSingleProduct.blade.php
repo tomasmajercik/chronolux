@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{{ asset('css/admin/add_product.css') }}">
 @endpush
 
-@section('title', 'Add Product')
+@section('title', 'Edit Product')
 
 @section('content')
 <main>
@@ -14,7 +14,7 @@
             <div class="profile-info">
                 <!-- MAIN CONTENT -->
                 <div class="main-content">
-                    <h2>Add product</h2>
+                    <h2>Edit product</h2>
                     <form id="product-form" action="{{ route('admin.product.update', $product->id) }}" method="POST" enctype="multipart/form-data" class="product-form">
                         @method('PUT')
                         @csrf
@@ -91,9 +91,6 @@
                             </div>
                             <p id="upload-status" style="margin-top: 8px; font-size: 14px; color: #555;"></p> <!-- status line -->
                         </div>
-
-
-
 
                         <div class="product-description">
                             <h4>Product description</h4>
@@ -254,13 +251,6 @@
             });
 
             const result = await response.json();
-
-            // if (response.ok) {
-            //     alert(result.message || "Product uploaded successfully!");
-            //     form.reset();
-            //     selectedFiles = [];
-            //     document.querySelectorAll('.product-img').forEach(el => el.remove());
-            // }
             if (response.ok) {
                 const redirectTo = '/admin/edit-product'; // fallback
                 window.location.href = redirectTo;

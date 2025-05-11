@@ -59,7 +59,7 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => now(),
             ]);
 
-            $imageCount = rand(1, 3);
+            $imageCount = rand(2, 3);
             $usedImages = array_rand($imagePool, $imageCount);
             if (!is_array($usedImages)) $usedImages = [$usedImages];
 
@@ -67,7 +67,7 @@ class ProductsTableSeeder extends Seeder
                 DB::table('products_images')->insert([
                     'product_id' => $productId,
                     'image_path' => $imagePool[$index],
-                    'is_cover' => $j === 0, // prvý obrázok je cover
+                    'is_cover' => $j === 0, // first image is cover
                 ]);
             }
         }

@@ -18,7 +18,10 @@ class PasswordResetLinkController extends Controller
     public function store(Request $request): JsonResponse
     {
         $request->validate([
-            'email' => ['required', 'email'],
+            'email' => [
+                'required',
+                'regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|org|net|sk|cz|eu)$/'
+            ],
         ]);
 
         // We will send the password reset link to this user. Once we have attempted

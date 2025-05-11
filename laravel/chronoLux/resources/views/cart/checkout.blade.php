@@ -15,7 +15,7 @@
                 <li><a href="#">Shipping</a></li>
             </ul>
         </nav>
-        <form action="{{ route('cart.shipping') }}" method="POST">
+        <form id="shipping-form" action="{{ route('cart.shipping') }}" method="POST">
             @csrf
             <div class="cart-wrapper">
 
@@ -46,11 +46,12 @@
                         </div>
                         <div class="input-holder">
                             <label>Phone</label>
-                            <input type="text" id="phone" placeholder="0912 345 679" name="phone_number" required>
-
+                            <input type="text" id="phone" placeholder="0912 345 678" name="phone_number"
+                                required title="Enter a valid phone number (e.g., 0912 345 678).">
                             <label>Postal Code</label>
-                            <input type="text" id="postal_code" placeholder="010 10" name="postal_code" required>
-                        
+                            <input type="text" id="postal_code" placeholder="010 01" name="postal_code"
+                                required pattern="^\d{3}\s?\d{2}$"
+                                title="Enter a valid postal code (e.g., 010 01).">
                             <label>City</label>
                             <input type="text" id="city" placeholder="Carrot City" name="city" required>
                         
@@ -105,5 +106,56 @@
             document.querySelectorAll('input[type="text"], input[type="email"]').forEach(input => input.value = "");
         }
     }
+
+    // Using AJAX to submit the form and validate the response on backend
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.getElementById('shipping-form');
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            const formData = new FormData(form);
+            const submitUrl = form.getAttribute('action');
+
+            fetch(submitUrl, {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value,
+                    'Accept': 'application/json'
+                },
+                body: formData
+            })
+            .then(async response => {
+                let data;
+                try {
+                    data = await response.json();
+                } catch (e) {
+                    return alert('Invalid response from server.');
+                }
+
+                if (response.ok) {
+                    if (data.redirect) {
+                        window.location.href = data.redirect;
+                    } else {
+                        alert(data.success || 'Shipping info updated.');
+                    }
+                } else {
+                    const messages = data.errors
+                        ? Object.values(data.errors).flat().join('\n')
+                        : (data.error || 'Something went wrong.');
+                    alert(messages);
+                }
+            })
+            .catch(() => {
+                alert('Network error or server is unreachable.');
+            });
+        });
+    });
+
 </script>
 @endpush
