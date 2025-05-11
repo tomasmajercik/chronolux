@@ -20,15 +20,15 @@ Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/cart', function () {
     return view('/cart/cart');
-});
+})->middleware(['not_admin']);
 
 Route::get('/checkout', function () {
     return view('/cart/checkout');
-});
+})->middleware(['not_admin']);
 
 Route::get('/payment', function () {
     return view('/cart/payment');
-});
+})->middleware(['not_admin']);
 
 Route::get('/product-page', function () {
     return view('/product_page');
@@ -36,11 +36,11 @@ Route::get('/product-page', function () {
 
 Route::get('/proceed', function () {
     return view('/cart/proceed');
-});
+})->middleware(['not_admin']);
 
 Route::get('/auth', function () {
     return view('auth');
-});
+})->middleware(['guest']);
 
 Route::get('/products/{category_name}', [ProductController::class, 'showByCategory'])->name('products.byCategory');
 
@@ -69,39 +69,38 @@ Route::post('/profile/update-address', [ProfileController::class, 'updateAddress
 Route::post('/profile/update-contact', [ProfileController::class, 'updateContact'])->middleware(['auth', 'not_admin'])->name('profile.update-contact');
 
 //**** Settings Routes ****//
-Route::middleware('auth')->group(function() {
+Route::middleware(['auth', 'not_admin'])->group(function() {
     Route::post('/profile/settings/update-email', [ProfileController::class, 'updateEmail'])->name('profile.update-email');
     Route::post('/profile/settings/update-password', [ProfileController::class, 'updatePassword'])->name('profile.update-password');
 });
 
-
 //Cart Routes
 Route::get('/cart/proceed', function () {
     return view('cart.proceed');
-})->name('cart.proceed');
-Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
-Route::get('/cart', [CartController::class, 'show'])->name('cart.show');
-Route::put('/cart/update/{order_item_id}', [CartController::class, 'update'])->name('cart.update');
-Route::delete('/cart/remove/{order_item_id}', [CartController::class, 'remove'])->name('cart.remove');
-Route::get('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
-Route::post('/cart/shipping', [CartController::class, 'add_shipping_info'])->name('cart.shipping');
-Route::get('/cart/payment', [CartController::class, 'payment'])->name('cart.payment');
-Route::post('/cart/pay_now', [CartController::class, 'pay_now'])->name('payment.store');
+})->middleware(['not_admin'])->name('cart.proceed');
+Route::post('/cart/add', [CartController::class, 'add'])->middleware(['not_admin'])->name('cart.add');
+Route::get('/cart', [CartController::class, 'show'])->middleware(['not_admin'])->name('cart.show');
+Route::put('/cart/update/{order_item_id}', [CartController::class, 'update'])->middleware(['not_admin'])->name('cart.update');
+Route::delete('/cart/remove/{order_item_id}', [CartController::class, 'remove'])->middleware(['not_admin'])->name('cart.remove');
+Route::get('/cart/checkout', [CartController::class, 'checkout'])->middleware(['not_admin'])->name('cart.checkout');
+Route::post('/cart/shipping', [CartController::class, 'add_shipping_info'])->middleware(['not_admin'])->name('cart.shipping');
+Route::get('/cart/payment', [CartController::class, 'payment'])->middleware(['not_admin'])->name('cart.payment');
+Route::post('/cart/pay_now', [CartController::class, 'pay_now'])->middleware(['not_admin'])->name('payment.store');
 
 //**** Authentication Routes ****//
 Route::get('/login', function () {
     return view('auth');
-})->name('login');
+})->middleware(['guest'])->name('login');
 
-Route::post('/login', [AuthenticatedSessionController::class, 'store']);
+Route::post('/login', [AuthenticatedSessionController::class, 'store'])->middleware(['guest']);
 
 Route::get('/register', function () {
     return view('auth');
-})->name('register');
+})->middleware(['guest'])->name('register');
 
-Route::post('/register', [RegisteredUserController::class, 'store'])->name('register');
-Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login');
-Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+Route::post('/register', [RegisteredUserController::class, 'store'])->middleware(['guest'])->name('register');
+Route::post('/login', [AuthenticatedSessionController::class, 'store'])->middleware(['guest'])->name('login');
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->middleware(['guest'])->name('logout');
 
 
 //****        Admin routes          ****//
