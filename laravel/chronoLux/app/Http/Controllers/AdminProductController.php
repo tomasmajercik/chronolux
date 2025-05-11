@@ -16,10 +16,4 @@ class AdminProductController extends Controller
             'products' => $products,
         ]);
     }
-
-    // public function destroy(Product $product)
-    // {
-    //     $product->delete();
-    //     return redirect()->back()->with('success', 'Product deleted successfully.');
-    // }
 }

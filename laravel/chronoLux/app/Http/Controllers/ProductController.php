@@ -184,10 +184,10 @@ class ProductController extends Controller
     {
         $product = Product::with(['images', 'coverImage'])->findOrFail($id);
 
-        // Vymaž všetky obrázky (okrem tých, ktoré sú zdieľané)
+        // Delete all images (except those that are shared)
         foreach ($product->images as $image) {
             $originalPath = $image->image_path;
-            $path = str_replace('storage/', '', $originalPath); // odstráň 'storage/' prefix
+            $path = str_replace('storage/', '', $originalPath); // delete 'storage/' prefix
 
             if ($path) {
                 $count = ProductImage::where('image_path', $originalPath)->count();
@@ -219,15 +219,15 @@ class ProductController extends Controller
         }
 
 
-        // Zmaž produkt
+        // Delete the product itself
         $product->delete();
 
         return redirect()->route('admin.editProduct')->with('success', 'Product and images deleted.');
     }
 
-    // Obrázok sa fyzicky zmaže iba ak: 
-//        - sa v DB vyskytuje len raz (count() <= 1),
-//        - a súbor existuje na disku (Storage::exists()).
+    // The image is physically deleted only if: 
+    // - it appears in the database only once (count() <= 1),
+    // - and the file exists on the disk (Storage::exists()).
 
 
     public function edit($id)
@@ -321,12 +321,6 @@ class ProductController extends Controller
                 ], 200);
             }
 
-            // if ($request->expectsJson()) {
-            //     // return response()->json(['message' => 'Product updated successfully!'], 200);
-            //     return response()->json(['message' => 'Product updated successfully!'], 200);
-            // }
-
-            // return redirect()->back()->with('success', 'Product updated successfully!');
             return redirect()->route('product.detail', $product->id)->with('success', 'Product updated successfully!');
 
 

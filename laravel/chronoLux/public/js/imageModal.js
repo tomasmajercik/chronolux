@@ -5,10 +5,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const mainImg = document.querySelector('.main-img');
     const thumbnails = Array.from(document.querySelectorAll('.product-gallery img'));
 
-    // Prvý obrázok bude hlavný obrázok, potom všetky ostatné
+    // first image is the main image
     galleryImages = [mainImg, ...thumbnails];
 
-    // Pridaj click event aj na hlavný obrázok
+    // add click event to main image
     galleryImages.forEach((img, index) => {
         img.addEventListener('click', () => {
             showLargeImage(img.src, index);

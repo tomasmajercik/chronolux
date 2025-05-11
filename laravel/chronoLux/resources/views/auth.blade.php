@@ -92,7 +92,7 @@
 
             if (password !== confirmPassword) {
                 errorMessage.style.display = "block";
-                event.preventDefault(); // Zastaví odoslanie formulára
+                event.preventDefault(); // Prevent form submission
                 return false;
             } else {
                 errorMessage.style.display = "none";
