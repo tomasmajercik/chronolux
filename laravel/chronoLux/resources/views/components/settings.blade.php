@@ -1,4 +1,3 @@
-{{-- settings.blade.php --}}
 <div class="setting-link" id="setting-link">
     <a href="#" onclick="showHidden(event)">
         <p><b>{{ $settingText }}</b></p>

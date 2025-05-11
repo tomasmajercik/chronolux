@@ -11,7 +11,7 @@
     <!-- Footer CSS -->
     <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
     <link rel="stylesheet" href="{{ asset('css/successModal.css') }}">
-    <!-- Extra CSS pre konkrétne stránky -->
+    <!-- Extra CSS for concrete subpages -->
     @stack('styles')
 </head>
 <body>
@@ -23,7 +23,7 @@
      <script src="{{ asset('js/script.js') }}"></script>
      <script src="{{ asset('js/searchScript.js') }}"></script>
 
-     <!-- Extra JS pre konkrétne stránky -->
+     <!-- Extra JS for concrete subpages -->
      @stack('scripts')
 </body>
 </html>

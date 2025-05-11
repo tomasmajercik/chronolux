@@ -21,7 +21,7 @@ class OrderDetailItemController extends Controller
             return $item->variant->product->price * $item->quantity;
         });
 
-        $shipping = 3.50; // môžeš neskôr ťahať aj z $order
+        $shipping = 3.50; 
         $total = $totalProducts + $shipping;
 
         return view('order_detail', compact('order', 'items', 'totalProducts', 'shipping', 'total'));

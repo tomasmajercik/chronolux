@@ -15,7 +15,7 @@ class UsersTableSeeder extends Seeder
     {
         DB::table('users')->insert([
             [
-                'name' => 'Jonápod Pišta Paprikaš',
+                'name' => 'Pišta Paprikaš',
                 'email' => 'aa@aa.com',
                 'password' => '$2y$12$BxHvydqWMekb/oaoUTL4gu/r/wr1VWkLEvo8CEMAziu0P1XeLcbT6',
                 'created_at' => '2025-02-19 13:42:35',
@@ -35,7 +35,7 @@ class UsersTableSeeder extends Seeder
                 'default_address' => 2,
             ],
             [
-                'name' => 'Ľuďo Malina Kopačka',
+                'name' => 'Ľuďo Kopačka',
                 'email' => 'admin@admin.com',
                 'password' => bcrypt('1234567890'),
                 'created_at' => now(),

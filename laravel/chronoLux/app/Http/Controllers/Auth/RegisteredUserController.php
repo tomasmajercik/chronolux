@@ -46,7 +46,5 @@ class RegisteredUserController extends Controller
         (new CartController)->transferSessionCart();
 
         return response()->json(['success' => true]);
-        // return redirect('/profile');
-        // return response(); //->redirect('profile');//->with('success', 'Registration successful! Welcome to ChronoLux!');
     }
 }
