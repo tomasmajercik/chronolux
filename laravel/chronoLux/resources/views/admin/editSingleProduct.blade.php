@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{{ asset('css/admin/add_product.css') }}">
 @endpush
 
-@section('title', 'Add Product')
+@section('title', 'Edit Product')
 
 @section('content')
 <main>
@@ -251,13 +251,6 @@
             });
 
             const result = await response.json();
-
-            // if (response.ok) {
-            //     alert(result.message || "Product uploaded successfully!");
-            //     form.reset();
-            //     selectedFiles = [];
-            //     document.querySelectorAll('.product-img').forEach(el => el.remove());
-            // }
             if (response.ok) {
                 const redirectTo = '/admin/edit-product'; // fallback
                 window.location.href = redirectTo;
