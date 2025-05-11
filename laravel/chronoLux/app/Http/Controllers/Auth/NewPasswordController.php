@@ -23,7 +23,10 @@ class NewPasswordController extends Controller
     {
         $request->validate([
             'token' => ['required'],
-            'email' => ['required', 'email'],
+            'email' => [
+                'required',
+                'regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|org|net|sk|cz|eu)$/'
+            ],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
