@@ -1,29 +1,37 @@
-# FIIT_WTECH2025
+## Chronolux, a watch selling E-Shop | Fullstack Semestral Task  
 
-# 🛒 E-Shop | Web Semestral Task  
+### 📝 Project description
+This project was created as a **semestral task** for a WebDev subject at our uni. We were asked to develop fully working E-shop in PHP (Laravel). Shortly after, we went through **proper developing process**: from wireframes and prototype, through database design, frontend and backend development to actually host the website, to make it available on this [link](https://chronolux.free.nf). The website implements UI/UX design, product recommendation, sorting and filtering products, adding to cart and ordering. 
+Everyone can also register to the e-shop, btw. in case, something was left in the cart while registering, the cart is automatically moved and synchronized throughout all devices, where you are logged in 😎. There is also an option to log in as an administrator. The admin has access to features such as adding products, managing the shop, and viewing statistics.
+To ensure security, the application restricts access based on user roles:
+- Admins cannot access regular shopping functionality or user-specific pages.
+- Regular users are blocked from accessing any admin pages.
 
-Welcome to our **Web Semestral Task project!** This repository contains the source code for our **E-Shop**, a simple yet functional online store where users can browse watches, add them to their cart, and complete purchases.
+Additionally, safeguards are in place to prevent misuse or unintended behavior, like accessing protected pages (e.g. admin or payment) by manually typing the URL without proper authentication, etc.
 
-## 📌 Project Overview  
-The goal of this project is to develop a fully functional e-commerce web application as part of our semester coursework. The e-shop will allow users to:
-- Browse a catalog of watches with detailed descriptions and images
-- Add watches to their cart and manage the cart contents
-- Create an account, log in, and manage their profile
-- Simulate completing purchases
-
-## 🛠️ Tech Stack  
-Our e-shop is built using the following technologies:
-- **Frontend:** HTML, CSS, JavaScript  
+### 🛠️ Tech stack
+- **Frontend:** Blade (Laravel), CSS, JS
 - **Backend:** PHP, Laravel  
 - **Database:** PostgreSQL
 
+### 🌱 Skills gained & problems overcomed
+- UI/UX design (designing in Figma)
+- Frontend development (HTML, CSS, Blade (Laravel), JS)
+- Database design (ORM - Eloquent, PostgreSQL)
+- Backend development (PHP, API)
+- MVC (Model View Component), SSR (Server Side Rendering)
+- Team work, GIT collaboration
+
 ## 🚀 Contributors
-Tomáš Majerčík <br>
-Zdenko Kanoš
+- Tomáš Majerčík
+- Zdenko Kanoš
+
+### 📊 Preview
+Visit our project on this link https://chronolux.free.nf
 
 
-# Setting Up the Laravel Project
-## Requirements
+### ⚙️ How to run
+#### Requirements
 
 Make sure you have the following installed:
 
@@ -34,8 +42,8 @@ Make sure you have the following installed:
 
 ## 1. Clone the Repository
 ```bash
-git clone https://github.com/tomasmajercik/FIIT_WTECH2025.git
-cd FIIT_WTECH2025/laravel/chronoLux/
+clone the repo
+cd path/to/repo
 ```
 
 ## 2. Install PHP dependencies
